@@ -1,0 +1,62 @@
+@import "../../vendor/variables";
+
+.profile-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.profile-menu__link {
+  color: $mainPinkColor;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.profile-menu__profile-container {
+  position: relative;
+}
+
+.profile-menu__profile-name {
+  color: $mainWhiteColor;
+  font-size: 15px;
+  background-color: $mainBlueColor;
+  border: none;
+  padding: 9px 15px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.profile-menu__links {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 98px;
+  width: 100%;
+  padding-top: 10px;
+  gap: 10px;
+  transition: $opacityVisibilityTrans;
+}
+
+.profile-menu__links_active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile-menu__profile-link {
+  text-decoration: none;
+  color: $mainBlueColor;
+  font-size: 14px;
+}
+
+.profile-menu__button {
+  text-decoration: none;
+  color: $mainBlueColor;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
