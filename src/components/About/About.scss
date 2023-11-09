@@ -1,0 +1,31 @@
+@import "../../vendor/variables";
+
+.about-block {
+  max-width: 970px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 92px 0;
+}
+
+.about-block__text-container {
+  max-width: 436px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-block__title {
+  margin: 0;
+  color: $mainPinkColor;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.about-block__text {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.4;
+  font-weight: 300;
+}
