@@ -1,0 +1,25 @@
+@import "../../vendor/variables";
+
+.start-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 47px 100px;
+  background-color: $mainBlueColor;
+}
+
+.start-block__text {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.start-block__link {
+  background-color: $mainPinkColor;
+  color: $mainWhiteColor;
+  font-size: 18px;
+  padding: 20px 66px;
+  text-decoration: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
