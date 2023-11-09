@@ -1,3 +1,5 @@
+@import "vendor/variables.scss";
+
 body {
   margin: 0;
   padding: 0;
@@ -5,5 +7,5 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  background-color: $backgroundColor;
 }

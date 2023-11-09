@@ -1,0 +1,39 @@
+@import "../../vendor/variables";
+
+.header {
+  display: flex;
+  padding: 25px 0;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 87%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header__logo {
+  max-width: 185px;
+  max-height: 40px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.header__container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__link-login {
+  color: $mainPinkColor;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.header__link-register {
+  color: #FFFFff;
+  background-color: $mainBlueColor;
+  text-decoration: none;
+  padding: 11px 16px;
+  border-radius: 30px;
+  font-size: 15px;
+}
