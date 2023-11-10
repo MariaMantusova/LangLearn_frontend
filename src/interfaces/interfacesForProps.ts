@@ -35,3 +35,8 @@ export interface IRegisterFormProps {
 export interface ILoginFormProps {
     onClick: () => void
 }
+
+export interface IAuthPageProps {
+    children: ReactNode
+    title: string
+}

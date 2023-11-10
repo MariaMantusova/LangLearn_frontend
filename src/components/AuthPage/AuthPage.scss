@@ -1,0 +1,16 @@
+@import "../../vendor/variables";
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.auth-page__title {
+  font-size: 27px;
+  color: $mainPinkColor;
+  margin-bottom: 70px;
+  margin-top: 0;
+}

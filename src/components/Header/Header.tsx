@@ -10,7 +10,9 @@ function Header(props: IHeaderProps) {
 
     return (
         <header className="header">
-            <img className="header__logo" src={Logo} alt="Лого"/>
+            <Link to="/">
+                <img className="header__logo" src={Logo} alt="Лого"/>
+            </Link>
             {
                 isAuthorized ? <ProfileMenu linkName={props.linkName} path={props.path}/> :
                     <div className="header__container">

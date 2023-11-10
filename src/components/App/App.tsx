@@ -5,6 +5,8 @@ import Main from "../Main/Main";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import LearningPage from "../LearningPage/LearningPage";
 import WordsPage from "../WordsPage/WordsPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Route path="/profile" element={<ProfilePage/>}/>
       <Route path="/learn" element={<LearningPage/>}/>
       <Route path="/words" element={<WordsPage/>}/>
+      <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/register" element={<RegisterPage/>}/>
     </Routes>
   );
 }
