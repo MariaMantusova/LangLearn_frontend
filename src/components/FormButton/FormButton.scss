@@ -12,6 +12,7 @@
 .form-button {
   background-color: $mainPinkColor;
   padding: 15px 40px;
+  width: 100%;
   border-radius: 30px;
   border: none;
   color: $mainWhiteColor;
@@ -23,5 +24,6 @@
   background-color: transparent;
   padding: 0;
   border: none;
-  font-size: 15px;
+  font-size: 12px;
+  cursor: pointer;
 }
