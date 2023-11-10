@@ -1,6 +1,17 @@
+@import "../../vendor/variables";
+
 .auth-block {
   margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 60px 0;
+}
+
+.auth-block__title {
+  margin-top: 0;
+  margin-bottom: 60px;
+  color: $mainPinkColor;
+  font-size: 27px;
+  font-weight: 700;
 }

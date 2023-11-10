@@ -1,5 +1,4 @@
 import React from "react";
-import "./LoginForm.scss";
 import AuthForm from "../AuthForm/AuthForm";
 import {ILoginFormProps} from "../../interfaces/interfacesForProps";
 

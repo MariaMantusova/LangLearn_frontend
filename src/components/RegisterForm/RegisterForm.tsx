@@ -1,5 +1,4 @@
 import React from "react";
-import "./RegisterForm.scss";
 import AuthForm from "../AuthForm/AuthForm";
 import {IRegisterFormProps} from "../../interfaces/interfacesForProps";
 
