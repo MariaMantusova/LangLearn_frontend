@@ -14,7 +14,9 @@ function App() {
       <Route path="/" element={<Main/>}/>
       <Route path="/profile" element={<ProfilePage/>}/>
       <Route path="/learn" element={<LearningPage/>}/>
-      <Route path="/words" element={<WordsPage/>}/>
+      <Route path="/words-all" element={<WordsPage/>}/>
+      <Route path="/words-new" element={<WordsPage/>}/>
+      <Route path="/words-learned" element={<WordsPage/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/register" element={<RegisterPage/>}/>
     </Routes>

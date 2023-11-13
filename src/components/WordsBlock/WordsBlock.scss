@@ -1,0 +1,57 @@
+@import "../../vendor/variables";
+
+.words-block {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  align-items: center;
+  justify-content: center;
+}
+
+.words-block__title {
+  font-size: 27px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.words-block__list {
+  padding: 0;
+  display: flex;
+  gap: 100px;
+  list-style: none;
+  margin: 0;
+}
+
+.word-item {
+  padding: 25px 20px;
+  margin: 0;
+  font-size: 21px;
+  font-weight: 400;
+  border-radius: 20px;
+}
+
+.word-item_pink {
+  border: 3px solid $mainPinkColor;
+}
+
+.word-item_blue {
+  border: 3px solid $mainBlueColor;
+}
+
+.words-block__button {
+  border: none;
+  margin: 0;
+  padding: 20px 60px;
+  border-radius: 30px;
+  color: $mainWhiteColor;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.words-block__button_pink {
+  background-color: $mainPinkColor;
+}
+
+.words-block__button_blue {
+  background-color: $mainBlueColor;
+}

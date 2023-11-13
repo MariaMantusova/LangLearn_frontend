@@ -40,3 +40,11 @@ export interface IAuthPageProps {
     children: ReactNode
     title: string
 }
+
+export interface IWordsBlockProps {
+    buttonText: string
+    words: string[]
+    wordClass: string
+    buttonClass: string
+    title: string
+}
