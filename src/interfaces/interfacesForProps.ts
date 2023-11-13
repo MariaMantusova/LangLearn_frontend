@@ -59,3 +59,12 @@ export interface IWordsPageProps {
     buttonText: string
     children?: ReactNode
 }
+
+export interface IOpportunitiesProps {
+    openingPopupFunc: () => void
+}
+
+export interface IAddingPopupProps {
+    isPopupOpen: boolean
+    onClose: () => void
+}

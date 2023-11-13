@@ -1,8 +1,9 @@
 import React from "react";
 import "./OpportunitiesBlock.scss";
 import {Link} from "react-router-dom";
+import {IOpportunitiesProps} from "../../interfaces/interfacesForProps";
 
-function OpportunitiesBlock() {
+function OpportunitiesBlock(props: IOpportunitiesProps) {
     return(
         <section className="opportunities">
             <h2 className="opportunities__title">Чем хочешь заняться?</h2>
@@ -13,7 +14,7 @@ function OpportunitiesBlock() {
                 <li className="opportunities__item">
                     <Link to="/words-new" className="opportunities__link">Посмотреть новые слова</Link>
                 </li>
-                <li className="opportunities__item">Добавить слово для изучения</li>
+                <li className="opportunities__item" onClick={props.openingPopupFunc}>Добавить слово для изучения</li>
                 <li className="opportunities__item">
                     <Link to="/words-all" className="opportunities__link">Посмотреть все слова</Link>
                 </li>
