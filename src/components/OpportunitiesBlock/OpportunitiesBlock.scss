@@ -1,9 +1,47 @@
-.opportunities {}
+@import "../../vendor/variables";
 
-.opportunities__title {}
+.opportunities {
+  background-color: $secondPinkColor;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 35px;
+  padding-bottom: 50px;
+}
 
-.opportunities__list {}
+.opportunities__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
 
-.opportunities__item {}
+.opportunities__list {
+  max-width: 700px;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  row-gap: 50px;
+  column-gap: 80px;
+}
 
-.opportunities__link {}
+.opportunities__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 40px;
+  font-size: 17px;
+  font-weight: 300;
+  border: 3px solid $mainWhiteColor;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.opportunities__link {
+  text-decoration: none;
+  color: black;
+}
