@@ -1,3 +1,18 @@
-.profile-page {}
+@import "../../vendor/variables";
 
-.profile-page__title {}
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  width: 100%;
+  padding-top: 65px;
+  padding-bottom: 130px;
+  gap: 70px;
+}
+
+.profile-page__title {
+  margin: 0;
+  font-size: 33px;
+  color: $mainPinkColor;
+}
