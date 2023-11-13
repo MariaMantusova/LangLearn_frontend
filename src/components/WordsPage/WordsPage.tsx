@@ -17,7 +17,7 @@ function WordsPage(props: IWordsPageProps) {
                     <WordLine word="humiliation" translation="унижение"/>
                     <WordLine word="simultaneously" translation="одновременно"/>
                 </ul>
-                <button>{props.buttonText}</button>
+                <button className="words-page__button">{props.buttonText}</button>
                 {props.children}
             </section>
             <Footer/>
