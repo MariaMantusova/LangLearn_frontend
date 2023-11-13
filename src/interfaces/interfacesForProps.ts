@@ -48,3 +48,14 @@ export interface IWordsBlockProps {
     buttonClass: string
     title: string
 }
+
+export interface IWordLineProps {
+    word: string
+    translation: string
+}
+
+export interface IWordsPageProps {
+    wordsType: string
+    buttonText: string
+    children?: ReactNode
+}

@@ -1,0 +1,18 @@
+@import "../../vendor/variables";
+
+.word-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border: 3px solid $mainBlueColor;
+  border-radius: 30px;
+  max-width: 85%;
+  width: 100%;
+}
+
+.word-line__text {
+  font-weight: 300;
+  font-size: 20px;
+  margin: 0;
+}

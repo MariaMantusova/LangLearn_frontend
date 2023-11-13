@@ -11,6 +11,8 @@
   flex-direction: column;
   gap: 85px;
   cursor: pointer;
+  padding-bottom: 17px;
+  box-sizing: border-box;
 }
 
 .card__text {
@@ -19,34 +21,4 @@
   margin: 0 0 15px;
   max-width: 270px;
   text-align: center;
-}
-
-.card__tools {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 35px;
-  align-items: center;
-  margin: 0 0 17px;
-}
-
-.card__tool {
-  background-repeat: no-repeat;
-  height: 30px;
-  width: 30px;
-  background-position: center;
-  background-size: cover;
-  cursor: pointer;
-}
-
-.card__tool_change {
-  background-image: url("../../images/rewrite-icon.png");
-}
-
-.card__tool_learned {
-  background-image: url("../../images/done-icon.svg");
-}
-
-.card__tool_delete {
-  background-image: url("../../images/delete-icon.svg");
 }
