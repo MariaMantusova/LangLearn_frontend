@@ -12,6 +12,11 @@
   @media screen and (max-width: 640px) {
     max-width: 95%;
   }
+
+  @media screen and (max-width: 425px) {
+    gap: 25px;
+    flex-direction: column;
+  }
 }
 
 .header__logo {

@@ -33,6 +33,11 @@
   @media screen and (max-width: 855px) {
     font-size: 21px;
   }
+
+  @media screen and (max-width: 425px) {
+    font-size: 19px;
+    text-align: center;
+  }
 }
 
 .start-block__link {
