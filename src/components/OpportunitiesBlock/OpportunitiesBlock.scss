@@ -48,11 +48,15 @@
   border: 3px solid $mainWhiteColor;
   border-radius: 30px;
   cursor: pointer;
-
+  transition: $transformTransition;
 
   @media screen and (max-width: 550px) {
     text-align: center;
   }
+}
+
+.opportunities__item:hover {
+  transform: $scaleHover;
 }
 
 .opportunities__link {

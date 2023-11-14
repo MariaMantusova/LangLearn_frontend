@@ -6,7 +6,7 @@ import {IHeaderProps} from "../../interfaces/interfacesForProps";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 
 function Header(props: IHeaderProps) {
-    const [isAuthorized, setIsAuthorized] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(false);
 
     return (
         <header className="header">

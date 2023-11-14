@@ -84,12 +84,18 @@
   color: $mainWhiteColor;
   font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
+  transition: $opacityTransition;
 
   @media screen and (max-width: 725px) {
     padding: 18px 50px;
     font-weight: 500;
     font-size: 14px;
   }
+}
+
+.words-block__button:hover {
+  opacity: $opacityHover;
 }
 
 .words-block__button_pink {

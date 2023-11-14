@@ -9,6 +9,8 @@ $secondPinkColor: #FFDFDF;
 //transition
 $opacityVisibilityTrans: opacity 0.3s linear, visibility 0.3s linear;
 $opacityTransition: opacity 0.4s ease-in-out;
+$transformTransition: transform 0.4s ease-in-out;
 
-//opacity
+//hover
 $opacityHover: 0.7;
+$scaleHover: scale(1.05)
