@@ -10,10 +10,18 @@ function Card(props: ICardProps) {
         setIsTranslation(!isTranslation);
     }
 
-    return(
+    return (
         <article className="card" onClick={handleChangeWord}>
-            <p className="card__text">{isTranslation ? props.translation : props.word}</p>
-            <WordTools/>
+            <div className={`${isTranslation ? "card_inner" : "card_inner card_outer"}`}>
+                <div className="card_word">
+                    <p className="card__text">{props.word}</p>
+                    <WordTools/>
+                </div>
+                <div className="card_translation">
+                    <p className="card__text">{props.translation}</p>
+                    <WordTools/>
+                </div>
+            </div>
         </article>
     )
 }
