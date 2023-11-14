@@ -15,6 +15,10 @@
   color: $mainWhiteColor;
   font-size: 27px;
   font-weight: 700;
+
+  @media screen and (max-width: 760px) {
+    font-size: 24px;
+  }
 }
 
 .why-we-block__list {
@@ -27,6 +31,10 @@
   justify-content: space-between;
   margin: 0;
   padding: 0;
+
+  @media screen and (max-width: 760px) {
+    max-width: 80%;
+  }
 }
 
 .why-we-block__item {
@@ -38,4 +46,10 @@
   text-align: center;
   align-items: center;
   border: 1px solid $mainWhiteColor;
+  font-size: 16px;
+
+  @media screen and (max-width: 760px) {
+    max-width: 280px;
+    font-size: 14px;
+  }
 }
