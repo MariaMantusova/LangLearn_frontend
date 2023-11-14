@@ -10,6 +10,11 @@
   @media screen and (max-width: 725px) {
     gap: 70px;
   }
+
+  @media screen and (max-width: 550px) {
+    gap: 60px;
+    max-width: 80%;
+  }
 }
 
 .words-block__title {
@@ -19,6 +24,11 @@
 
   @media screen and (max-width: 725px) {
     font-size: 23px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 18px;
+    text-align: center;
   }
 }
 
@@ -32,6 +42,14 @@
   @media screen and (max-width: 725px) {
     gap: 60px;
   }
+
+  @media screen and (max-width: 550px) {
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
+  }
 }
 
 .word-item {
@@ -43,6 +61,10 @@
 
   @media screen and (max-width: 725px) {
     padding: 20px 15px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 16px;
   }
 }
 
