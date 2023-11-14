@@ -1,3 +1,5 @@
+@import "../../vendor/variables";
+
 .card__tools {
   list-style: none;
   padding: 0;
@@ -14,6 +16,11 @@
   background-position: center;
   background-size: cover;
   cursor: pointer;
+  transition: $opacityTransition;
+}
+
+.card__tool:hover {
+  opacity: $opacityHover;
 }
 
 .card__tool_change {

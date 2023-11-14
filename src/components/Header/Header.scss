@@ -42,10 +42,15 @@
   color: $mainPinkColor;
   text-decoration: none;
   font-size: 17px;
+  transition: $opacityTransition;
 
   @media screen and (max-width: 640px) {
     font-size: 14px;
   }
+}
+
+.header__link-login:hover {
+  opacity: $opacityHover;
 }
 
 .header__link-register {
@@ -55,10 +60,15 @@
   padding: 11px 16px;
   border-radius: 30px;
   font-size: 15px;
+  transition: $opacityTransition;
 
   @media screen and (max-width: 640px) {
     font-size: 12px;
     padding: 6px 10px;
     border-radius: 20px;
   }
+}
+
+.header__link-register:hover {
+  opacity: $opacityHover;
 }
