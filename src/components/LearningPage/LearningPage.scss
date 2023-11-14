@@ -41,10 +41,15 @@
   width: 50px;
   cursor: pointer;
   background-repeat: no-repeat;
+  transition: $opacityTransition;
 
   @media screen and (max-width: 550px) {
     position: absolute;
   }
+}
+
+.learning-page__vector:hover {
+  opacity: $opacityHover;
 }
 
 .vector_left {

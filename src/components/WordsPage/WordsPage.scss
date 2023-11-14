@@ -43,6 +43,12 @@
   font-weight: 700;
   color: $mainWhiteColor;
   border-radius: 30px;
+  transition: $opacityTransition;
+  cursor: pointer;
+}
+
+.words-page__button:hover {
+  opacity: $opacityHover;
 }
 
 .words-page__link {
@@ -50,4 +56,9 @@
   text-decoration: none;
   color: $mainPinkColor;
   font-size: 16px;
+  transition: $opacityTransition;
+}
+
+.words-page__link:hover {
+  opacity: $opacityHover;
 }
