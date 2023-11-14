@@ -6,12 +6,20 @@
   gap: 90px;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 725px) {
+    gap: 70px;
+  }
 }
 
 .words-block__title {
   font-size: 27px;
   font-weight: 500;
   margin: 0;
+
+  @media screen and (max-width: 725px) {
+    font-size: 23px;
+  }
 }
 
 .words-block__list {
@@ -20,6 +28,10 @@
   gap: 100px;
   list-style: none;
   margin: 0;
+
+  @media screen and (max-width: 725px) {
+    gap: 60px;
+  }
 }
 
 .word-item {
@@ -28,6 +40,10 @@
   font-size: 21px;
   font-weight: 400;
   border-radius: 20px;
+
+  @media screen and (max-width: 725px) {
+    padding: 20px 15px;
+  }
 }
 
 .word-item_pink {
@@ -46,6 +62,12 @@
   color: $mainWhiteColor;
   font-size: 16px;
   font-weight: 700;
+
+  @media screen and (max-width: 725px) {
+    padding: 18px 50px;
+    font-weight: 500;
+    font-size: 14px;
+  }
 }
 
 .words-block__button_pink {
