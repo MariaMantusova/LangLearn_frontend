@@ -10,6 +10,10 @@
   color: $mainPinkColor;
   text-decoration: none;
   font-size: 17px;
+
+  @media screen and (max-width: 640px) {
+    font-size: 14px;
+  }
 }
 
 .profile-menu__profile-container {
@@ -24,6 +28,10 @@
   padding: 9px 15px;
   border-radius: 40px;
   cursor: pointer;
+
+  @media screen and (max-width: 640px) {
+    font-size: 12px;
+  }
 }
 
 .profile-menu__links {

@@ -8,6 +8,10 @@
   max-width: 87%;
   width: 100%;
   margin: 0 auto;
+
+  @media screen and (max-width: 640px) {
+    max-width: 95%;
+  }
 }
 
 .header__logo {
@@ -15,6 +19,12 @@
   max-height: 40px;
   object-fit: cover;
   object-position: center;
+
+  @media screen and (max-width: 640px) {
+    max-width: 130px;
+    height: 30px;
+    object-fit: contain;
+  }
 }
 
 .header__container {
@@ -27,6 +37,10 @@
   color: $mainPinkColor;
   text-decoration: none;
   font-size: 17px;
+
+  @media screen and (max-width: 640px) {
+    font-size: 14px;
+  }
 }
 
 .header__link-register {
@@ -36,4 +50,10 @@
   padding: 11px 16px;
   border-radius: 30px;
   font-size: 15px;
+
+  @media screen and (max-width: 640px) {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+  }
 }

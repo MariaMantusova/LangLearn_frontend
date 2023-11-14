@@ -35,6 +35,11 @@
   @media screen and (max-width: 760px) {
     max-width: 80%;
   }
+
+  @media screen and (max-width: 640px) {
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .why-we-block__item {
