@@ -12,12 +12,28 @@
   color: $mainBlueColor;
   margin-top: 0;
   margin-bottom: 80px;
+  font-size: 24px;
+
+  @media screen and (max-width: 550px) {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 .learning-page__container {
   display: flex;
   gap: 120px;
   align-items: center;
+
+  @media screen and (max-width: 680px) {
+    gap: 60px;
+  }
+
+  @media screen and (max-width: 550px) {
+    position: relative;
+  }
 }
 
 .learning-page__vector {
@@ -25,12 +41,26 @@
   width: 50px;
   cursor: pointer;
   background-repeat: no-repeat;
+
+  @media screen and (max-width: 550px) {
+    position: absolute;
+  }
 }
 
 .vector_left {
   background-image: url("../../images/vector-left-icon.png");
+
+  @media screen and (max-width: 550px) {
+    bottom: -70px;
+    left: 30px;
+  }
 }
 
 .vector_right {
   background-image: url("../../images/vector-right-icon.png");
+
+  @media screen and (max-width: 550px) {
+    bottom: -70px;
+    right: 30px;
+  }
 }
