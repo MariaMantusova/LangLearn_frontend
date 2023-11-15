@@ -1,4 +1,5 @@
 import {ReactNode} from "react";
+import {IWordInterface} from "./mainInterfaces";
 
 export interface IHeaderProps {
     path: string
@@ -58,6 +59,7 @@ export interface IWordsPageProps {
     wordsType: string
     buttonText: string
     children?: ReactNode
+    words: IWordInterface[]
 }
 
 export interface IOpportunitiesProps {
@@ -68,3 +70,4 @@ export interface IAddingPopupProps {
     isPopupOpen: boolean
     onClose: () => void
 }
+
