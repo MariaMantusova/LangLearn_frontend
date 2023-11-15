@@ -17,7 +17,7 @@ function App() {
     return (
         <Routes>
             <Route path="/" element={<Main/>}/>
-            <Route path="/profile" element={<ProfilePage/>}/>
+            <Route path="/profile" element={<ProfilePage learnedWords={learnedWords} newWords={newWords}/>}/>
             <Route path="/learn" element={<LearningPage/>}/>
             <Route path="/words-all" element={<WordsPage buttonText="Начать" wordsType="все" words={wordsArray}/>}/>
             <Route path="/words-new" element={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}

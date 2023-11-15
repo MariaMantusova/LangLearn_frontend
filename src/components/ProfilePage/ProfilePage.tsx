@@ -5,10 +5,12 @@ import Footer from "../Footer/Footer";
 import WordsBlock from "../WordsBlock/WordsBlock";
 import OpportunitiesBlock from "../OpportunitiesBlock/OpportunitiesBlock";
 import AddingPopup from "../AddingPopup/AddingPopup";
+import {IProfilePageProps} from "../../interfaces/interfacesForProps";
+import {getThreeRandomWords} from "../../utils/functions";
 
-function ProfilePage() {
-    const learnedWords: string[] = ["humiliation", "confident", "hostile"]
-    const newWords: string[] = ["leftovers", "tangerine", "tremendously"]
+function ProfilePage(props: IProfilePageProps) {
+    const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
+    const newWords: string[] | string = getThreeRandomWords(props.newWords)
 
     const [isOpened, setIsOpened] = useState(false);
 

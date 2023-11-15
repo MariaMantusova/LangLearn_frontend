@@ -44,10 +44,15 @@ export interface IAuthPageProps {
 
 export interface IWordsBlockProps {
     buttonText: string
-    words: string[]
+    words: string[] | string
     wordClass: string
     buttonClass: string
     title: string
+}
+
+export interface IProfilePageProps {
+    newWords: IWordInterface[]
+    learnedWords: IWordInterface[]
 }
 
 export interface IWordLineProps {
