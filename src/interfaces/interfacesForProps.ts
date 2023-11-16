@@ -48,6 +48,7 @@ export interface IWordsBlockProps {
     wordClass: string
     buttonClass: string
     title: string
+    openingPopupFunc: () => void
 }
 
 export interface IProfilePageProps {

@@ -3,6 +3,12 @@ import "./WordsBlock.scss";
 import {IWordsBlockProps} from "../../interfaces/interfacesForProps";
 
 function WordsBlock(props: IWordsBlockProps) {
+    function handleButtonClick() {
+        if (props.buttonText == "Добавить слово") {
+            props.openingPopupFunc()
+        }
+    }
+
     return(
         <div className="words-block">
             <h2 className="words-block__title">{props.title}</h2>
@@ -16,7 +22,8 @@ function WordsBlock(props: IWordsBlockProps) {
                         {props.words}
                     </li>}
             </ul>
-            <button className={`words-block__button ${props.buttonClass}`}>{props.buttonText}</button>
+            <button className={`words-block__button ${props.buttonClass}`}
+                    onClick={handleButtonClick}>{props.buttonText}</button>
         </div>
     )
 }

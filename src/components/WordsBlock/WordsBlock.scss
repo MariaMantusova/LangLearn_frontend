@@ -85,6 +85,7 @@
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  z-index: 0;
   transition: $opacityTransition;
 
   @media screen and (max-width: 725px) {

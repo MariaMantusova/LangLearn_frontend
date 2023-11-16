@@ -27,12 +27,14 @@ function ProfilePage(props: IProfilePageProps) {
             <Header path="/learn" linkName="Учить слова"/>
             <section className="profile-page">
                 <h1 className="profile-page__title">Привет, Мария!</h1>
-                <WordsBlock buttonText="Перейти к повторению" words={learnedWords}
-                            title="Хочешь повторить выученные слова?"
+                <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
+                            words={learnedWords} title="Хочешь повторить выученные слова?"
+                            openingPopupFunc={handleOpenPopup}
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>
                 <OpportunitiesBlock openingPopupFunc={handleOpenPopup}/>
                 <AddingPopup isPopupOpen={isOpened} onClose={handleClosePopup}/>
-                <WordsBlock buttonText="Перейти к изучению" words={newWords} title="Начнем учить что-то новое?"
+                <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к изучению"}
+                            words={newWords} title="Начнем учить что-то новое?" openingPopupFunc={handleOpenPopup}
                             buttonClass="words-block__button_blue" wordClass="word-item_blue"/>
             </section>
             <Footer/>
