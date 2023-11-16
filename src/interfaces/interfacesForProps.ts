@@ -77,3 +77,6 @@ export interface IAddingPopupProps {
     onClose: () => void
 }
 
+export interface IPropsLearningPage {
+    words: IWordInterface[]
+}

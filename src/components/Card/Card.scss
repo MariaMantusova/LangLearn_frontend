@@ -32,11 +32,11 @@
   }
 
   .card_inner {
-    transform: rotateY(-360deg);
+    transform: rotateY(-180deg);
   }
 
   .card_outer {
-    transform: rotateY(-180deg);
+    transform: rotateY(-360deg);
   }
 }
 

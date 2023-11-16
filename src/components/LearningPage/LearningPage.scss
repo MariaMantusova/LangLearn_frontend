@@ -42,6 +42,10 @@
   cursor: pointer;
   background-repeat: no-repeat;
   transition: $opacityTransition;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
 
   @media screen and (max-width: 550px) {
     position: absolute;
@@ -61,6 +65,15 @@
   }
 }
 
+.vector_left_disabled {
+  cursor: not-allowed;
+  background-image: url("../../images/vector-left-icon-disabled.png");
+}
+
+.vector_left_disabled:hover {
+  opacity: 1;
+}
+
 .vector_right {
   background-image: url("../../images/vector-right-icon.png");
 
@@ -68,4 +81,13 @@
     bottom: -70px;
     right: 30px;
   }
+}
+
+.vector_right_disabled {
+  cursor: not-allowed;
+  background-image: url("../../images/vector-right-icon-disabled.png");
+}
+
+.vector_right_disabled:hover {
+  opacity: 1;
 }
