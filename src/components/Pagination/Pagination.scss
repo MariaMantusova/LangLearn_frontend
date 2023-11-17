@@ -22,6 +22,10 @@
   background-color: $mainBlueColor;
 }
 
+.pagination__item_current {
+  border-color: $mainPinkColor;
+}
+
 .pagination__vector_button {
   color: $mainBlueColor;
   font-size: 15px;

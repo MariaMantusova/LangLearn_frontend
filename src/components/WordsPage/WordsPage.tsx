@@ -10,7 +10,7 @@ import Pagination from "../Pagination/Pagination";
 function WordsPage(props: IWordsPageProps) {
     const [words, setWords] = useState(props.words);
     const [currentPage, setCurrentPage] = useState(1);
-    const [wordsPerPage] = useState(4);
+    const [wordsPerPage] = useState(7);
 
     const lastWordIndex: number = currentPage * wordsPerPage;
     const firstWordIndex: number = lastWordIndex - wordsPerPage;
