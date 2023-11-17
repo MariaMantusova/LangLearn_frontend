@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import {IWordInterface} from "./mainInterfaces";
 
 export interface IHeaderProps {
@@ -79,4 +79,12 @@ export interface IAddingPopupProps {
 
 export interface IPropsLearningPage {
     words: IWordInterface[]
+}
+
+export interface IPropsPagination {
+    wordsPerPage: number
+    totalWords: number
+    paginate: (pageNumber: number) => void
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+    currentPage: number
 }
