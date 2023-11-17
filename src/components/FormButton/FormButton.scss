@@ -34,6 +34,15 @@
   opacity: $opacityHover;
 }
 
+.form-button_disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.form-button_disabled:hover {
+  opacity: 1;
+}
+
 .form-button__link {
   color: $mainBlueColor;
   background-color: transparent;

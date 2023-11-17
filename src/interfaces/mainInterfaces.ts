@@ -5,3 +5,10 @@ export interface IWord {
     userId: string
     _id: string
 }
+
+export interface IValidations {
+    isEmpty: boolean
+    isEmail?: boolean
+    minLength: number
+    isName?: boolean
+}

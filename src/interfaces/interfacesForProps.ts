@@ -21,6 +21,7 @@ export interface IAuthFormProps {
     children?: ReactNode
     buttonText: string
     linkText: string
+    nameValidity?: any
     onClick: () => void
 }
 
@@ -28,6 +29,9 @@ export interface IFormButtonProps {
     buttonText: string
     linkText: string
     onClick: () => void
+    nameValidity: any
+    emailValidity: any
+    passwordValidity: any
 }
 
 export interface IRegisterFormProps {
