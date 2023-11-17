@@ -15,11 +15,11 @@ function Card(props: ICardProps) {
             <div className={`${isTranslation ? "card_inner" : "card_inner card_outer"}`}>
                 <div className="card_word">
                     <p className="card__text">{props.word}</p>
-                    <WordTools/>
+                    <WordTools isLearned={props.isLearned}/>
                 </div>
                 <div className="card_translation">
                     <p className="card__text">{props.translation}</p>
-                    <WordTools/>
+                    <WordTools isLearned={props.isLearned}/>
                 </div>
             </div>
         </article>

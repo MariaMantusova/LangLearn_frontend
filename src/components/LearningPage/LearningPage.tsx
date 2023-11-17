@@ -48,7 +48,8 @@ function LearningPage(props: IPropsLearningPage) {
                         className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
                         onClick={handlePrevCard}
                         disabled={disablePrevButton}></button>
-                    <Card word={props.words[currentIndex].word} translation={props.words[currentIndex].translation}/>
+                    <Card isLearned={props.words[currentIndex].isLearned} word={props.words[currentIndex].word}
+                          translation={props.words[currentIndex].translation}/>
                     <button
                         className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
                         onClick={handleNextCard}

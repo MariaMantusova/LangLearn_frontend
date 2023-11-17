@@ -9,7 +9,7 @@ function About() {
                 <h1 className="about-block__title">Мы поможем выучить английский</h1>
                 <p className="about-block__text">С помощью нашего приложения вы сможете учить слова и идиомы.</p>
             </div>
-            <Card translation="Как бальзам на душу" word="Music to one's years"/>
+            <Card translation="Как бальзам на душу" word="Music to one's years" isLearned={false}/>
         </section>
     )
 }

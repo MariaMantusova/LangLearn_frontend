@@ -14,6 +14,7 @@ export interface IProfileMenuProps {
 export interface ICardProps {
     word: string
     translation: string
+    isLearned: boolean
 }
 
 export interface IAuthFormProps {
@@ -59,6 +60,7 @@ export interface IProfilePageProps {
 export interface IWordLineProps {
     word: string
     translation: string
+    isLearned: boolean
 }
 
 export interface IWordsPageProps {
@@ -87,4 +89,8 @@ export interface IPropsPagination {
     paginate: (pageNumber: number) => void
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>
     currentPage: number
+}
+
+export interface IPropsWordTools {
+    isLearned: boolean
 }

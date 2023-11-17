@@ -28,7 +28,8 @@ function WordsPage(props: IWordsPageProps) {
                 <div className="words-page__container">
                 <ul className="words-page__words">
                     {currentWords.map((word: IWord) => (
-                        <WordLine word={word.word} translation={word.translation} key={word._id}/>
+                        <WordLine isLearned={word.isLearned} word={word.word} translation={word.translation}
+                                  key={word._id}/>
                     ))}
                 </ul>
                 <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={paginate}
