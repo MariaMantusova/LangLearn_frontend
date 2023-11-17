@@ -1,4 +1,4 @@
-export interface IWordInterface {
+export interface IWord {
     word: string
     translation: string
     isLearned: boolean

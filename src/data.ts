@@ -1,6 +1,6 @@
-import {IWordInterface} from "./interfaces/mainInterfaces";
+import {IWord} from "./interfaces/mainInterfaces";
 
-const wordsArray: IWordInterface[] = [
+const wordsArray: IWord[] = [
     {
         "_id": "6543a42014402a725442b06c",
         "word": "hello",

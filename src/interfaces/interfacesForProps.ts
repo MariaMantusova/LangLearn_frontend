@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {IWordInterface} from "./mainInterfaces";
+import {IWord} from "./mainInterfaces";
 
 export interface IHeaderProps {
     path: string
@@ -52,8 +52,8 @@ export interface IWordsBlockProps {
 }
 
 export interface IProfilePageProps {
-    newWords: IWordInterface[]
-    learnedWords: IWordInterface[]
+    newWords: IWord[]
+    learnedWords: IWord[]
 }
 
 export interface IWordLineProps {
@@ -65,7 +65,7 @@ export interface IWordsPageProps {
     wordsType: string
     buttonText: string
     children?: ReactNode
-    words: IWordInterface[]
+    words: IWord[]
 }
 
 export interface IOpportunitiesProps {
@@ -78,7 +78,7 @@ export interface IAddingPopupProps {
 }
 
 export interface IPropsLearningPage {
-    words: IWordInterface[]
+    words: IWord[]
 }
 
 export interface IPropsPagination {

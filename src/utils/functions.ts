@@ -1,14 +1,14 @@
-import {IWordInterface} from "../interfaces/mainInterfaces";
+import {IWord} from "../interfaces/mainInterfaces";
 
-export function findLearnedWords(wordsArray: IWordInterface[]): IWordInterface[] {
+export function findLearnedWords(wordsArray: IWord[]): IWord[] {
     return wordsArray.filter((word) => word.isLearned)
 }
 
-export function findNewWords(wordsArray: IWordInterface[]): IWordInterface[] {
+export function findNewWords(wordsArray: IWord[]): IWord[] {
     return wordsArray.filter((word) => !word.isLearned)
 }
 
-export function getThreeRandomWords(wordsArray: IWordInterface[]): string[] | string {
+export function getThreeRandomWords(wordsArray: IWord[]): string[] | string {
     const randomWords: string[] = []
 
     if (wordsArray.length <= 0) {
