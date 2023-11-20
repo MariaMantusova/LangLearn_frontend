@@ -13,7 +13,7 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext"
 import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 
 function App() {
-    const [isAuthorized, setIsAuthorized] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(false);
     const learnedWords = findLearnedWords(wordsArray);
     const newWords = findNewWords(wordsArray);
     const currentUser = {}
