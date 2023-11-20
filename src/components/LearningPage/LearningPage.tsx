@@ -40,7 +40,7 @@ function LearningPage(props: IPropsLearningPage) {
 
     return (
         <>
-            <Header path="/profile" linkName="В профиль"/>
+            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized}/>
             <section className="learning-page">
                 <h1 className="learning-page__title">Мария, у тебя все получится!</h1>
                 <div className="learning-page__container">

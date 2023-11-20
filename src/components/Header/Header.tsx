@@ -6,15 +6,13 @@ import {IHeaderProps} from "../../interfaces/interfacesForProps";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 
 function Header(props: IHeaderProps) {
-    const [isAuthorized, setIsAuthorized] = useState(false);
-
     return (
         <header className="header">
             <Link to="/">
                 <img className="header__logo" src={Logo} alt="Лого"/>
             </Link>
             {
-                isAuthorized ? <ProfileMenu linkName={props.linkName} path={props.path}/> :
+                props.isAuthorized ? <ProfileMenu linkName={props.linkName} path={props.path}/> :
                     <div className="header__container">
                         <Link to="/login" className="header__link-login">Войти</Link>
                         <Link to="/register" className="header__link-register">Зарегистрироваться</Link>

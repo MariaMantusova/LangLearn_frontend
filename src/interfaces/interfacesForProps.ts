@@ -4,6 +4,7 @@ import {IWord} from "./mainInterfaces";
 export interface IHeaderProps {
     path: string
     linkName: string
+    isAuthorized: boolean
 }
 
 export interface IProfileMenuProps {
@@ -45,6 +46,7 @@ export interface ILoginFormProps {
 export interface IAuthPageProps {
     children: ReactNode
     title: string
+    isAuthorized: boolean
 }
 
 export interface IWordsBlockProps {
@@ -54,11 +56,13 @@ export interface IWordsBlockProps {
     buttonClass: string
     title: string
     openingPopupFunc: () => void
+    linkName: string
 }
 
 export interface IProfilePageProps {
     newWords: IWord[]
     learnedWords: IWord[]
+    isAuthorized: boolean
 }
 
 export interface IWordLineProps {
@@ -72,6 +76,8 @@ export interface IWordsPageProps {
     buttonText: string
     children?: ReactNode
     words: IWord[]
+    isAuthorized: boolean
+    linkName: string
 }
 
 export interface IOpportunitiesProps {
@@ -85,6 +91,7 @@ export interface IAddingPopupProps {
 
 export interface IPropsLearningPage {
     words: IWord[]
+    isAuthorized: boolean
 }
 
 export interface IPropsPagination {
@@ -103,4 +110,16 @@ export interface IPropsProtectedRoute {
     isAuthorized: boolean
     children: JSX.Element
     navigateLink: string
+}
+
+export interface IPropsMain {
+    isAuthorized: boolean
+}
+
+export interface IPropsLoginPage {
+    isAuthorized: boolean
+}
+
+export interface IPropsRegisterPage {
+    isAuthorized: boolean
 }

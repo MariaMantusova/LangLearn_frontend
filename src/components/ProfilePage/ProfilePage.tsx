@@ -24,18 +24,18 @@ function ProfilePage(props: IProfilePageProps) {
 
     return(
         <>
-            <Header path="/learn" linkName="Учить слова"/>
+            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}/>
             <section className="profile-page">
                 <h1 className="profile-page__title">Привет, Мария!</h1>
                 <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
-                            openingPopupFunc={handleOpenPopup}
+                            openingPopupFunc={handleOpenPopup} linkName="/repeat"
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>
                 <OpportunitiesBlock openingPopupFunc={handleOpenPopup}/>
                 <AddingPopup isPopupOpen={isOpened} onClose={handleClosePopup}/>
                 <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к изучению"}
                             words={newWords} title="Начнем учить что-то новое?" openingPopupFunc={handleOpenPopup}
-                            buttonClass="words-block__button_blue" wordClass="word-item_blue"/>
+                            buttonClass="words-block__button_blue" wordClass="word-item_blue" linkName="/learn-new"/>
             </section>
             <Footer/>
         </>

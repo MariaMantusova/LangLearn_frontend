@@ -21,32 +21,35 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
-                <Route path="/" element={<Main/>}/>
+                <Route path="/" element={<Main isAuthorized={isAuthorized} />}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<ProfilePage learnedWords={learnedWords} newWords={newWords}/>}
+                                    children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
+                                                           isAuthorized={isAuthorized}/>}
                     />
                 }/>
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={wordsArray}/>}/>
+                                    children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={newWords}/>}/>
+                                    children={<LearningPage words={newWords} isAuthorized={isAuthorized}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={learnedWords}/>}/>
+                                    children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}/>}/>
                 }/>
                 <Route path="/words-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<WordsPage buttonText="Начать" wordsType="все" words={wordsArray}/>}/>
+                                    children={<WordsPage buttonText="Начать" wordsType="все" linkName="/learn-all"
+                                                         isAuthorized={isAuthorized} words={wordsArray}/>}/>
                 }/>
                 <Route path="/words-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="login"
                                     children={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}
-                                                         children={
+                                                         linkName="/learn-new"
+                                                         isAuthorized={isAuthorized} children={
                                                              <Link className="words-page__link" to="/words-learned">
                                                                  Перейти к выученным словам &#8594;
                                                              </Link>
@@ -55,7 +58,8 @@ function App() {
                 <Route path="/words-learned" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
-                                                         words={learnedWords}
+                                                         linkName="/repeat"
+                                                         words={learnedWords} isAuthorized={isAuthorized}
                                                          children={
                                                              <Link className="words-page__link" to="/words-new">
                                                                  Перейти к новым словам &#8594;
@@ -63,10 +67,14 @@ function App() {
                                                          }/>}/>
                 }/>
                 <Route path="/login" element={
-                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage/>}/>
+                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
+                        isAuthorized={isAuthorized}
+                    />}/>
                 }/>
                 <Route path="/register" element={
-                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage/>}/>
+                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
+                        isAuthorized={isAuthorized}
+                    />}/>
                 }/>
             </Routes>
         </CurrentUserContext.Provider>

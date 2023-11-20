@@ -6,6 +6,7 @@ import {IWordsPageProps} from "../../interfaces/interfacesForProps";
 import WordLine from "../WordLine/WordLine";
 import {IWord} from "../../interfaces/mainInterfaces";
 import Pagination from "../Pagination/Pagination";
+import {Link} from "react-router-dom";
 
 function WordsPage(props: IWordsPageProps) {
     const [words, setWords] = useState(props.words);
@@ -22,7 +23,7 @@ function WordsPage(props: IWordsPageProps) {
 
     return (
         <>
-            <Header path="/profile" linkName="В профиль"/>
+            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized}/>
             <section className="words-page">
                 <h1 className="words-page__title">Мария, ваши {props.wordsType} слова</h1>
                 <div className="words-page__container">
@@ -35,7 +36,7 @@ function WordsPage(props: IWordsPageProps) {
                 <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={paginate}
                             setCurrentPage={setCurrentPage} currentPage={currentPage}/>
                 </div>
-                <button className="words-page__button">{props.buttonText}</button>
+                <Link to={props.linkName} className="words-page__button">{props.buttonText}</Link>
                 {props.children}
             </section>
             <Footer/>

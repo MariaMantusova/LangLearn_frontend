@@ -1,11 +1,16 @@
 import React from "react";
+import {useNavigate} from "react-router";
 import "./WordsBlock.scss";
 import {IWordsBlockProps} from "../../interfaces/interfacesForProps";
 
 function WordsBlock(props: IWordsBlockProps) {
+    const navigate = useNavigate();
+
     function handleButtonClick() {
         if (props.buttonText == "Добавить слово") {
             props.openingPopupFunc()
+        } else {
+            navigate(props.linkName)
         }
     }
 

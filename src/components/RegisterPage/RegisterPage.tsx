@@ -2,8 +2,9 @@ import React from "react";
 import AuthPage from "../AuthPage/AuthPage";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import { useNavigate } from "react-router-dom";
+import {IPropsRegisterPage} from "../../interfaces/interfacesForProps";
 
-function RegisterPage() {
+function RegisterPage(props: IPropsRegisterPage) {
     const navigate = useNavigate();
 
     function handleClick() {
@@ -11,7 +12,8 @@ function RegisterPage() {
     }
 
     return(
-        <AuthPage title="Зарегистрируйтесь, чтобы начать" children={<RegisterForm onClick={handleClick}/>}/>
+        <AuthPage isAuthorized={props.isAuthorized} title="Зарегистрируйтесь, чтобы начать"
+                  children={<RegisterForm onClick={handleClick}/>}/>
     )
 }
 
