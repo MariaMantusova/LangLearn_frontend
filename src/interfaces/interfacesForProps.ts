@@ -98,3 +98,9 @@ export interface IPropsPagination {
 export interface IPropsWordTools {
     isLearned: boolean
 }
+
+export interface IPropsProtectedRoute {
+    isAuthorized: boolean
+    children: JSX.Element
+    navigateLink: string
+}
