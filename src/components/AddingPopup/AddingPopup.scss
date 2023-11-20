@@ -54,6 +54,7 @@
   top: 35px;
   right: 35px;
   cursor: pointer;
+  transition: $opacityTransition;
 
   @media screen and (max-width: 770px) {
     top: 25px;
@@ -62,6 +63,10 @@
     width: 30px;
     background-size: contain;
   }
+}
+
+.adding-popup__close-icon:hover {
+  opacity: $opacityHover;
 }
 
 .adding-popup__title {
