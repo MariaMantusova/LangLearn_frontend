@@ -11,4 +11,6 @@ export interface IValidations {
     isEmail?: boolean
     minLength: number
     isName?: boolean
+    isTranslation?: boolean
+    isEnglishWord?: boolean
 }

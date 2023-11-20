@@ -6,7 +6,9 @@ const useValidation = (value: string, validations: IValidations) => {
     const [minLengthError, setMinLengthError] = React.useState(false);
     const [emailError, setEmailError] = React.useState(false);
     const [nameError, setNameError] = React.useState(false);
-    const [inputValid, setInputValid] = React.useState(false)
+    const [inputValid, setInputValid] = React.useState(false);
+    const [translationError, setTranslationError] = React.useState(false);
+    const [englishWordError, setEnglishWordError] = React.useState(false);
 
     useEffect(() => {
         for (const validation in validations) {
@@ -25,24 +27,33 @@ const useValidation = (value: string, validations: IValidations) => {
                     const regularExpName = /^[a-zа-яёA-ZА-ЯЁ\-\s/i]+$/
                     regularExpName.test(String(value.toLowerCase())) ? setNameError(false) : setNameError(true)
                     break;
+                case 'isTranslation':
+                    const regularExpTranslation = /^[А-Яа-яЁё]+$/
+                    regularExpTranslation.test(String(value.toLowerCase())) ? setTranslationError(false) : setTranslationError(true)
+                    break;
+                case 'isEnglishWord':
+                    const regularExpWord = /^[A-Za-z]+$/
+                    regularExpWord.test(String(value.toLowerCase())) ? setEnglishWordError(false) : setEnglishWordError(true)
             }
         }
     }, [value])
 
     useEffect(() => {
-        if (isEmpty || minLengthError || emailError || nameError) {
+        if (isEmpty || minLengthError || emailError || nameError || translationError || englishWordError) {
             setInputValid(false)
         } else {
             setInputValid(true)
         }
-    }, [isEmpty, minLengthError, emailError, nameError])
+    }, [isEmpty, minLengthError, emailError, nameError, translationError, englishWordError])
 
     return {
         isEmpty,
         minLengthError,
         emailError,
         nameError,
-        inputValid
+        inputValid,
+        translationError,
+        englishWordError
     }
 }
 
