@@ -22,7 +22,10 @@ export interface IAuthFormProps {
     children?: ReactNode
     buttonText: string
     linkText: string
-    nameValidity?: any
+    name?: any
+    handleSubmit?: (evt: any) => void
+    email?: any
+    password?: any
     onClick: () => void
 }
 
@@ -37,6 +40,7 @@ export interface IFormButtonProps {
 
 export interface IRegisterFormProps {
     onClick: () => void
+    registerSubmit: (name: string, email: string, password: string) => void
 }
 
 export interface ILoginFormProps {
@@ -122,4 +126,5 @@ export interface IPropsLoginPage {
 
 export interface IPropsRegisterPage {
     isAuthorized: boolean
+    registerSubmit: (name: string, email: string, password: string) => void
 }

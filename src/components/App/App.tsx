@@ -11,12 +11,23 @@ import {findLearnedWords, findNewWords} from "../../utils/functions";
 import {wordsArray} from "../../data";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext"
 import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
+import {mainApi} from "../../utils/MainApi";
 
 function App() {
     const [isAuthorized, setIsAuthorized] = useState(false);
+    const [currentUser, setCurrentUser] = useState("");
     const learnedWords = findLearnedWords(wordsArray);
     const newWords = findNewWords(wordsArray);
-    const currentUser = {}
+
+    function registerUser(name: string, email: string, password: string) {
+        console.log("I in function")
+        mainApi.registerUser(name, email, password)
+            .then((user) => {
+                setCurrentUser(user.name)
+                console.log("I'm in then")
+            })
+            .catch((err) => console.log(err))
+    }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -73,7 +84,7 @@ function App() {
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
-                        isAuthorized={isAuthorized}
+                        isAuthorized={isAuthorized} registerSubmit={registerUser}
                     />}/>
                 }/>
             </Routes>

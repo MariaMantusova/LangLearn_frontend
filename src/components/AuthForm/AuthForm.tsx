@@ -2,33 +2,29 @@ import React from "react";
 import "./AuthForm.scss";
 import FormButton from "../FormButton/FormButton";
 import {IAuthFormProps} from "../../interfaces/interfacesForProps";
-import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 
 function AuthForm(props: IAuthFormProps) {
-    const email = useInput('', {isEmpty: true, isEmail: true, minLength: 2});
-    const password = useInput('', {isEmpty: true, minLength: 8});
-
     return (
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={props.handleSubmit}>
             {props.children}
             <div className="input__container">
-                <input className="auth-form__input" placeholder="E-mail" type="email" required onBlur={email.onBlur}
-                       pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" onChange={email.onChange}/>
-                {(email.isDirty && email.isEmpty) && <p className="auth__input-error">Поле не может быть пустым</p>}
-                {(email.isDirty && email.emailError && !email.isEmpty) &&
+                <input className="auth-form__input" placeholder="E-mail" type="email" required onBlur={props.email.onBlur}
+                       pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" onChange={props.email.onChange}/>
+                {(props.email.isDirty && props.email.isEmpty) && <p className="auth__input-error">Поле не может быть пустым</p>}
+                {(props.email.isDirty && props.email.emailError && !props.email.isEmpty) &&
                 <p className="auth__input-error">Введен некорректный email</p>}
             </div>
             <div className="input__container">
                 <input className="auth-form__input" placeholder="Пароль" min="8" type="password"
-                       onBlur={password.onBlur}
-                       onChange={password.onChange} required/>
-                {(password.isDirty && password.isEmpty) &&
+                       onBlur={props.password.onBlur}
+                       onChange={props.password.onChange} required/>
+                {(props.password.isDirty && props.password.isEmpty) &&
                 <p className="auth__input-error">Поле не может быть пустым</p>}
-                {(password.isDirty && password.minLengthError && !password.isEmpty) &&
+                {(props.password.isDirty && props.password.minLengthError && !props.password.isEmpty) &&
                 <p className="auth__input-error">Пароль не может быть меньше 8 символов</p>}
             </div>
-            <FormButton buttonText={props.buttonText} nameValidity={props.nameValidity} emailValidity={email}
-                        passwordValidity={password} linkText={props.linkText} onClick={props.onClick}/>
+            <FormButton buttonText={props.buttonText} nameValidity={props.name} emailValidity={props.email}
+                        passwordValidity={props.password} linkText={props.linkText} onClick={props.onClick}/>
         </form>
     )
 }

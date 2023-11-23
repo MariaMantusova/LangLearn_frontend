@@ -14,3 +14,22 @@ export interface IValidations {
     isTranslation?: boolean
     isEnglishWord?: boolean
 }
+
+export interface IMainApiOptions {
+    url: string
+    headers: {
+        "Content-Type": string
+    }
+}
+
+export interface IConstructorMainApi {
+    _url: string
+    _header: {
+        "Content-Type": string
+    }
+}
+
+export interface IAuthAnswer {
+    "userName": string
+    "message": string
+}

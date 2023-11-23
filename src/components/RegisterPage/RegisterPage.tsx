@@ -13,7 +13,7 @@ function RegisterPage(props: IPropsRegisterPage) {
 
     return(
         <AuthPage isAuthorized={props.isAuthorized} title="Зарегистрируйтесь, чтобы начать"
-                  children={<RegisterForm onClick={handleClick}/>}/>
+                  children={<RegisterForm onClick={handleClick} registerSubmit={props.registerSubmit}/>}/>
     )
 }
 

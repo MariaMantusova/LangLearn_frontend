@@ -5,10 +5,17 @@ import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 
 function RegisterForm(props: IRegisterFormProps) {
     const name = useInput('', {isEmpty: true, isName: true, minLength: 2});
+    const email = useInput('', {isEmpty: true, isEmail: true, minLength: 2});
+    const password = useInput('', {isEmpty: true, minLength: 8});
+
+    function handleRegisterSubmit(evt: any) {
+        evt.preventDefault();
+        props.registerSubmit(name.value, email.value, password.value)
+    }
 
     return (
-        <AuthForm buttonText="Зарегистрироваться" nameValidity={name}
-                  linkText="Уже зарегистрированы? Войти" onClick={props.onClick}
+        <AuthForm buttonText="Зарегистрироваться" name={name} handleSubmit={handleRegisterSubmit}
+                  linkText="Уже зарегистрированы? Войти" onClick={props.onClick} password={password} email={email}
                   children={
                       <div className="input__container">
                           <input className="auth-form__input" placeholder="Имя" onChange={name.onChange}
