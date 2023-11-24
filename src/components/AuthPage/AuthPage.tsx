@@ -7,7 +7,7 @@ import {IAuthPageProps} from "../../interfaces/interfacesForProps";
 function AuthPage(props: IAuthPageProps) {
     return(
         <>
-            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}/>
+            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized} userName={props.userName}/>
             <section className="auth-page">
                 <h1 className="auth-page__title">{props.title}</h1>
                 {props.children}

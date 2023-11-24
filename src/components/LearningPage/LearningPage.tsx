@@ -40,9 +40,9 @@ function LearningPage(props: IPropsLearningPage) {
 
     return (
         <>
-            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized}/>
+            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} userName={props.userName}/>
             <section className="learning-page">
-                <h1 className="learning-page__title">Мария, у тебя все получится!</h1>
+                <h1 className="learning-page__title">{props.userName}, у тебя все получится!</h1>
                 <div className="learning-page__container">
                     <button
                         className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}

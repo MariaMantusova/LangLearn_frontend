@@ -16,28 +16,33 @@ import {mainApi} from "../../utils/MainApi";
 function App() {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [currentUser, setCurrentUser] = useState("");
+
     const learnedWords = findLearnedWords(wordsArray);
     const newWords = findNewWords(wordsArray);
 
     function registerUser(name: string, email: string, password: string) {
         mainApi.registerUser(name, email, password)
-            .then((message) => {
-                console.log(message)
+            .then((res) => {
+                if (res.success) {
+                    setIsAuthorized(true)
+                    setCurrentUser(res.userName)
+                }
             })
             .catch((err) => console.log(err))
     }
 
     function loginUser(email: string, password: string) {
         mainApi.loginUser(email, password)
-            .then((message) => {
-                console.log(message)
+            .then((res) => {
+                if (res.success) {
+                    setIsAuthorized(true)
+                    setCurrentUser(res.userName)
+                }
             })
             .catch((err) => console.log(err))
     }
 
-    useEffect(() => {
-
-    }, [])
+    useEffect(() => {}, [])
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -46,35 +51,40 @@ function App() {
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile"
                                     children={
                                         <Main isAuthorized={isAuthorized} loginFunction={loginUser}
-                                              registerFunction={registerUser}/>}/>
+                                              registerFunction={registerUser} userName={currentUser}/>}/>
                 }
                 />
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
-                                                           isAuthorized={isAuthorized}/>}
+                                                           isAuthorized={isAuthorized} userName={currentUser}/>}
                     />
                 }/>
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}/>}/>
+                                    children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}
+                                                            userName={currentUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={newWords} isAuthorized={isAuthorized}/>}/>
+                                    children={<LearningPage words={newWords} isAuthorized={isAuthorized}
+                                                            userName={currentUser}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}/>}/>
+                                    children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
+                                                            userName={currentUser}/>}/>
                 }/>
                 <Route path="/words-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Начать" wordsType="все" linkName="/learn-all"
-                                                         isAuthorized={isAuthorized} words={wordsArray}/>}/>
+                                                         isAuthorized={isAuthorized} words={wordsArray}
+                                                         userName={currentUser}/>}/>
                 }/>
                 <Route path="/words-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="login"
                                     children={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}
+                                                         userName={currentUser}
                                                          linkName="/learn-new"
                                                          isAuthorized={isAuthorized} children={
                                                              <Link className="words-page__link" to="/words-learned">
@@ -85,6 +95,7 @@ function App() {
                 <Route path="/words-learned" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
+                                                         userName={currentUser}
                                                          linkName="/repeat"
                                                          words={learnedWords} isAuthorized={isAuthorized}
                                                          children={
@@ -95,12 +106,12 @@ function App() {
                 }/>
                 <Route path="/login" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
-                        isAuthorized={isAuthorized} loginSubmit={loginUser}
+                        isAuthorized={isAuthorized} loginSubmit={loginUser} userName={currentUser}
                     />}/>
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
-                        isAuthorized={isAuthorized} registerSubmit={registerUser}
+                        isAuthorized={isAuthorized} registerSubmit={registerUser} userName={currentUser}
                     />}/>
                 }/>
             </Routes>

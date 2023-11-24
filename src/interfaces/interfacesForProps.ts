@@ -4,12 +4,14 @@ import {IWord} from "./mainInterfaces";
 export interface IHeaderProps {
     path: string
     linkName: string
+    userName: string
     isAuthorized: boolean
 }
 
 export interface IProfileMenuProps {
     path: string
     linkName: string
+    userName: string
 }
 
 export interface ICardProps {
@@ -52,6 +54,7 @@ export interface IAuthPageProps {
     children: ReactNode
     title: string
     isAuthorized: boolean
+    userName: string
 }
 
 export interface IWordsBlockProps {
@@ -68,6 +71,7 @@ export interface IProfilePageProps {
     newWords: IWord[]
     learnedWords: IWord[]
     isAuthorized: boolean
+    userName: string
 }
 
 export interface IWordLineProps {
@@ -83,6 +87,7 @@ export interface IWordsPageProps {
     words: IWord[]
     isAuthorized: boolean
     linkName: string
+    userName: string
 }
 
 export interface IOpportunitiesProps {
@@ -97,6 +102,7 @@ export interface IAddingPopupProps {
 export interface IPropsLearningPage {
     words: IWord[]
     isAuthorized: boolean
+    userName: string
 }
 
 export interface IPropsPagination {
@@ -119,6 +125,7 @@ export interface IPropsProtectedRoute {
 
 export interface IPropsMain {
     isAuthorized: boolean
+    userName: string
     loginFunction: (email: string, password: string) => void
     registerFunction: (name: string, email: string, password: string) => void
 }
@@ -126,11 +133,13 @@ export interface IPropsMain {
 export interface IPropsLoginPage {
     isAuthorized: boolean
     loginSubmit: (email: string, password: string) => void
+    userName: string
 }
 
 export interface IPropsRegisterPage {
     isAuthorized: boolean
     registerSubmit: (name: string, email: string, password: string) => void
+    userName: string
 }
 
 export interface IPropsAuthBlock {
