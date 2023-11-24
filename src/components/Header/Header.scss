@@ -1,0 +1,74 @@
+@import "../../vendor/variables";
+
+.header {
+  display: flex;
+  padding: 25px 0;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 87%;
+  width: 100%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 640px) {
+    max-width: 95%;
+  }
+
+  @media screen and (max-width: 425px) {
+    gap: 25px;
+    flex-direction: column;
+  }
+}
+
+.header__logo {
+  max-width: 185px;
+  max-height: 40px;
+  object-fit: cover;
+  object-position: center;
+
+  @media screen and (max-width: 640px) {
+    max-width: 130px;
+    height: 30px;
+    object-fit: contain;
+  }
+}
+
+.header__container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__link-login {
+  color: $mainPinkColor;
+  text-decoration: none;
+  font-size: 17px;
+  transition: $opacityTransition;
+
+  @media screen and (max-width: 640px) {
+    font-size: 14px;
+  }
+}
+
+.header__link-login:hover {
+  opacity: $opacityHover;
+}
+
+.header__link-register {
+  color: $mainWhiteColor;
+  background-color: $mainBlueColor;
+  text-decoration: none;
+  padding: 11px 16px;
+  border-radius: 30px;
+  font-size: 15px;
+  transition: $opacityTransition;
+
+  @media screen and (max-width: 640px) {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+  }
+}
+
+.header__link-register:hover {
+  opacity: $opacityHover;
+}

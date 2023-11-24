@@ -1,0 +1,108 @@
+@import "../../vendor/variables";
+
+.words-block {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 725px) {
+    gap: 70px;
+  }
+
+  @media screen and (max-width: 550px) {
+    gap: 60px;
+    max-width: 80%;
+  }
+}
+
+.words-block__title {
+  font-size: 27px;
+  font-weight: 500;
+  margin: 0;
+
+  @media screen and (max-width: 725px) {
+    font-size: 23px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+.words-block__list {
+  padding: 0;
+  display: flex;
+  gap: 100px;
+  list-style: none;
+  margin: 0;
+
+  @media screen and (max-width: 725px) {
+    gap: 60px;
+  }
+
+  @media screen and (max-width: 550px) {
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
+  }
+}
+
+.word-item {
+  padding: 25px 20px;
+  margin: 0;
+  font-size: 21px;
+  font-weight: 400;
+  border-radius: 20px;
+
+  @media screen and (max-width: 725px) {
+    padding: 20px 15px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 16px;
+  }
+}
+
+.word-item_pink {
+  border: 3px solid $mainPinkColor;
+}
+
+.word-item_blue {
+  border: 3px solid $mainBlueColor;
+}
+
+.words-block__button {
+  border: none;
+  margin: 0;
+  padding: 20px 60px;
+  border-radius: 30px;
+  color: $mainWhiteColor;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 0;
+  transition: $opacityTransition;
+
+  @media screen and (max-width: 725px) {
+    padding: 18px 50px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+.words-block__button:hover {
+  opacity: $opacityHover;
+}
+
+.words-block__button_pink {
+  background-color: $mainPinkColor;
+}
+
+.words-block__button_blue {
+  background-color: $mainBlueColor;
+}

@@ -1,0 +1,28 @@
+@import "../../vendor/variables";
+
+.auth-block {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px 0;
+}
+
+.auth-block__title {
+  margin-top: 0;
+  margin-bottom: 60px;
+  color: $mainPinkColor;
+  font-size: 27px;
+  font-weight: 700;
+
+  @media screen and (max-width: 640px) {
+    font-size: 24px;
+  }
+
+  @media screen and (max-width: 460px) {
+    font-size: 21px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

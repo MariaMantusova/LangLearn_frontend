@@ -1,0 +1,93 @@
+@import "../../vendor/variables";
+
+.learning-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 75px 0;
+  min-height: 65vh;
+}
+
+.learning-page__title {
+  color: $mainBlueColor;
+  margin-top: 0;
+  margin-bottom: 80px;
+  font-size: 24px;
+
+  @media screen and (max-width: 550px) {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.learning-page__container {
+  display: flex;
+  gap: 120px;
+  align-items: center;
+
+  @media screen and (max-width: 680px) {
+    gap: 60px;
+  }
+
+  @media screen and (max-width: 550px) {
+    position: relative;
+  }
+}
+
+.learning-page__vector {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  transition: $opacityTransition;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  @media screen and (max-width: 550px) {
+    position: absolute;
+  }
+}
+
+.learning-page__vector:hover {
+  opacity: $opacityHover;
+}
+
+.vector_left {
+  background-image: url("../../images/vector-left-icon.png");
+
+  @media screen and (max-width: 550px) {
+    bottom: -70px;
+    left: 30px;
+  }
+}
+
+.vector_left_disabled {
+  cursor: not-allowed;
+  background-image: url("../../images/vector-left-icon-disabled.png");
+}
+
+.vector_left_disabled:hover {
+  opacity: 1;
+}
+
+.vector_right {
+  background-image: url("../../images/vector-right-icon.png");
+
+  @media screen and (max-width: 550px) {
+    bottom: -70px;
+    right: 30px;
+  }
+}
+
+.vector_right_disabled {
+  cursor: not-allowed;
+  background-image: url("../../images/vector-right-icon-disabled.png");
+}
+
+.vector_right_disabled:hover {
+  opacity: 1;
+}

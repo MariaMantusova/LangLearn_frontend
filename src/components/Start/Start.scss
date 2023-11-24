@@ -1,0 +1,61 @@
+@import "../../vendor/variables";
+
+.start-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 47px 100px;
+  background-color: $mainBlueColor;
+
+  @media screen and (max-width: 1050px) {
+    padding: 45px 50px;
+  }
+
+  @media screen and (max-width: 855px) {
+    padding: 45px 40px;
+  }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.start-block__text {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 500;
+
+  @media screen and (max-width: 1050px) {
+    font-size: 24px;
+  }
+
+  @media screen and (max-width: 855px) {
+    font-size: 21px;
+  }
+
+  @media screen and (max-width: 425px) {
+    font-size: 19px;
+    text-align: center;
+  }
+}
+
+.start-block__link {
+  background-color: $mainPinkColor;
+  color: $mainWhiteColor;
+  font-size: 18px;
+  padding: 20px 66px;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: $opacityTransition;
+  cursor: pointer;
+
+  @media screen and (max-width: 855px) {
+    padding: 18px 50px;
+    font-size: 16px;
+  }
+}
+
+.start-block__link:hover {
+  opacity: $opacityHover;
+}

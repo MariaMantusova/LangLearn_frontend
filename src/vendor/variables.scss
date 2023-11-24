@@ -1,0 +1,16 @@
+//colors
+$mainPinkColor: #F875AA;
+$mainPinkColorRGBA: rgba(248, 117, 170, 0.5);
+$mainBlueColor: #AEDEFC;
+$backgroundColor: #FFF6F6;
+$mainWhiteColor: #FFF;
+$secondPinkColor: #FFDFDF;
+
+//transition
+$opacityVisibilityTrans: opacity 0.3s linear, visibility 0.3s linear;
+$opacityTransition: opacity 0.4s ease-in-out;
+$transformTransition: transform 0.4s ease-in-out;
+
+//hover
+$opacityHover: 0.7;
+$scaleHover: scale(1.05)

@@ -1,0 +1,74 @@
+@import "../../vendor/variables";
+
+.words-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 80vh;
+  justify-content: center;
+  padding-top: 65px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
+
+.words-page__title {
+  margin: 0;
+  font-size: 28px;
+  color: $mainPinkColor;
+
+  @media screen and (max-width: 610px) {
+    font-size: 24px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+.words-page__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 50px 0 60px;
+  gap: 60px;
+}
+
+.words-page__words {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.words-page__button {
+  background-color: $mainBlueColor;
+  border: none;
+  padding: 16px 70px;
+  font-size: 18px;
+  font-weight: 700;
+  color: $mainWhiteColor;
+  border-radius: 30px;
+  transition: $opacityTransition;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.words-page__button:hover {
+  opacity: $opacityHover;
+}
+
+.words-page__link {
+  margin-top: 15px;
+  text-decoration: none;
+  color: $mainPinkColor;
+  font-size: 16px;
+  transition: $opacityTransition;
+}
+
+.words-page__link:hover {
+  opacity: $opacityHover;
+}

@@ -1,0 +1,47 @@
+@import "../../vendor/variables";
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 420px;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  @media screen and (max-width: 460px) {
+    max-width: 280px;
+  }
+}
+
+.auth-form__input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $mainPinkColor;
+  background-color: transparent;
+  box-sizing: border-box;
+  padding-bottom: 7px;
+  padding-left: 7px;
+  padding-top: 7px;
+  font-size: 15px;
+  color: $mainPinkColor;
+}
+
+.auth-form__input::placeholder {
+  font-size: 15px;
+  color: $mainPinkColor;
+}
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.auth__input-error {
+  color: red;
+  margin: 0;
+  font-size: 12px;
+  padding-left: 10px;
+}
