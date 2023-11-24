@@ -20,11 +20,18 @@ function App() {
     const newWords = findNewWords(wordsArray);
 
     function registerUser(name: string, email: string, password: string) {
-        console.log("I in function")
         mainApi.registerUser(name, email, password)
             .then((user) => {
                 setCurrentUser(user.name)
-                console.log("I'm in then")
+                setIsAuthorized(true)
+            })
+            .catch((err) => console.log(err))
+    }
+
+    function loginUser(email: string, password: string) {
+        mainApi.loginUser(email, password)
+            .then((message) => {
+                console.log(message)
             })
             .catch((err) => console.log(err))
     }
@@ -79,7 +86,7 @@ function App() {
                 }/>
                 <Route path="/login" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
-                        isAuthorized={isAuthorized}
+                        isAuthorized={isAuthorized} loginSubmit={loginUser}
                     />}/>
                 }/>
                 <Route path="/register" element={

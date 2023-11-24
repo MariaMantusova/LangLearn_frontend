@@ -3,7 +3,8 @@ import "./FormButton.scss";
 import {IFormButtonProps} from "../../interfaces/interfacesForProps";
 
 function FormButton(props: IFormButtonProps) {
-    const isDisabled = !props.emailValidity.inputValid || !props.nameValidity.inputValid || !props.passwordValidity.inputValid
+    const isName = props.nameValidity && !props.nameValidity.inputValid
+    const isDisabled = !props.emailValidity.inputValid || !props.passwordValidity.inputValid || isName
 
     return(
         <div className="form-button__container">

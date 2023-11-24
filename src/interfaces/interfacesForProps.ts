@@ -23,9 +23,9 @@ export interface IAuthFormProps {
     buttonText: string
     linkText: string
     name?: any
-    handleSubmit?: (evt: any) => void
-    email?: any
-    password?: any
+    handleSubmit: (evt: any) => void
+    email: any
+    password: any
     onClick: () => void
 }
 
@@ -45,6 +45,7 @@ export interface IRegisterFormProps {
 
 export interface ILoginFormProps {
     onClick: () => void
+    loginSubmit: (email: string, password: string) => void
 }
 
 export interface IAuthPageProps {
@@ -122,6 +123,7 @@ export interface IPropsMain {
 
 export interface IPropsLoginPage {
     isAuthorized: boolean
+    loginSubmit: (email: string, password: string) => void
 }
 
 export interface IPropsRegisterPage {

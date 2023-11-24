@@ -24,7 +24,7 @@ function AuthBlock() {
                 {formType == "login" && loginTitle}
             </h2>
             {/*{formType == "register" && <RegisterForm onClick={handleSetLogin}/>}*/}
-            {formType == "login" && <LoginForm onClick={handleSetRegister}/>}
+            {/*{formType == "login" && <LoginForm onClick={handleSetRegister}/>}*/}
         </section>
     )
 }
