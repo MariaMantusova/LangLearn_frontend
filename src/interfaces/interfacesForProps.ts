@@ -119,6 +119,8 @@ export interface IPropsProtectedRoute {
 
 export interface IPropsMain {
     isAuthorized: boolean
+    loginFunction: (email: string, password: string) => void
+    registerFunction: (name: string, email: string, password: string) => void
 }
 
 export interface IPropsLoginPage {
@@ -129,4 +131,9 @@ export interface IPropsLoginPage {
 export interface IPropsRegisterPage {
     isAuthorized: boolean
     registerSubmit: (name: string, email: string, password: string) => void
+}
+
+export interface IPropsAuthBlock {
+    loginFunction: (email: string, password: string) => void
+    registerFunction: (name: string, email: string, password: string) => void
 }

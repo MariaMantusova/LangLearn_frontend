@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes} from "react-router";
 import Main from "../Main/Main";
 import ProfilePage from "../ProfilePage/ProfilePage";
@@ -21,9 +21,8 @@ function App() {
 
     function registerUser(name: string, email: string, password: string) {
         mainApi.registerUser(name, email, password)
-            .then((user) => {
-                setCurrentUser(user.name)
-                setIsAuthorized(true)
+            .then((message) => {
+                console.log(message)
             })
             .catch((err) => console.log(err))
     }
@@ -36,10 +35,20 @@ function App() {
             .catch((err) => console.log(err))
     }
 
+    useEffect(() => {
+
+    }, [])
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
-                <Route path="/" element={<Main isAuthorized={isAuthorized} />}/>
+                <Route path="/" element={
+                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile"
+                                    children={
+                                        <Main isAuthorized={isAuthorized} loginFunction={loginUser}
+                                              registerFunction={registerUser}/>}/>
+                }
+                />
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}

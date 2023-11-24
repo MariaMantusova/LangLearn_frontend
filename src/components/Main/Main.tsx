@@ -13,7 +13,7 @@ function Main(props: IPropsMain) {
             <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}/>
             <About/>
             <WhyWe/>
-            {/*<AuthBlock />*/}
+            <AuthBlock loginFunction={props.loginFunction} registerFunction={props.registerFunction} />
             <Start/>
             <Footer/>
         </>

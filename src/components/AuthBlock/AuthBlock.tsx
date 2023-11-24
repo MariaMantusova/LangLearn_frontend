@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import "./AuthBlock.scss";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import LoginForm from "../LoginForm/LoginForm";
+import {IPropsAuthBlock} from "../../interfaces/interfacesForProps";
 
-function AuthBlock() {
+function AuthBlock(props: IPropsAuthBlock) {
     const [formType, setFormType] = useState("register");
 
     const registerTitle: string = "Зарегистрируйтесь, чтобы начать";
@@ -23,8 +24,9 @@ function AuthBlock() {
                 {formType == "register" && registerTitle}
                 {formType == "login" && loginTitle}
             </h2>
-            {/*{formType == "register" && <RegisterForm onClick={handleSetLogin}/>}*/}
-            {/*{formType == "login" && <LoginForm onClick={handleSetRegister}/>}*/}
+            {formType == "register" && <RegisterForm onClick={handleSetLogin}
+                                                     registerSubmit={props.registerFunction}/>}
+            {formType == "login" && <LoginForm onClick={handleSetRegister} loginSubmit={props.loginFunction}/>}
         </section>
     )
 }
