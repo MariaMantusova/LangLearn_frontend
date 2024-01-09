@@ -27,7 +27,7 @@ function ProfilePage(props: IProfilePageProps) {
     return(
         <>
             <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}
-                    currentUser={props.currentUser}/>
+                    currentUser={props.currentUser} exitUser={props.exitUser}/>
             <section className="profile-page">
                 <h1 className="profile-page__title">Привет, {currentUserName}!</h1>
                 <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}

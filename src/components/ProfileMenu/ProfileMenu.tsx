@@ -19,7 +19,7 @@ function ProfileMenu(props: IProfileMenuProps) {
                         onClick={handleMenuOpen}>{currentUserName}&#8195;{isMenuOpened ? "↑" : "↓"}</button>
                 <div className={`profile-menu__links ${isMenuOpened && "profile-menu__links_active"}`}>
                     <Link className="profile-menu__profile-link" to="/profile">Профиль</Link>
-                    <button className="profile-menu__button">Выйти</button>
+                    <button className="profile-menu__button" onClick={props.exitUser}>Выйти</button>
                 </div>
             </div>
         </div>

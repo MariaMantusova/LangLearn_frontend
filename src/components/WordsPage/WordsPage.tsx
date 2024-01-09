@@ -25,7 +25,8 @@ function WordsPage(props: IWordsPageProps) {
 
     return (
         <>
-            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
+            <Header path="/" linkName="На главную" exitUser={props.exitUser}
+                    isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
             <section className="words-page">
                 <h1 className="words-page__title">{currentUserName}, ваши {props.wordsType} слова</h1>
                 <div className="words-page__container">

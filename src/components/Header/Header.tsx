@@ -13,7 +13,7 @@ function Header(props: IHeaderProps) {
             </Link>
             {
                 props.isAuthorized ? <ProfileMenu linkName={props.linkName} path={props.path}
-                                                  currentUser={props.currentUser}/> :
+                                                  currentUser={props.currentUser} exitUser={props.exitUser}/> :
                     <div className="header__container">
                         <Link to="/login" className="header__link-login">Войти</Link>
                         <Link to="/register" className="header__link-register">Зарегистрироваться</Link>

@@ -5,7 +5,7 @@ import {IAuthFormProps} from "../../interfaces/interfacesForProps";
 
 function AuthForm(props: IAuthFormProps) {
     return (
-        <form className="auth-form" onSubmit={props.handleSubmit}>
+        <form className="auth-form" onSubmit={props.handleSubmit} noValidate>
             {props.children}
             <div className="input__container">
                 <input className="auth-form__input" placeholder="E-mail" type="email" required onBlur={props.email.onBlur}

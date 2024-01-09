@@ -6,12 +6,14 @@ export interface IHeaderProps {
     linkName: string
     isAuthorized: boolean
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IProfileMenuProps {
     path: string
     linkName: string
     currentUser: string
+    exitUser: () => void
 }
 
 export interface ICardProps {
@@ -55,6 +57,7 @@ export interface IAuthPageProps {
     title: string
     isAuthorized: boolean
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IWordsBlockProps {
@@ -72,6 +75,7 @@ export interface IProfilePageProps {
     learnedWords: IWord[]
     isAuthorized: boolean
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IWordLineProps {
@@ -88,6 +92,7 @@ export interface IWordsPageProps {
     isAuthorized: boolean
     linkName: string
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IOpportunitiesProps {
@@ -103,6 +108,7 @@ export interface IPropsLearningPage {
     words: IWord[]
     isAuthorized: boolean
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IPropsPagination {
@@ -126,16 +132,19 @@ export interface IPropsProtectedRoute {
 export interface IPropsMain {
     isAuthorized: boolean
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IPropsLoginPage {
     isAuthorized: boolean
     loginSubmit: (email: string, password: string) => void
     currentUser: string
+    exitUser: () => void
 }
 
 export interface IPropsRegisterPage {
     isAuthorized: boolean
     registerSubmit: (name: string, email: string, password: string) => void
     currentUser: string
+    exitUser: () => void
 }

@@ -11,7 +11,7 @@ function Main(props: IPropsMain) {
     return(
         <>
             <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}
-                    currentUser={props.currentUser}/>
+                    currentUser={props.currentUser} exitUser={props.exitUser}/>
             <About/>
             <WhyWe/>
             {/*<AuthBlock />*/}

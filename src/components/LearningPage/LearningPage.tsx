@@ -42,7 +42,8 @@ function LearningPage(props: IPropsLearningPage) {
 
     return (
         <>
-            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
+            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} exitUser={props.exitUser}
+                    currentUser={props.currentUser}/>
             <section className="learning-page">
                 <h1 className="learning-page__title">{currentUserName}, у тебя все получится!</h1>
                 <div className="learning-page__container">

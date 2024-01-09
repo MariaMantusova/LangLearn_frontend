@@ -13,7 +13,8 @@ function LoginPage(props: IPropsLoginPage) {
     }
 
     return(
-        <AuthPage isAuthorized={props.isAuthorized} title="Войдите, чтобы продолжить обучение" currentUser={props.currentUser}
+        <AuthPage isAuthorized={props.isAuthorized} title="Войдите, чтобы продолжить обучение"
+                  currentUser={props.currentUser} exitUser={props.exitUser}
                   children={<LoginForm onClick={handleClick} loginSubmit={props.loginSubmit}/>}/>
     )
 }

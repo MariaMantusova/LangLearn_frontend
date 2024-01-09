@@ -41,50 +41,59 @@ function App() {
         console.log(currentUser)
     }
 
+    function exitUser() {
+        localStorage.removeItem("token");
+        setIsAuthorized(false)
+    }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
-                <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser} />}/>
+                <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser}
+                                               exitUser={exitUser}/>}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
+                                                           exitUser={exitUser}
                                                            isAuthorized={isAuthorized} currentUser={currentUser}/>}
                     />
                 }/>
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}
-                                                            currentUser={currentUser}/>}/>
+                                                            currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={newWords} isAuthorized={isAuthorized}
-                                                            currentUser={currentUser}/>}/>
+                                                            currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
-                                                            currentUser={currentUser}/>}/>
+                                                            currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Начать" wordsType="все" linkName="/learn-all"
                                                          isAuthorized={isAuthorized} words={wordsArray}
-                                                         currentUser={currentUser}/>}/>
+                                                         currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="login"
                                     children={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}
                                                          linkName="/learn-new" currentUser={currentUser}
+                                                         exitUser={exitUser}
                                                          isAuthorized={isAuthorized} children={
-                                                             <Link className="words-page__link" to="/words-learned">
-                                                                 Перейти к выученным словам &#8594;
-                                                             </Link>
-                                                         }/>}/>
+                                        <Link className="words-page__link" to="/words-learned">
+                                            Перейти к выученным словам &#8594;
+                                        </Link>
+                                    }/>}/>
                 }/>
                 <Route path="/words-learned" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
+                                                         exitUser={exitUser}
                                                          linkName="/repeat" currentUser={currentUser}
                                                          words={learnedWords} isAuthorized={isAuthorized}
                                                          children={
@@ -96,11 +105,13 @@ function App() {
                 <Route path="/login" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
                         isAuthorized={isAuthorized} loginSubmit={loginUser} currentUser={currentUser}
+                        exitUser={exitUser}
                     />}/>
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
                         isAuthorized={isAuthorized} registerSubmit={registerUser} currentUser={currentUser}
+                        exitUser={exitUser}
                     />}/>
                 }/>
             </Routes>
