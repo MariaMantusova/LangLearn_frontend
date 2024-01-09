@@ -22,7 +22,8 @@ function App() {
     function registerUser(name: string, email: string, password: string) {
         mainApi.registerUser(name, email, password)
             .then((user) => {
-                setCurrentUser(user.name)
+                setCurrentUser(user.userName)
+                localStorage.setItem("token", user.token)
                 setIsAuthorized(true)
             })
             .catch((err) => console.log(err))
@@ -30,43 +31,51 @@ function App() {
 
     function loginUser(email: string, password: string) {
         mainApi.loginUser(email, password)
-            .then((message) => {
-                console.log(message)
+            .then((user) => {
+                console.log(user.userName)
+                setCurrentUser(user.userName)
+                localStorage.setItem("token", user.token)
+                setIsAuthorized(true)
             })
             .catch((err) => console.log(err))
+        console.log(currentUser)
     }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
-                <Route path="/" element={<Main isAuthorized={isAuthorized} />}/>
+                <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser} />}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
-                                                           isAuthorized={isAuthorized}/>}
+                                                           isAuthorized={isAuthorized} currentUser={currentUser}/>}
                     />
                 }/>
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}/>}/>
+                                    children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}
+                                                            currentUser={currentUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={newWords} isAuthorized={isAuthorized}/>}/>
+                                    children={<LearningPage words={newWords} isAuthorized={isAuthorized}
+                                                            currentUser={currentUser}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}/>}/>
+                                    children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
+                                                            currentUser={currentUser}/>}/>
                 }/>
                 <Route path="/words-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Начать" wordsType="все" linkName="/learn-all"
-                                                         isAuthorized={isAuthorized} words={wordsArray}/>}/>
+                                                         isAuthorized={isAuthorized} words={wordsArray}
+                                                         currentUser={currentUser}/>}/>
                 }/>
                 <Route path="/words-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="login"
                                     children={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}
-                                                         linkName="/learn-new"
+                                                         linkName="/learn-new" currentUser={currentUser}
                                                          isAuthorized={isAuthorized} children={
                                                              <Link className="words-page__link" to="/words-learned">
                                                                  Перейти к выученным словам &#8594;
@@ -76,7 +85,7 @@ function App() {
                 <Route path="/words-learned" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
-                                                         linkName="/repeat"
+                                                         linkName="/repeat" currentUser={currentUser}
                                                          words={learnedWords} isAuthorized={isAuthorized}
                                                          children={
                                                              <Link className="words-page__link" to="/words-new">
@@ -86,12 +95,12 @@ function App() {
                 }/>
                 <Route path="/login" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
-                        isAuthorized={isAuthorized} loginSubmit={loginUser}
+                        isAuthorized={isAuthorized} loginSubmit={loginUser} currentUser={currentUser}
                     />}/>
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
-                        isAuthorized={isAuthorized} registerSubmit={registerUser}
+                        isAuthorized={isAuthorized} registerSubmit={registerUser} currentUser={currentUser}
                     />}/>
                 }/>
             </Routes>

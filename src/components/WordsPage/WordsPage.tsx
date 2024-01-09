@@ -9,6 +9,8 @@ import Pagination from "../Pagination/Pagination";
 import {Link} from "react-router-dom";
 
 function WordsPage(props: IWordsPageProps) {
+    const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
+
     const [words, setWords] = useState(props.words);
     const [currentPage, setCurrentPage] = useState(1);
     const [wordsPerPage] = useState(7);
@@ -23,9 +25,9 @@ function WordsPage(props: IWordsPageProps) {
 
     return (
         <>
-            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized}/>
+            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
             <section className="words-page">
-                <h1 className="words-page__title">Мария, ваши {props.wordsType} слова</h1>
+                <h1 className="words-page__title">{currentUserName}, ваши {props.wordsType} слова</h1>
                 <div className="words-page__container">
                 <ul className="words-page__words">
                     {currentWords.map((word: IWord) => (

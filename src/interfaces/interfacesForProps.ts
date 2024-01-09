@@ -5,11 +5,13 @@ export interface IHeaderProps {
     path: string
     linkName: string
     isAuthorized: boolean
+    currentUser: string
 }
 
 export interface IProfileMenuProps {
     path: string
     linkName: string
+    currentUser: string
 }
 
 export interface ICardProps {
@@ -52,6 +54,7 @@ export interface IAuthPageProps {
     children: ReactNode
     title: string
     isAuthorized: boolean
+    currentUser: string
 }
 
 export interface IWordsBlockProps {
@@ -68,6 +71,7 @@ export interface IProfilePageProps {
     newWords: IWord[]
     learnedWords: IWord[]
     isAuthorized: boolean
+    currentUser: string
 }
 
 export interface IWordLineProps {
@@ -83,6 +87,7 @@ export interface IWordsPageProps {
     words: IWord[]
     isAuthorized: boolean
     linkName: string
+    currentUser: string
 }
 
 export interface IOpportunitiesProps {
@@ -97,6 +102,7 @@ export interface IAddingPopupProps {
 export interface IPropsLearningPage {
     words: IWord[]
     isAuthorized: boolean
+    currentUser: string
 }
 
 export interface IPropsPagination {
@@ -119,14 +125,17 @@ export interface IPropsProtectedRoute {
 
 export interface IPropsMain {
     isAuthorized: boolean
+    currentUser: string
 }
 
 export interface IPropsLoginPage {
     isAuthorized: boolean
     loginSubmit: (email: string, password: string) => void
+    currentUser: string
 }
 
 export interface IPropsRegisterPage {
     isAuthorized: boolean
     registerSubmit: (name: string, email: string, password: string) => void
+    currentUser: string
 }

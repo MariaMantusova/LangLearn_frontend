@@ -10,7 +10,8 @@ import {IPropsMain} from "../../interfaces/interfacesForProps";
 function Main(props: IPropsMain) {
     return(
         <>
-            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}/>
+            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}
+                    currentUser={props.currentUser}/>
             <About/>
             <WhyWe/>
             {/*<AuthBlock />*/}

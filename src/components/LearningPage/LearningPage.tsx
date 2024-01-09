@@ -6,6 +6,8 @@ import Card from "../Card/Card";
 import {IPropsLearningPage} from "../../interfaces/interfacesForProps";
 
 function LearningPage(props: IPropsLearningPage) {
+    const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disablePrevButton, setDisablePrevButton] = useState(true);
     const [disableNextButton, setDisableNextButton] = useState(false);
@@ -40,9 +42,9 @@ function LearningPage(props: IPropsLearningPage) {
 
     return (
         <>
-            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized}/>
+            <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
             <section className="learning-page">
-                <h1 className="learning-page__title">Мария, у тебя все получится!</h1>
+                <h1 className="learning-page__title">{currentUserName}, у тебя все получится!</h1>
                 <div className="learning-page__container">
                     <button
                         className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}

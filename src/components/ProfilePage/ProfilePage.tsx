@@ -9,6 +9,8 @@ import {IProfilePageProps} from "../../interfaces/interfacesForProps";
 import {getThreeRandomWords} from "../../utils/functions";
 
 function ProfilePage(props: IProfilePageProps) {
+    const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
+
     const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
     const newWords: string[] | string = getThreeRandomWords(props.newWords)
 
@@ -24,9 +26,10 @@ function ProfilePage(props: IProfilePageProps) {
 
     return(
         <>
-            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}/>
+            <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}
+                    currentUser={props.currentUser}/>
             <section className="profile-page">
-                <h1 className="profile-page__title">Привет, Мария!</h1>
+                <h1 className="profile-page__title">Привет, {currentUserName}!</h1>
                 <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
                             openingPopupFunc={handleOpenPopup} linkName="/repeat"

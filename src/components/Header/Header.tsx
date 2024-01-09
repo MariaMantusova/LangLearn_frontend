@@ -12,7 +12,8 @@ function Header(props: IHeaderProps) {
                 <img className="header__logo" src={Logo} alt="Лого"/>
             </Link>
             {
-                props.isAuthorized ? <ProfileMenu linkName={props.linkName} path={props.path}/> :
+                props.isAuthorized ? <ProfileMenu linkName={props.linkName} path={props.path}
+                                                  currentUser={props.currentUser}/> :
                     <div className="header__container">
                         <Link to="/login" className="header__link-login">Войти</Link>
                         <Link to="/register" className="header__link-register">Зарегистрироваться</Link>
