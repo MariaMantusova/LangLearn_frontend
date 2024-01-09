@@ -16,6 +16,7 @@ import {mainApi} from "../../utils/MainApi";
 function App() {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [currentUser, setCurrentUser] = useState("");
+
     const learnedWords = findLearnedWords(wordsArray);
     const newWords = findNewWords(wordsArray);
 
@@ -32,7 +33,6 @@ function App() {
     function loginUser(email: string, password: string) {
         mainApi.loginUser(email, password)
             .then((user) => {
-                console.log(user.userName)
                 setCurrentUser(user.userName)
                 localStorage.setItem("token", user.token)
                 setIsAuthorized(true)
