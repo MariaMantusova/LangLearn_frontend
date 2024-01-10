@@ -133,6 +133,8 @@ export interface IPropsMain {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
+    registerFunction: (name: string, email: string, password: string) => void
+    loginFunction: (email: string, password: string) => void
 }
 
 export interface IPropsLoginPage {
@@ -147,4 +149,9 @@ export interface IPropsRegisterPage {
     registerSubmit: (name: string, email: string, password: string) => void
     currentUser: string
     exitUser: () => void
+}
+
+export interface IPropsAuthBlock {
+    registerFunction: (name: string, email: string, password: string) => void
+    loginFunction: (email: string, password: string) => void
 }

@@ -6,7 +6,7 @@ import LearningPage from "../LearningPage/LearningPage";
 import WordsPage from "../WordsPage/WordsPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {findLearnedWords, findNewWords} from "../../utils/functions";
 import {wordsArray} from "../../data";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext"
@@ -14,6 +14,8 @@ import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 import {mainApi} from "../../utils/MainApi";
 
 function App() {
+    const navigate = useNavigate();
+
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [currentUser, setCurrentUser] = useState("");
 
@@ -26,6 +28,7 @@ function App() {
                 setCurrentUser(user.userName)
                 localStorage.setItem("token", user.token)
                 setIsAuthorized(true)
+                navigate("/profile")
             })
             .catch((err) => console.log(err))
     }
@@ -36,9 +39,9 @@ function App() {
                 setCurrentUser(user.userName)
                 localStorage.setItem("token", user.token)
                 setIsAuthorized(true)
+                navigate("/profile")
             })
             .catch((err) => console.log(err))
-        console.log(currentUser)
     }
 
     function exitUser() {
@@ -50,7 +53,8 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
                 <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser}
-                                               exitUser={exitUser}/>}/>
+                                               exitUser={exitUser} registerFunction={registerUser}
+                                               loginFunction={loginUser}/>}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
