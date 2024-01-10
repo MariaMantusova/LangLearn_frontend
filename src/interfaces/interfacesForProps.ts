@@ -61,6 +61,7 @@ export interface IAuthPageProps {
     isPopupOpened: boolean
     message: string
     isLoading: boolean
+    setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IWordsBlockProps {
@@ -149,7 +150,9 @@ export interface IPropsLoginPage {
     isPopupOpened: boolean
     message: string
     isLoading: boolean
+    setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
+
 
 export interface IPropsRegisterPage {
     isAuthorized: boolean
@@ -159,6 +162,7 @@ export interface IPropsRegisterPage {
     isPopupOpened: boolean
     message: string
     isLoading: boolean
+    setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IPropsAuthBlock {
@@ -167,7 +171,8 @@ export interface IPropsAuthBlock {
     isLoading: boolean
 }
 
-export interface IAUthInfoPopup {
+export interface IAUthInfoPopupProps {
     isPopupOpened: boolean
     message: string
+    setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
 }

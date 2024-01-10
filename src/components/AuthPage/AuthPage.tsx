@@ -20,7 +20,8 @@ function AuthPage(props: IAuthPageProps) {
                         </>
                 }
             </section>
-            <AuthInfoPopup isPopupOpened={props.isPopupOpened} message={props.message}/>
+            <AuthInfoPopup isPopupOpened={props.isPopupOpened} message={props.message}
+                           setIsPopupOpened={props.setIsPopupOpened}/>
             <Footer/>
         </>
     )

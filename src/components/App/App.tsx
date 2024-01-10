@@ -29,7 +29,7 @@ function App() {
         setIsLoading(true);
         mainApi.registerUser(name, email, password)
             .then((user) => {
-                if (!user.statusCode) {
+                if (user && !user.statusCode) {
                     setCurrentUser(user.userName)
                     localStorage.setItem("token", user.token)
                     setIsAuthorized(true);
@@ -50,7 +50,10 @@ function App() {
         setIsLoading(true);
         mainApi.loginUser(email, password)
             .then((user) => {
-                if (!user.statusCode) {
+                if (!user) {
+                    setAuthMessage("Неправильный логин и(или) пароль")
+                    setIsAuthOpened(true);
+                } else if (user && !user.statusCode) {
                     setCurrentUser(user.userName)
                     localStorage.setItem("token", user.token)
                     setIsAuthorized(true);
@@ -133,14 +136,14 @@ function App() {
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
                         isAuthorized={isAuthorized} loginSubmit={loginUser} currentUser={currentUser}
                         exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
-                        isLoading={isLoading}
+                        isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}
                     />}/>
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
                         isAuthorized={isAuthorized} registerSubmit={registerUser} currentUser={currentUser}
                         exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
-                        isLoading={isLoading}
+                        isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}
                     />}/>
                 }/>
             </Routes>
