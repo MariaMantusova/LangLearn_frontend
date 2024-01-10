@@ -58,6 +58,9 @@ export interface IAuthPageProps {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
+    isPopupOpened: boolean
+    message: string
+    isLoading: boolean
 }
 
 export interface IWordsBlockProps {
@@ -135,6 +138,7 @@ export interface IPropsMain {
     exitUser: () => void
     registerFunction: (name: string, email: string, password: string) => void
     loginFunction: (email: string, password: string) => void
+    isLoading: boolean
 }
 
 export interface IPropsLoginPage {
@@ -142,6 +146,9 @@ export interface IPropsLoginPage {
     loginSubmit: (email: string, password: string) => void
     currentUser: string
     exitUser: () => void
+    isPopupOpened: boolean
+    message: string
+    isLoading: boolean
 }
 
 export interface IPropsRegisterPage {
@@ -149,9 +156,18 @@ export interface IPropsRegisterPage {
     registerSubmit: (name: string, email: string, password: string) => void
     currentUser: string
     exitUser: () => void
+    isPopupOpened: boolean
+    message: string
+    isLoading: boolean
 }
 
 export interface IPropsAuthBlock {
     registerFunction: (name: string, email: string, password: string) => void
     loginFunction: (email: string, password: string) => void
+    isLoading: boolean
+}
+
+export interface IAUthInfoPopup {
+    isPopupOpened: boolean
+    message: string
 }

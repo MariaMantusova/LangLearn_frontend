@@ -12,9 +12,10 @@ function RegisterPage(props: IPropsRegisterPage) {
     }
 
     return(
-        <AuthPage isAuthorized={props.isAuthorized} title="Зарегистрируйтесь, чтобы начать" currentUser={props.currentUser}
-                  exitUser={props.exitUser} children={<RegisterForm onClick={handleClick}
-                                                                    registerSubmit={props.registerSubmit}/>}/>
+        <AuthPage isAuthorized={props.isAuthorized} message={props.message} isPopupOpened={props.isPopupOpened}
+                  title="Зарегистрируйтесь, чтобы начать" currentUser={props.currentUser}
+                  exitUser={props.exitUser} isLoading={props.isLoading}
+                  children={<RegisterForm onClick={handleClick} registerSubmit={props.registerSubmit}/>}/>
     )
 }
 

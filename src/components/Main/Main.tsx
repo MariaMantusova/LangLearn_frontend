@@ -14,7 +14,8 @@ function Main(props: IPropsMain) {
                     currentUser={props.currentUser} exitUser={props.exitUser}/>
             <About/>
             <WhyWe/>
-            <AuthBlock loginFunction={props.loginFunction} registerFunction={props.registerFunction} />
+            <AuthBlock loginFunction={props.loginFunction} registerFunction={props.registerFunction}
+                       isLoading={props.isLoading} />
             <Start/>
             <Footer/>
         </>

@@ -18,30 +18,53 @@ function App() {
 
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [currentUser, setCurrentUser] = useState("");
+    const [authMessage, setAuthMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [isAuthPopupOpened, setIsAuthOpened] = useState(false);
 
     const learnedWords = findLearnedWords(wordsArray);
     const newWords = findNewWords(wordsArray);
 
     function registerUser(name: string, email: string, password: string) {
+        setIsLoading(true);
         mainApi.registerUser(name, email, password)
             .then((user) => {
-                setCurrentUser(user.userName)
-                localStorage.setItem("token", user.token)
-                setIsAuthorized(true)
-                navigate("/profile")
+                if (!user.statusCode) {
+                    setCurrentUser(user.userName)
+                    localStorage.setItem("token", user.token)
+                    setIsAuthorized(true);
+                    navigate("/profile")
+                } else {
+                    setAuthMessage(user.message);
+                    setIsAuthOpened(true);
+                }
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                setAuthMessage(err.message);
+                setIsAuthOpened(true);
+            })
+            .finally(() => setIsLoading(false))
     }
 
     function loginUser(email: string, password: string) {
+        setIsLoading(true);
         mainApi.loginUser(email, password)
             .then((user) => {
-                setCurrentUser(user.userName)
-                localStorage.setItem("token", user.token)
-                setIsAuthorized(true)
-                navigate("/profile")
+                if (!user.statusCode) {
+                    setCurrentUser(user.userName)
+                    localStorage.setItem("token", user.token)
+                    setIsAuthorized(true);
+                    navigate("/profile")
+                } else {
+                    setAuthMessage(user.message);
+                    setIsAuthOpened(true);
+                }
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                setAuthMessage(err.message);
+                setIsAuthOpened(true);
+            })
+            .finally(() => setIsLoading(false))
     }
 
     function exitUser() {
@@ -54,7 +77,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser}
                                                exitUser={exitUser} registerFunction={registerUser}
-                                               loginFunction={loginUser}/>}/>
+                                               loginFunction={loginUser} isLoading={isLoading}/>}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
@@ -109,13 +132,15 @@ function App() {
                 <Route path="/login" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
                         isAuthorized={isAuthorized} loginSubmit={loginUser} currentUser={currentUser}
-                        exitUser={exitUser}
+                        exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
+                        isLoading={isLoading}
                     />}/>
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
                         isAuthorized={isAuthorized} registerSubmit={registerUser} currentUser={currentUser}
-                        exitUser={exitUser}
+                        exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
+                        isLoading={isLoading}
                     />}/>
                 }/>
             </Routes>

@@ -3,6 +3,8 @@ import "./AuthPage.scss";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import {IAuthPageProps} from "../../interfaces/interfacesForProps";
+import AuthInfoPopup from "../AuthInfoPopup/AuthInfoPopup";
+import Preloader from "../Preloader/Preloader";
 
 function AuthPage(props: IAuthPageProps) {
     return(
@@ -10,9 +12,15 @@ function AuthPage(props: IAuthPageProps) {
             <Header path="/learn-new" exitUser={props.exitUser}
                     linkName="Учить слова" isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
             <section className="auth-page">
-                <h1 className="auth-page__title">{props.title}</h1>
-                {props.children}
+                {
+                    props.isLoading ? <Preloader/> :
+                        <>
+                            <h1 className="auth-page__title">{props.title}</h1>
+                            {props.children}
+                        </>
+                }
             </section>
+            <AuthInfoPopup isPopupOpened={props.isPopupOpened} message={props.message}/>
             <Footer/>
         </>
     )

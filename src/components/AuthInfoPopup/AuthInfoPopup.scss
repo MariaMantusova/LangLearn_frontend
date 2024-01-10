@@ -1,0 +1,68 @@
+@import "../../vendor/variables";
+
+.info-popup {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, .3);
+  visibility: hidden;
+  opacity: 0;
+  transition: $opacityVisibilityTrans;
+}
+
+.info-popup_visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.info-popup__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: $secondPinkColor;
+  border-radius: 40px;
+  padding: 50px;
+}
+
+.info-popup__close-icon {
+  height: 40px;
+  width: 40px;
+  background-repeat: no-repeat;
+  background-image: url("../../images/close-icon.svg");
+  border: none;
+  background-color: transparent;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
+  transition: $opacityTransition;
+
+  @media screen and (max-width: 770px) {
+    top: 25px;
+    right: 25px;
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+  }
+}
+
+.info-popup__close-icon:hover {
+  opacity: $opacityHover;
+}
+
+.info-popup__text {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  color: $mainPinkColor;
+}

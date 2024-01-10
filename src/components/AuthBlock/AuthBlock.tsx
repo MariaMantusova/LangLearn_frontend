@@ -3,6 +3,7 @@ import "./AuthBlock.scss";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import LoginForm from "../LoginForm/LoginForm";
 import {IPropsAuthBlock} from "../../interfaces/interfacesForProps";
+import Preloader from "../Preloader/Preloader";
 
 function AuthBlock(props: IPropsAuthBlock) {
     const [formType, setFormType] = useState("register");
@@ -18,15 +19,19 @@ function AuthBlock(props: IPropsAuthBlock) {
         setFormType("login");
     }
 
-    return(
+    return (
         <section className="auth-block">
-            <h2 className="auth-block__title">
-                {formType == "register" && registerTitle}
-                {formType == "login" && loginTitle}
-            </h2>
-            {formType == "register" && <RegisterForm onClick={handleSetLogin}
-                                                     registerSubmit={props.registerFunction}/>}
-            {formType == "login" && <LoginForm onClick={handleSetRegister} loginSubmit={props.loginFunction}/>}
+            {props.isLoading ? <Preloader/> :
+                <>
+                    <h2 className="auth-block__title">
+                        {formType == "register" && registerTitle}
+                        {formType == "login" && loginTitle}
+                    </h2>
+                    {formType == "register" && <RegisterForm onClick={handleSetLogin}
+                                                             registerSubmit={props.registerFunction}/>}
+                    {formType == "login" && <LoginForm onClick={handleSetRegister} loginSubmit={props.loginFunction}/>}
+                </>
+            }
         </section>
     )
 }
