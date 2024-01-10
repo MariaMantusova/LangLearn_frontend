@@ -140,6 +140,9 @@ export interface IPropsMain {
     registerFunction: (name: string, email: string, password: string) => void
     loginFunction: (email: string, password: string) => void
     isLoading: boolean
+    isPopupOpened: boolean
+    message: string
+    setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IPropsLoginPage {

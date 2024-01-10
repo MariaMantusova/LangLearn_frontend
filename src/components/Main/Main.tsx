@@ -6,6 +6,7 @@ import WhyWe from "../WhyWe/WhyWe";
 import Start from "../Start/Start";
 import AuthBlock from "../AuthBlock/AuthBlock";
 import {IPropsMain} from "../../interfaces/interfacesForProps";
+import AuthInfoPopup from "../AuthInfoPopup/AuthInfoPopup";
 
 function Main(props: IPropsMain) {
     return(
@@ -16,6 +17,8 @@ function Main(props: IPropsMain) {
             <WhyWe/>
             <AuthBlock loginFunction={props.loginFunction} registerFunction={props.registerFunction}
                        isLoading={props.isLoading} />
+            <AuthInfoPopup isPopupOpened={props.isPopupOpened} message={props.message}
+                           setIsPopupOpened={props.setIsPopupOpened}/>
             <Start/>
             <Footer/>
         </>
