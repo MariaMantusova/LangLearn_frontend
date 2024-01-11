@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import "./WordsPage.scss";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import {IWordsPageProps} from "../../interfaces/interfacesForProps";
-import WordLine from "../WordLine/WordLine";
+import WordLine from "../../components/WordLine/WordLine";
 import {IWord} from "../../interfaces/mainInterfaces";
-import Pagination from "../Pagination/Pagination";
+import Pagination from "../../components/Pagination/Pagination";
 import {Link} from "react-router-dom";
 
 function WordsPage(props: IWordsPageProps) {

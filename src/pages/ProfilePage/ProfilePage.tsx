@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import "./ProfilePage.scss";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import WordsBlock from "../WordsBlock/WordsBlock";
-import OpportunitiesBlock from "../OpportunitiesBlock/OpportunitiesBlock";
-import AddingPopup from "../AddingPopup/AddingPopup";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import WordsBlock from "../../components/WordsBlock/WordsBlock";
+import OpportunitiesBlock from "../../components/OpportunitiesBlock/OpportunitiesBlock";
+import AddingPopup from "../../components/AddingPopup/AddingPopup";
 import {IProfilePageProps} from "../../interfaces/interfacesForProps";
 import {getThreeRandomWords} from "../../utils/functions";
 

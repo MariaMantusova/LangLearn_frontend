@@ -1,10 +1,10 @@
 import React from "react";
 import "./AuthPage.scss";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import {IAuthPageProps} from "../../interfaces/interfacesForProps";
-import AuthInfoPopup from "../AuthInfoPopup/AuthInfoPopup";
-import Preloader from "../Preloader/Preloader";
+import AuthInfoPopup from "../../components/AuthInfoPopup/AuthInfoPopup";
+import Preloader from "../../components/Preloader/Preloader";
 
 function AuthPage(props: IAuthPageProps) {
     return(
