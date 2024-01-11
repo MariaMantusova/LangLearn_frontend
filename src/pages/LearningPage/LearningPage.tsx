@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import "./LearningPage.scss";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import Card from "../Card/Card";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Card from "../../components/Card/Card";
 import {IPropsLearningPage} from "../../interfaces/interfacesForProps";
 
 function LearningPage(props: IPropsLearningPage) {

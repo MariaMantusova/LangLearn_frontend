@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AuthPage from "../AuthPage/AuthPage";
-import LoginForm from "../LoginForm/LoginForm";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import {IPropsLoginPage} from "../../interfaces/interfacesForProps";
 
 

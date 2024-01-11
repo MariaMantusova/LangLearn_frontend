@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Route, Routes} from "react-router";
 import Main from "../Main/Main";
-import ProfilePage from "../ProfilePage/ProfilePage";
-import LearningPage from "../LearningPage/LearningPage";
-import WordsPage from "../WordsPage/WordsPage";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+import ProfilePage from "../../pages/ProfilePage/ProfilePage";
+import LearningPage from "../../pages/LearningPage/LearningPage";
+import WordsPage from "../../pages/WordsPage/WordsPage";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import {Link, useNavigate} from "react-router-dom";
 import {findLearnedWords, findNewWords} from "../../utils/functions";
 import {wordsArray} from "../../data";

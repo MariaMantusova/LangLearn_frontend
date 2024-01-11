@@ -1,6 +1,6 @@
 import React from "react";
 import AuthPage from "../AuthPage/AuthPage";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import { useNavigate } from "react-router-dom";
 import {IPropsRegisterPage} from "../../interfaces/interfacesForProps";
 
