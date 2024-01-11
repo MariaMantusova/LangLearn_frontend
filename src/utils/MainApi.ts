@@ -49,6 +49,23 @@ class MainApi {
             })
             .catch((err) => console.log(err));
     }
+
+    validityCheck(JWT: string) {
+        return fetch(`${this._url}/auth/me`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": JWT
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err));
+    };
 }
 
 const MainApiOptions = {

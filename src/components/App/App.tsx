@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes} from "react-router";
 import Main from "../Main/Main";
 import ProfilePage from "../../pages/ProfilePage/ProfilePage";
@@ -26,15 +26,31 @@ function App() {
     const learnedWords = findLearnedWords(wordsArray);
     const newWords = findNewWords(wordsArray);
 
+    useEffect(() => {
+        tokenCheck();
+    }, [])
+
+    function tokenCheck() {
+        const jwt = localStorage.getItem("token");
+
+        if (jwt) {
+            mainApi.validityCheck(jwt)
+                .then((user) => {
+                    if (user) {
+                        handleAuthorized(user.name)
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+
     function registerUser(name: string, email: string, password: string) {
         setIsLoading(true);
         mainApi.registerUser(name, email, password)
             .then((user) => {
                 if (user && !user.statusCode) {
-                    setCurrentUser(user.userName)
                     localStorage.setItem("token", user.token)
-                    setIsAuthorized(true);
-                    navigate("/profile")
+                    handleAuthorized(user.userName)
                 } else {
                     setAuthMessage(user.message);
                     setIsAuthOpened(true);
@@ -55,10 +71,8 @@ function App() {
                     setAuthMessage("Неправильный логин и(или) пароль")
                     setIsAuthOpened(true);
                 } else if (user && !user.statusCode) {
-                    setCurrentUser(user.userName)
                     localStorage.setItem("token", user.token)
-                    setIsAuthorized(true);
-                    navigate("/profile")
+                    handleAuthorized(user.userName)
                 } else {
                     setAuthMessage(user.message);
                     setIsAuthOpened(true);
@@ -74,6 +88,12 @@ function App() {
     function exitUser() {
         localStorage.removeItem("token");
         setIsAuthorized(false)
+    }
+
+    function handleAuthorized(userName: string) {
+        setCurrentUser(userName)
+        setIsAuthorized(true);
+        navigate("/profile")
     }
 
     return (
