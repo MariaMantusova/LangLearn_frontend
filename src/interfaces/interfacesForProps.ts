@@ -143,6 +143,8 @@ export interface IPropsMain {
     isPopupOpened: boolean
     message: string
     setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
+    newWords: IWord[]
+    learnedWords: IWord[]
 }
 
 export interface IPropsLoginPage {
@@ -155,7 +157,6 @@ export interface IPropsLoginPage {
     isLoading: boolean
     setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
-
 
 export interface IPropsRegisterPage {
     isAuthorized: boolean

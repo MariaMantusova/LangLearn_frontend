@@ -27,3 +27,11 @@
     font-size: 26px;
   }
 }
+
+.profile-blocks__container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  gap: 20px;
+  align-items: center;
+}

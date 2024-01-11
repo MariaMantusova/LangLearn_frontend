@@ -102,7 +102,7 @@ function App() {
                 <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser}
                                                exitUser={exitUser} registerFunction={registerUser}
                                                loginFunction={loginUser} isPopupOpened={isAuthPopupOpened}
-                                               message={authMessage}
+                                               message={authMessage} learnedWords={learnedWords} newWords={newWords}
                                                isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}/>}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
