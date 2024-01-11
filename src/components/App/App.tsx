@@ -12,6 +12,7 @@ import {wordsArray} from "../../data";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext"
 import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 import {mainApi} from "../../utils/MainApi";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 function App() {
     const navigate = useNavigate();
@@ -148,6 +149,7 @@ function App() {
                         isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}
                     />}/>
                 }/>
+                <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
         </CurrentUserContext.Provider>
     );
