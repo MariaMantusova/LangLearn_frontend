@@ -1,13 +1,5 @@
 import {IWord} from "../interfaces/mainInterfaces";
 
-export function findLearnedWords(wordsArray: IWord[]): IWord[] {
-    return wordsArray.filter((word) => word.isLearned)
-}
-
-export function findNewWords(wordsArray: IWord[]): IWord[] {
-    return wordsArray.filter((word) => !word.isLearned)
-}
-
 export function getThreeRandomWords(wordsArray: IWord[]): string[] | string {
     const randomWords: string[] = []
 

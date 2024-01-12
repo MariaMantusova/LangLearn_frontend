@@ -1,16 +1,16 @@
-import {IMainApiOptions} from "../interfaces/mainInterfaces";
+import {IApiOptions} from "../interfaces/mainInterfaces";
 
-class MainApi {
+class AuthApi {
     private _url: string;
     private _header: { "Content-Type": string };
 
-    constructor(options: IMainApiOptions) {
+    constructor(options: IApiOptions) {
         this._url = options.url;
         this._header = options.headers;
     }
 
     registerUser(name: string, email: string, password: string) {
-        return fetch(`${this._url}/auth/registration`, {
+        return fetch(`${this._url}/registration`, {
             credentials: 'include',
             method: 'POST',
             headers: this._header,
@@ -31,7 +31,7 @@ class MainApi {
     }
 
     loginUser(email: string, password: string) {
-        return fetch(`${this._url}/auth/login`, {
+        return fetch(`${this._url}/login`, {
             credentials: 'include',
             method: 'POST',
             headers: this._header,
@@ -51,7 +51,7 @@ class MainApi {
     }
 
     validityCheck(JWT: string) {
-        return fetch(`${this._url}/auth/me`, {
+        return fetch(`${this._url}/me`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": JWT
@@ -68,11 +68,11 @@ class MainApi {
     };
 }
 
-const MainApiOptions = {
-    url: "https://lang-learning.onrender.com",
+const AuthApiOptions = {
+    url: "https://lang-learning.onrender.com/auth",
     headers: {
         "Content-Type": "application/json",
     },
 }
 
-export const mainApi = new MainApi(MainApiOptions);
+export const authApi = new AuthApi(AuthApiOptions);

@@ -15,16 +15,9 @@ export interface IValidations {
     isEnglishWord?: boolean
 }
 
-export interface IMainApiOptions {
+export interface IApiOptions {
     url: string
     headers: {
-        "Content-Type": string
-    }
-}
-
-export interface IConstructorMainApi {
-    _url: string
-    _header: {
         "Content-Type": string
     }
 }

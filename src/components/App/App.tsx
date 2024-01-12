@@ -7,12 +7,11 @@ import WordsPage from "../../pages/WordsPage/WordsPage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import {Link, useNavigate} from "react-router-dom";
-import {findLearnedWords, findNewWords} from "../../utils/functions";
-import {wordsArray} from "../../data";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext"
 import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
-import {mainApi} from "../../utils/MainApi";
+import {authApi} from "../../utils/AuthApi";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import {wordsApi} from "../../utils/WordsApi";
 
 function App() {
     const navigate = useNavigate();
@@ -22,31 +21,57 @@ function App() {
     const [authMessage, setAuthMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isAuthPopupOpened, setIsAuthOpened] = useState(false);
-
-    const learnedWords = findLearnedWords(wordsArray);
-    const newWords = findNewWords(wordsArray);
+    const [learnedWords, setLearnedWords] = useState([]);
+    const [newWords, setNewWords] = useState([]);
+    const [allWords, setAllWords] = useState([]);
 
     useEffect(() => {
         tokenCheck();
     }, [])
 
+    useEffect(() => {
+        isAuthorized &&
+        getCards("all");
+        getCards("new");
+        getCards("learned");
+    }, [isAuthorized])
+
     function tokenCheck() {
         const jwt = localStorage.getItem("token");
 
         if (jwt) {
-            mainApi.validityCheck(jwt)
+            authApi.validityCheck(jwt)
                 .then((user) => {
                     if (user) {
-                        handleAuthorized(user.name)
+                        setCurrentUser(user.name);
+                        setIsAuthorized(true);
                     }
                 })
                 .catch((err) => console.log(err))
         }
     }
 
+    function getCards(type: string) {
+        wordsApi.getCardsByType(type)
+            .then((cards) => {
+                switch (type) {
+                    case "all":
+                        setAllWords(cards);
+                        break;
+                    case "learned":
+                        setLearnedWords(cards);
+                        break;
+                    case "new":
+                        setNewWords(cards);
+                        break;
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
     function registerUser(name: string, email: string, password: string) {
         setIsLoading(true);
-        mainApi.registerUser(name, email, password)
+        authApi.registerUser(name, email, password)
             .then((user) => {
                 if (user && !user.statusCode) {
                     localStorage.setItem("token", user.token)
@@ -65,7 +90,7 @@ function App() {
 
     function loginUser(email: string, password: string) {
         setIsLoading(true);
-        mainApi.loginUser(email, password)
+        authApi.loginUser(email, password)
             .then((user) => {
                 if (!user) {
                     setAuthMessage("Неправильный логин и(или) пароль")
@@ -91,9 +116,9 @@ function App() {
     }
 
     function handleAuthorized(userName: string) {
-        setCurrentUser(userName)
+        setCurrentUser(userName);
         setIsAuthorized(true);
-        navigate("/profile")
+        navigate("/profile");
     }
 
     return (
@@ -113,7 +138,7 @@ function App() {
                 }/>
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<LearningPage words={wordsArray} isAuthorized={isAuthorized}
+                                    children={<LearningPage words={allWords} isAuthorized={isAuthorized}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
@@ -129,7 +154,7 @@ function App() {
                 <Route path="/words-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Начать" wordsType="все" linkName="/learn-all"
-                                                         isAuthorized={isAuthorized} words={wordsArray}
+                                                         isAuthorized={isAuthorized} words={allWords}
                                                          currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-new" element={
