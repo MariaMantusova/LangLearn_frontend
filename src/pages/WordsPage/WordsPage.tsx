@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 function WordsPage(props: IWordsPageProps) {
     const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
 
-    const [words, setWords] = useState(props.words);
+    const words = props.words;
     const [currentPage, setCurrentPage] = useState(1);
     const [wordsPerPage] = useState(7);
 
@@ -28,19 +28,28 @@ function WordsPage(props: IWordsPageProps) {
             <Header path="/" linkName="На главную" exitUser={props.exitUser}
                     isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
             <section className="words-page">
-                <h1 className="words-page__title">{currentUserName}, ваши {props.wordsType} слова</h1>
-                <div className="words-page__container">
-                <ul className="words-page__words">
-                    {currentWords.map((word: IWord) => (
-                        <WordLine isLearned={word.isLearned} word={word.word} translation={word.translation}
-                                  key={word._id}/>
-                    ))}
-                </ul>
-                <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={paginate}
-                            setCurrentPage={setCurrentPage} currentPage={currentPage}/>
-                </div>
-                <Link to={props.linkName} className="words-page__button">{props.buttonText}</Link>
-                {props.children}
+                {
+                    words.length < 1 ?
+                        <h1 className="words-page__title">{currentUserName}, ваши {props.wordsType} слова не
+                            найдены</h1>
+                        : <>
+                            <h1 className="words-page__title">{currentUserName}, ваши {props.wordsType} слова</h1>
+                            <div className="words-page__container">
+                                <ul className="words-page__words">
+                                    {currentWords.map((word: IWord) => (
+                                        <WordLine isLearned={word.isLearned} word={word.word}
+                                                  translation={word.translation}
+                                                  key={word._id}/>
+                                    ))}
+                                </ul>
+                                <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={paginate}
+                                            setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+                            </div>
+                            <Link to={props.linkName} className="words-page__button">{props.buttonText}</Link>
+                            {props.children}
+                        </>
+                }
+
             </section>
             <Footer/>
         </>

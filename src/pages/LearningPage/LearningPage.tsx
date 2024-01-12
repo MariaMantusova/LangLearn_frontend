@@ -45,19 +45,28 @@ function LearningPage(props: IPropsLearningPage) {
             <Header path="/" linkName="На главную" isAuthorized={props.isAuthorized} exitUser={props.exitUser}
                     currentUser={props.currentUser}/>
             <section className="learning-page">
-                <h1 className="learning-page__title">{currentUserName}, у тебя все получится!</h1>
-                <div className="learning-page__container">
-                    <button
-                        className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
-                        onClick={handlePrevCard}
-                        disabled={disablePrevButton}></button>
-                    <Card isLearned={props.words[currentIndex].isLearned} word={props.words[currentIndex].word}
-                          translation={props.words[currentIndex].translation}/>
-                    <button
-                        className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
-                        onClick={handleNextCard}
-                        disabled={disableNextButton}></button>
-                </div>
+                {
+                    props.words.length < 1 ?
+                        <h1 className="learning-page__title">{currentUserName}, у тебя пока нет слов.</h1>
+                        :
+                        <>
+                            <h1 className="learning-page__title">{currentUserName}, у тебя все получится!</h1>
+                            <div className="learning-page__container">
+                                <button
+                                    className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
+                                    onClick={handlePrevCard}
+                                    disabled={disablePrevButton}></button>
+                                <Card isLearned={props.words[currentIndex].isLearned}
+                                      word={props.words[currentIndex].word}
+                                      translation={props.words[currentIndex].translation}/>
+                                <button
+                                    className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
+                                    onClick={handleNextCard}
+                                    disabled={disableNextButton}></button>
+                            </div>
+                        </>
+                }
+
             </section>
             <Footer/>
         </>
