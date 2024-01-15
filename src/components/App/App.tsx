@@ -30,15 +30,15 @@ function App() {
     }, [])
 
     useEffect(() => {
-        isAuthorized &&
-        getCards("all");
-        getCards("new");
-        getCards("learned");
+        if (isAuthorized) {
+            getCards("all");
+            getCards("new");
+            getCards("learned");
+        }
     }, [isAuthorized])
 
     function tokenCheck() {
         const jwt = localStorage.getItem("token");
-
         if (jwt) {
             authApi.validityCheck(jwt)
                 .then((user) => {
