@@ -80,6 +80,10 @@ export interface IProfilePageProps {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
+    isAddingPopupOpened: boolean
+    handlePopupOpen: () => void
+    handlePopupClose: () => void
+    handleWordAdding: (word: string, translation: string) => void
 }
 
 export interface IWordLineProps {
@@ -106,6 +110,7 @@ export interface IOpportunitiesProps {
 export interface IAddingPopupProps {
     isPopupOpen: boolean
     onClose: () => void
+    handleWordAdding: (word: string, translation: string) => void
 }
 
 export interface IPropsLearningPage {
@@ -145,6 +150,10 @@ export interface IPropsMain {
     setIsPopupOpened: React.Dispatch<React.SetStateAction<boolean>>
     newWords: IWord[]
     learnedWords: IWord[]
+    isAddingPopupOpened: boolean
+    handlePopupOpen: () => void
+    handlePopupClose: () => void
+    handleWordAdding: (word: string, translation: string) => void
 }
 
 export interface IPropsLoginPage {

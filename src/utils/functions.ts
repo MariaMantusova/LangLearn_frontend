@@ -10,7 +10,7 @@ export function getThreeRandomWords(wordsArray: IWord[]): string[] | string {
     if (wordsArray.length <= 3) {
         const threeWordsArray: string[] = []
 
-        for (let i = 0; i <= wordsArray.length; i++) {
+        for (let i = 0; i < wordsArray.length; i++) {
             threeWordsArray.push(wordsArray[i].word)
         }
 

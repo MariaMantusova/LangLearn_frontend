@@ -4,24 +4,29 @@ import {IAddingPopupProps} from "../../interfaces/interfacesForProps";
 import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 
 function AddingPopup(props: IAddingPopupProps) {
-    const englishWord = useInput('', {minLength: 3, isEmpty: true, isEnglishWord: false});
+    const word = useInput('', {minLength: 3, isEmpty: true, isEnglishWord: false});
     const translation = useInput('', {minLength: 3, isEmpty: true, isTranslation: false});
 
-    const isDisabled = !translation.inputValid || !englishWord.inputValid
+    const isDisabled = !translation.inputValid || !word.inputValid
+
+    function handleSubmit(evt: any) {
+        evt.preventDefault();
+        props.handleWordAdding(word.value, translation.value);
+    }
 
     return (
         <div className={`adding-popup ${props.isPopupOpen && "adding-popup_visible"}`}>
             <section className="adding-popup__container">
                 <button className="adding-popup__close-icon" onClick={props.onClose}></button>
                 <h2 className="adding-popup__title">Какое слово хочешь добавить?</h2>
-                <form className="adding-popup__form">
+                <form className="adding-popup__form" onSubmit={handleSubmit}>
                     <div className="adding-popup__input-container">
                         <input className="adding-popup__input" placeholder="Слово на английском" type="text"
-                               pattern="^[A-Za-z]+$" onBlur={englishWord.onBlur} onChange={englishWord.onChange}
+                               pattern="^[A-Za-z]+$" onBlur={word.onBlur} onChange={word.onChange}
                                required/>
-                        {(englishWord.isDirty && englishWord.isEmpty) && <p className="adding-popup__input-error">
+                        {(word.isDirty && word.isEmpty) && <p className="adding-popup__input-error">
                             Поле не может быть пустым</p>}
-                        {(englishWord.isDirty && englishWord.englishWordError && !englishWord.isEmpty) &&
+                        {(word.isDirty && word.englishWordError && !word.isEmpty) &&
                         <p className="adding-popup__input-error">Введите слово на английском</p>}
                     </div>
                     <div className="adding-popup__input-container">

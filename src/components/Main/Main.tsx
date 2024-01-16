@@ -13,18 +13,9 @@ import {getThreeRandomWords} from "../../utils/functions";
 import AddingPopup from "../AddingPopup/AddingPopup";
 
 function Main(props: IPropsMain) {
+    console.log(props.learnedWords)
     const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
     const newWords: string[] | string = getThreeRandomWords(props.newWords)
-
-    const [isOpened, setIsOpened] = useState(false);
-
-    function handleOpenPopup() {
-        setIsOpened(true)
-    }
-
-    function handleClosePopup() {
-        setIsOpened(false)
-    }
 
     return (
         <>
@@ -42,12 +33,13 @@ function Main(props: IPropsMain) {
                         <Start/>
                     </> :
                     <div className="profile-blocks__container">
-                        <OpportunitiesBlock openingPopupFunc={handleOpenPopup}/>
-                        <AddingPopup isPopupOpen={isOpened} onClose={handleClosePopup}/>
+                        <OpportunitiesBlock openingPopupFunc={props.handlePopupOpen}/>
+                        <AddingPopup isPopupOpen={props.isAddingPopupOpened} onClose={props.handlePopupClose}
+                                     handleWordAdding={props.handleWordAdding}/>
                         <WordsBlock
                             buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
-                            openingPopupFunc={handleOpenPopup} linkName="/repeat"
+                            openingPopupFunc={props.handlePopupOpen} linkName="/repeat"
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>
                     </div>
             }

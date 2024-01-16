@@ -14,17 +14,7 @@ function ProfilePage(props: IProfilePageProps) {
     const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
     const newWords: string[] | string = getThreeRandomWords(props.newWords)
 
-    const [isOpened, setIsOpened] = useState(false);
-
-    function handleOpenPopup() {
-        setIsOpened(true)
-    }
-
-    function handleClosePopup() {
-        setIsOpened(false)
-    }
-
-    return(
+    return (
         <>
             <Header path="/learn-new" linkName="Учить слова" isAuthorized={props.isAuthorized}
                     currentUser={props.currentUser} exitUser={props.exitUser}/>
@@ -32,12 +22,13 @@ function ProfilePage(props: IProfilePageProps) {
                 <h1 className="profile-page__title">Привет, {currentUserName}!</h1>
                 <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
-                            openingPopupFunc={handleOpenPopup} linkName="/repeat"
+                            openingPopupFunc={props.handlePopupOpen} linkName="/repeat"
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>
-                <OpportunitiesBlock openingPopupFunc={handleOpenPopup}/>
-                <AddingPopup isPopupOpen={isOpened} onClose={handleClosePopup}/>
+                <OpportunitiesBlock openingPopupFunc={props.handlePopupOpen}/>
+                <AddingPopup isPopupOpen={props.isAddingPopupOpened} onClose={props.handlePopupClose}
+                             handleWordAdding={props.handleWordAdding}/>
                 <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к изучению"}
-                            words={newWords} title="Начнем учить что-то новое?" openingPopupFunc={handleOpenPopup}
+                            words={newWords} title="Начнем учить что-то новое?" openingPopupFunc={props.handlePopupOpen}
                             buttonClass="words-block__button_blue" wordClass="word-item_blue" linkName="/learn-new"/>
             </section>
             <Footer/>

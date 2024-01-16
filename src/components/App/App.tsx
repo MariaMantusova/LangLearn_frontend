@@ -12,6 +12,7 @@ import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 import {authApi} from "../../utils/AuthApi";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import {wordsApi} from "../../utils/WordsApi";
+import {IWord} from "../../interfaces/mainInterfaces";
 
 function App() {
     const navigate = useNavigate();
@@ -20,10 +21,11 @@ function App() {
     const [currentUser, setCurrentUser] = useState("");
     const [authMessage, setAuthMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [isAuthPopupOpened, setIsAuthOpened] = useState(false);
-    const [learnedWords, setLearnedWords] = useState([]);
-    const [newWords, setNewWords] = useState([]);
-    const [allWords, setAllWords] = useState([]);
+    const [isAuthPopupOpened, setIsAuthPopupOpened] = useState(false);
+    const [learnedWords, setLearnedWords] = useState<IWord[]>([]);
+    const [newWords, setNewWords] = useState<IWord[]>([]);
+    const [isAddingPopupOpened, setIsAddingPopupOpened] = useState(false);
+    const [allWords, setAllWords] = useState<IWord[]>([]);
 
     useEffect(() => {
         tokenCheck();
@@ -78,12 +80,12 @@ function App() {
                     handleAuthorized(user.userName)
                 } else {
                     setAuthMessage(user.message);
-                    setIsAuthOpened(true);
+                    setIsAuthPopupOpened(true);
                 }
             })
             .catch((err) => {
                 setAuthMessage(err.message);
-                setIsAuthOpened(true);
+                setIsAuthPopupOpened(true);
             })
             .finally(() => setIsLoading(false))
     }
@@ -94,20 +96,38 @@ function App() {
             .then((user) => {
                 if (!user) {
                     setAuthMessage("Неправильный логин и(или) пароль")
-                    setIsAuthOpened(true);
+                    setIsAuthPopupOpened(true);
                 } else if (user && !user.statusCode) {
                     localStorage.setItem("token", user.token)
                     handleAuthorized(user.userName)
                 } else {
                     setAuthMessage(user.message);
-                    setIsAuthOpened(true);
+                    setIsAuthPopupOpened(true);
                 }
             })
             .catch((err) => {
                 setAuthMessage(err.message);
-                setIsAuthOpened(true);
+                setIsAuthPopupOpened(true);
             })
             .finally(() => setIsLoading(false))
+    }
+
+    function addNewWord(word: string, translation: string) {
+        wordsApi.addCard(word, translation)
+            .then((word: IWord) => {
+                setAllWords([word, ...allWords])
+                setNewWords([word, ...newWords])
+                setIsAddingPopupOpened(false)
+            })
+            .catch((err) => console.log(err))
+    }
+
+    function handleAddingPopupOpened() {
+        setIsAddingPopupOpened(true)
+    }
+
+    function handleAddingPopupClosed() {
+        setIsAddingPopupOpened(false)
     }
 
     function exitUser() {
@@ -128,11 +148,19 @@ function App() {
                                                exitUser={exitUser} registerFunction={registerUser}
                                                loginFunction={loginUser} isPopupOpened={isAuthPopupOpened}
                                                message={authMessage} learnedWords={learnedWords} newWords={newWords}
-                                               isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}/>}/>
+                                               isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
+                                               handlePopupClose={handleAddingPopupClosed}
+                                               handlePopupOpen={handleAddingPopupOpened}
+                                               handleWordAdding={addNewWord}
+                                               isAddingPopupOpened={isAddingPopupOpened}/>}/>
                 <Route path="/profile" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
                                                            exitUser={exitUser}
+                                                           handlePopupClose={handleAddingPopupClosed}
+                                                           handlePopupOpen={handleAddingPopupOpened}
+                                                           handleWordAdding={addNewWord}
+                                                           isAddingPopupOpened={isAddingPopupOpened}
                                                            isAuthorized={isAuthorized} currentUser={currentUser}/>}
                     />
                 }/>
@@ -184,14 +212,14 @@ function App() {
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
                         isAuthorized={isAuthorized} loginSubmit={loginUser} currentUser={currentUser}
                         exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
-                        isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}
+                        isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
                     />}/>
                 }/>
                 <Route path="/register" element={
                     <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
                         isAuthorized={isAuthorized} registerSubmit={registerUser} currentUser={currentUser}
                         exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
-                        isLoading={isLoading} setIsPopupOpened={setIsAuthOpened}
+                        isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
                     />}/>
                 }/>
                 <Route path="*" element={<NotFoundPage/>}/>

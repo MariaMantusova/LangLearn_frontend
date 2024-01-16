@@ -1,4 +1,4 @@
-import {IApiOptions} from "../interfaces/mainInterfaces";
+import {IApiOptions, IWord} from "../interfaces/mainInterfaces";
 
 class WordsApi {
     private _url: string;
@@ -15,11 +15,11 @@ class WordsApi {
         return fetch(`${this._url}/my/${type}`, {
             credentials: 'include',
             headers: {
-                "Authorization": `${this.getAuthHeader()}`
+                "Authorization": `${this._getAuthHeader()}`
             }
         })
             .then((res) => {
-                if (res.ok || res.status === 409) {
+                if (res.ok) {
                     return res.json();
                 } else {
                     return Promise.reject(new Error(res.status.toString()));
@@ -28,7 +28,30 @@ class WordsApi {
             .catch((err) => console.log(err));
     }
 
-    getAuthHeader() {
+    addCard(word: string, translation: string) {
+        return fetch(`${this._url}/create`, {
+            credentials: 'include',
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${this._getAuthHeader()}`
+            },
+            body: JSON.stringify({
+                word: word,
+                translation: translation
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
+    _getAuthHeader() {
         if (this._token !== '') {
             return this._token
         }
