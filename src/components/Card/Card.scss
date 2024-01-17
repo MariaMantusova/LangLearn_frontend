@@ -40,12 +40,41 @@
   }
 }
 
+.changing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
 .card__text {
   font-size: 22px;
   font-weight: 700;
   margin: 0;
   max-width: 270px;
   text-align: center;
+  border: none;
+  background-color: transparent;
+}
+
+.card__text_changing {
+  background-color: $mainWhiteColor;
+  border: 1px solid $mainPinkColor;
+}
+
+.changing-button {
+  font-size: 15px;
+  background-color: transparent;
+  border: 1px solid $mainBlueColor;
+  padding: 8px 15px;
+  border-radius: 10px;
+  color: $mainBlueColor;
+  cursor: pointer;
+  transition: $opacityTransition;
+}
+
+.changing-button:hover {
+  opacity: $opacityHover;
 }
 
 .card_translation {

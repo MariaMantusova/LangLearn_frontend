@@ -122,6 +122,23 @@ function App() {
             .catch((err) => console.log(err))
     }
 
+    function changeWordCard(wordCard: IWord, word: string) {
+        const allCardsWithoutChanges = allWords.filter((card) => card._id !== wordCard._id);
+        let partCardsWithoutChanges: IWord[] = []
+        wordCard.isLearned ?
+            partCardsWithoutChanges = learnedWords.filter((card) => card._id !== wordCard._id) :
+            partCardsWithoutChanges = newWords.filter((card) => card._id !== wordCard._id)
+
+        wordsApi.cardWordChange(wordCard._id, word)
+            .then((card) => {
+                setAllWords([card, ...allCardsWithoutChanges]);
+                card.isLearned ?
+                    setLearnedWords([card, ...partCardsWithoutChanges]) :
+                    setNewWords([card, ...partCardsWithoutChanges])
+            })
+            .catch((err) => console.log(err))
+    }
+
     function handleAddingPopupOpened() {
         setIsAddingPopupOpened(true)
     }
@@ -167,16 +184,19 @@ function App() {
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={allWords} isAuthorized={isAuthorized}
+                                                            onSubmit={changeWordCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={newWords} isAuthorized={isAuthorized}
+                                                            onSubmit={changeWordCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
+                                                            onSubmit={changeWordCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-all" element={

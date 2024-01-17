@@ -51,6 +51,50 @@ class WordsApi {
             .catch((err) => console.log(err))
     }
 
+    cardWordChange(id: string, word: string) {
+        return fetch(`${this._url}/${id}`, {
+            credentials: 'include',
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${this._getAuthHeader()}`
+            },
+            body: JSON.stringify({
+                word: word,
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
+    cardTranslationChange(id: string, translation: string) {
+        return fetch(`${this._url}/${id}`, {
+            credentials: 'include',
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${this._getAuthHeader()}`
+            },
+            body: JSON.stringify({
+                translation: translation,
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
     _getAuthHeader() {
         if (this._token !== '') {
             return this._token

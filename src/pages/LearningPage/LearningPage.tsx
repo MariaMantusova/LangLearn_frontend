@@ -11,6 +11,11 @@ function LearningPage(props: IPropsLearningPage) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disablePrevButton, setDisablePrevButton] = useState(true);
     const [disableNextButton, setDisableNextButton] = useState(false);
+    const [wordValue, setWordValue] = useState("");
+
+    function handleWordInputChange(evt: any) {
+        setWordValue(evt.target.value);
+    }
 
     React.useEffect(() => {
         if (currentIndex >= 1) {
@@ -20,6 +25,8 @@ function LearningPage(props: IPropsLearningPage) {
         if (currentIndex < props.words.length - 1) {
             setDisableNextButton(false)
         }
+
+        setWordValue("")
     }, [currentIndex]);
 
     function handleNextCard() {
@@ -56,9 +63,8 @@ function LearningPage(props: IPropsLearningPage) {
                                     className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
                                     onClick={handlePrevCard}
                                     disabled={disablePrevButton}></button>
-                                <Card isLearned={props.words[currentIndex].isLearned}
-                                      word={props.words[currentIndex].word}
-                                      translation={props.words[currentIndex].translation}/>
+                                <Card word={wordValue} onSubmit={props.onSubmit}
+                                      card={props.words[currentIndex]} onChange={handleWordInputChange}/>
                                 <button
                                     className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
                                     onClick={handleNextCard}

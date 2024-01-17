@@ -7,7 +7,7 @@ function WordLine(props: IWordLineProps) {
     return(
         <li className="word-line">
             <p className="word-line__text">{props.word}</p>
-            <WordTools isLearned={props.isLearned}/>
+            {/*<WordTools isLearned={props.isLearned}/>*/}
         </li>
     )
 }

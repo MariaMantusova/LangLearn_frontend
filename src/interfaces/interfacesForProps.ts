@@ -17,9 +17,10 @@ export interface IProfileMenuProps {
 }
 
 export interface ICardProps {
+    card: IWord
     word: string
-    translation: string
-    isLearned: boolean
+    onChange: (evt: any) => void
+    onSubmit: (wordCard: IWord, word: string) => void
 }
 
 export interface IAuthFormProps {
@@ -118,6 +119,7 @@ export interface IPropsLearningPage {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
+    onSubmit: (wordCard: IWord, word: string) => void
 }
 
 export interface IPropsPagination {
@@ -130,6 +132,7 @@ export interface IPropsPagination {
 
 export interface IPropsWordTools {
     isLearned: boolean
+    handleChangeButtonClick: () => void
 }
 
 export interface IPropsProtectedRoute {
