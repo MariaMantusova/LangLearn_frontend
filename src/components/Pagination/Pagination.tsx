@@ -21,7 +21,7 @@ function Pagination(props: IPropsPagination) {
     }
 
     useEffect(() => {
-        if (props.currentPage <= 1 && !(props.currentPage >= pageNumbers.length)) {
+        if (props.currentPage <= 1 && pageNumbers.length > 1) {
             setIsPrevVectorDisabled(true)
             setIsNextVectorDisabled(false)
         } else if (props.currentPage >= pageNumbers.length && !(props.currentPage <= 1)) {
@@ -32,6 +32,16 @@ function Pagination(props: IPropsPagination) {
             setIsPrevVectorDisabled(false)
         }
     }, [props.currentPage])
+
+    useEffect(() => {
+        if (props.currentPage <= 1) {
+            setIsPrevVectorDisabled(true)
+        }
+
+        if (props.currentPage >= pageNumbers.length) {
+            setIsNextVectorDisabled(true)
+        }
+    }, [])
 
     useEffect(() => {
         if (pageNumbers.length > 5) {

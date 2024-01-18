@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./WordsPage.scss";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
