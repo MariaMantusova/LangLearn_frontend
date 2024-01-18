@@ -13,7 +13,6 @@ import {getThreeRandomWords} from "../../utils/functions";
 import AddingPopup from "../AddingPopup/AddingPopup";
 
 function Main(props: IPropsMain) {
-    console.log(props.learnedWords)
     const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
     const newWords: string[] | string = getThreeRandomWords(props.newWords)
 

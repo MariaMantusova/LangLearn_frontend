@@ -12,9 +12,14 @@ function LearningPage(props: IPropsLearningPage) {
     const [disablePrevButton, setDisablePrevButton] = useState(true);
     const [disableNextButton, setDisableNextButton] = useState(false);
     const [wordValue, setWordValue] = useState(props.words[currentIndex].word);
+    const [translationValue, setTranslationValue] = useState(props.words[currentIndex].translation);
 
     function handleWordInputChange(evt: any) {
         setWordValue(evt.target.value);
+    }
+
+    function handleTranslationInputChange(evt: any) {
+        setTranslationValue(evt.target.value);
     }
 
     React.useEffect(() => {
@@ -27,6 +32,7 @@ function LearningPage(props: IPropsLearningPage) {
         }
 
         setWordValue(props.words[currentIndex].word)
+        setTranslationValue(props.words[currentIndex].translation)
     }, [currentIndex]);
 
     function handleNextCard() {
@@ -63,8 +69,10 @@ function LearningPage(props: IPropsLearningPage) {
                                     className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
                                     onClick={handlePrevCard}
                                     disabled={disablePrevButton}></button>
-                                <Card word={wordValue} onSubmit={props.onSubmit}
-                                      card={props.words[currentIndex]} onChange={handleWordInputChange}/>
+                                <Card word={wordValue} onSubmitWord={props.onSubmitWord}
+                                      onChangeTranslation={handleTranslationInputChange}
+                                      onSubmitTranslation={props.onSubmitTranslation} translation={translationValue}
+                                      card={props.words[currentIndex]} onChangeWord={handleWordInputChange}/>
                                 <button
                                     className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
                                     onClick={handleNextCard}

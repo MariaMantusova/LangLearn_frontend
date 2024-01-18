@@ -10,13 +10,20 @@ function Card(props: ICardProps) {
     function handleChangeWord(evt: any) {
         if (evt.target.currentTarget === evt.target.value) {
             setIsTranslation(!isTranslation);
+            setIsRefactoring(false);
         }
     }
 
     function handleSubmitWordChange(evt: any) {
         evt.preventDefault();
-        props.onSubmit(props.card, props.word)
-        setIsRefactoring(false)
+        props.onSubmitWord(props.card, props.word);
+        setIsRefactoring(false);
+    }
+
+    function handleSubmitTranslationChange(evt: any) {
+        evt.preventDefault();
+        props.onSubmitTranslation(props.card, props.translation);
+        setIsRefactoring(false);
     }
 
     function handleChangeButtonClick() {
@@ -29,16 +36,17 @@ function Card(props: ICardProps) {
                 <div className="card_word">
                     <form className="changing-form" onSubmit={handleSubmitWordChange}>
                         <input className={`card__text ${isRefactoring && "card__text_changing"}`}
-                               value={props.word || ""}
-                               onChange={props.onChange}
+                               value={props.word || ""} onChange={props.onChangeWord}
                                type="text" disabled={!isRefactoring}/>
                         {isRefactoring && <button className="changing-button">done</button>}
                     </form>
                     <WordTools isLearned={props.card.isLearned} handleChangeButtonClick={handleChangeButtonClick}/>
                 </div>
                 <div className="card_translation">
-                    <form className="changing-form">
-                        <input className="card__text" value={props.card.translation} type="text" disabled/>
+                    <form className="changing-form" onSubmit={handleSubmitTranslationChange}>
+                        <input className={`card__text ${isRefactoring && "card__text_changing"}`}
+                               onChange={props.onChangeTranslation}
+                               value={props.translation || ""} type="text" disabled={!isRefactoring}/>
                         {isRefactoring && <button className="changing-button">done</button>}
                     </form>
                     <WordTools isLearned={props.card.isLearned} handleChangeButtonClick={handleChangeButtonClick}/>

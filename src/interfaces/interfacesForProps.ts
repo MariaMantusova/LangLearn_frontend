@@ -19,8 +19,11 @@ export interface IProfileMenuProps {
 export interface ICardProps {
     card: IWord
     word: string
-    onChange: (evt: any) => void
-    onSubmit: (wordCard: IWord, word: string) => void
+    translation: string
+    onChangeWord: (evt: any) => void
+    onChangeTranslation: (evt: any) => void
+    onSubmitWord: (wordCard: IWord, word: string) => void
+    onSubmitTranslation: (wordCard: IWord, word: string) => void
 }
 
 export interface IAuthFormProps {
@@ -119,7 +122,8 @@ export interface IPropsLearningPage {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
-    onSubmit: (wordCard: IWord, word: string) => void
+    onSubmitWord: (wordCard: IWord, word: string) => void
+    onSubmitTranslation: (wordCard: IWord, translation: string) => void
 }
 
 export interface IPropsPagination {
