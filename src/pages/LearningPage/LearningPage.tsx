@@ -11,7 +11,7 @@ function LearningPage(props: IPropsLearningPage) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disablePrevButton, setDisablePrevButton] = useState(true);
     const [disableNextButton, setDisableNextButton] = useState(false);
-    const [wordValue, setWordValue] = useState("");
+    const [wordValue, setWordValue] = useState(props.words[currentIndex].word);
 
     function handleWordInputChange(evt: any) {
         setWordValue(evt.target.value);
@@ -26,7 +26,7 @@ function LearningPage(props: IPropsLearningPage) {
             setDisableNextButton(false)
         }
 
-        setWordValue("")
+        setWordValue(props.words[currentIndex].word)
     }, [currentIndex]);
 
     function handleNextCard() {

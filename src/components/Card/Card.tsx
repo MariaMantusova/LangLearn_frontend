@@ -29,7 +29,7 @@ function Card(props: ICardProps) {
                 <div className="card_word">
                     <form className="changing-form" onSubmit={handleSubmitWordChange}>
                         <input className={`card__text ${isRefactoring && "card__text_changing"}`}
-                               value={props.word || props.card.word}
+                               value={props.word || ""}
                                onChange={props.onChange}
                                type="text" disabled={!isRefactoring}/>
                         {isRefactoring && <button className="changing-button">done</button>}
