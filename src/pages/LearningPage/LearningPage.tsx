@@ -29,6 +29,8 @@ function LearningPage(props: IPropsLearningPage) {
 
         if (currentIndex < props.words.length - 1) {
             setDisableNextButton(false)
+        } else {
+            setDisableNextButton(true)
         }
 
         setWordValue(props.words[currentIndex].word)
