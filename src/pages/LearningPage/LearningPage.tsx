@@ -11,8 +11,8 @@ function LearningPage(props: IPropsLearningPage) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disablePrevButton, setDisablePrevButton] = useState(true);
     const [disableNextButton, setDisableNextButton] = useState(false);
-    const [wordValue, setWordValue] = useState(props.words[currentIndex].word);
-    const [translationValue, setTranslationValue] = useState(props.words[currentIndex].translation);
+    const [wordValue, setWordValue] = useState(props.words.length < 1 ? "" : props.words[currentIndex].word || "");
+    const [translationValue, setTranslationValue] = useState(props.words.length < 1 ? "" : props.words[currentIndex].translation || "");
 
     function handleWordInputChange(evt: any) {
         setWordValue(evt.target.value);
@@ -33,8 +33,8 @@ function LearningPage(props: IPropsLearningPage) {
             setDisableNextButton(true)
         }
 
-        setWordValue(props.words[currentIndex].word)
-        setTranslationValue(props.words[currentIndex].translation)
+        setWordValue(props.words.length < 1 ? "" : props.words[currentIndex].word)
+        setTranslationValue(props.words.length < 1 ? "" : props.words[currentIndex].translation)
     }, [currentIndex]);
 
     function handleNextCard() {
