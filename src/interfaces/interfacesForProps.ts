@@ -24,6 +24,7 @@ export interface ICardProps {
     onChangeTranslation: (evt: any) => void
     onSubmitWord: (wordCard: IWord, word: string) => void
     onSubmitTranslation: (wordCard: IWord, translation: string) => void
+    onDelete: (cardID: string) => void
 }
 
 export interface IAuthFormProps {
@@ -122,6 +123,7 @@ export interface IPropsLearningPage {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
+    onDelete: (cardID: string) => void
     onSubmitWord: (wordCard: IWord, word: string) => void
     onSubmitTranslation: (wordCard: IWord, translation: string) => void
 }
@@ -137,6 +139,7 @@ export interface IPropsPagination {
 export interface IPropsWordTools {
     isLearned: boolean
     handleChangeButtonClick: () => void
+    handleDeleteCard: () => void
 }
 
 export interface IPropsProtectedRoute {

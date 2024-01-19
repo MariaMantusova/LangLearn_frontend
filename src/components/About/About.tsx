@@ -14,6 +14,7 @@ function About() {
 
     const [wordValue, setWordValue] = useState(card.word);
     const [translationValue, setTranslationValue] = useState(card.translation);
+    const [cardIsDeleted, setCardIsDeleted] = useState(false);
 
     function handleChangeTranslation(evt: any) {
         setTranslationValue(evt.target.value);
@@ -31,16 +32,32 @@ function About() {
         setTranslationValue(translation);
     }
 
+    function handleDelete() {
+        setCardIsDeleted(true)
+    }
+
+    function handleReturnButtonClick() {
+        setCardIsDeleted(false)
+    }
+
+
     return(
         <section className="about-block">
             <div className="about-block__text-container">
                 <h1 className="about-block__title">Мы поможем выучить английский</h1>
                 <p className="about-block__text">С помощью нашего приложения вы сможете учить слова и идиомы.</p>
             </div>
-            <Card word={wordValue} translation={translationValue}
-                  onSubmitTranslation={handleSubmitTranslation} onSubmitWord={handleSubmitWord}
-                  onChangeTranslation={handleChangeTranslation}
-                  card={card} onChangeWord={handleChangeWord}/>
+            {cardIsDeleted ?
+                <div className="about-block__card-place">
+                    <p className="about-block__card-text">Карточка удалена</p>
+                    <button className="about-block__return-button" onClick={handleReturnButtonClick}>
+                        Вернуть пример
+                    </button>
+                </div>
+                : <Card word={wordValue} translation={translationValue} onDelete={handleDelete}
+                        onSubmitTranslation={handleSubmitTranslation} onSubmitWord={handleSubmitWord}
+                        onChangeTranslation={handleChangeTranslation}
+                        card={card} onChangeWord={handleChangeWord}/>}
         </section>
     )
 }

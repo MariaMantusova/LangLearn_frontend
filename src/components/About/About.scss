@@ -67,3 +67,30 @@
     text-align: center;
   }
 }
+
+.about-block__card-place {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.about-block__card-text {
+  font-size: 20px;
+  margin: 0;
+}
+
+.about-block__return-button {
+  background-color: $mainPinkColor;
+  border-radius: 15px;
+  padding: 7px 15px;
+  border: none;
+  font-size: 13px;
+  color: $mainWhiteColor;
+  cursor: pointer;
+  transition: $opacityTransition;
+}
+
+.about-block__return-button:hover {
+  opacity: $opacityHover;
+}
+

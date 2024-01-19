@@ -72,7 +72,7 @@ function LearningPage(props: IPropsLearningPage) {
                                     onClick={handlePrevCard}
                                     disabled={disablePrevButton}></button>
                                 <Card word={wordValue} onSubmitWord={props.onSubmitWord}
-                                      onChangeTranslation={handleTranslationInputChange}
+                                      onChangeTranslation={handleTranslationInputChange} onDelete={props.onDelete}
                                       onSubmitTranslation={props.onSubmitTranslation} translation={translationValue}
                                       card={props.words[currentIndex]} onChangeWord={handleWordInputChange}/>
                                 <button

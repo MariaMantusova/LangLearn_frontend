@@ -156,6 +156,17 @@ function App() {
             .catch((err) => console.log(err))
     }
 
+    function deleteCard(cardID: string) {
+        wordsApi.cardDelete(cardID)
+            .then((card) => {
+                card.isLearned ?
+                    setLearnedWords(learnedWords.filter((word) => word._id !== cardID)) :
+                    setNewWords(newWords.filter((word) => word._id !== cardID))
+                setAllWords(allWords.filter((word) => word._id !== cardID))
+            })
+            .catch((err) => console.log(err))
+    }
+
     function handleAddingPopupOpened() {
         setIsAddingPopupOpened(true)
     }
@@ -181,7 +192,8 @@ function App() {
                 <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser}
                                                exitUser={exitUser} registerFunction={registerUser}
                                                loginFunction={loginUser} isPopupOpened={isAuthPopupOpened}
-                                               message={authMessage} learnedWords={learnedWords} newWords={newWords}
+                                               message={authMessage} learnedWords={learnedWords}
+                                               newWords={newWords}
                                                isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
                                                handlePopupClose={handleAddingPopupClosed}
                                                handlePopupOpen={handleAddingPopupOpened}
@@ -201,27 +213,28 @@ function App() {
                 <Route path="/learn-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={allWords} isAuthorized={isAuthorized}
-                                                            onSubmitWord={changeWordCard}
+                                                            onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             onSubmitTranslation={changeTranslationCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={newWords} isAuthorized={isAuthorized}
-                                                            onSubmitWord={changeWordCard}
+                                                            onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             onSubmitTranslation={changeTranslationCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
-                                                            onSubmitWord={changeWordCard}
+                                                            onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             onSubmitTranslation={changeTranslationCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-all" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
-                                    children={<WordsPage buttonText="Начать" wordsType="все" linkName="/learn-all"
+                                    children={<WordsPage buttonText="Начать" wordsType="все"
+                                                         linkName="/learn-all"
                                                          isAuthorized={isAuthorized} words={allWords}
                                                          currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>

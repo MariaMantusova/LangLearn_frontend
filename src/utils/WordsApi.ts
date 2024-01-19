@@ -95,6 +95,25 @@ class WordsApi {
             .catch((err) => console.log(err))
     }
 
+    cardDelete(id: string) {
+        return fetch(`${this._url}/${id}`, {
+            credentials: "include",
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${this._getAuthHeader()}`
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
     _getAuthHeader() {
         if (this._token !== '') {
             return this._token

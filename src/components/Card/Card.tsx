@@ -30,6 +30,10 @@ function Card(props: ICardProps) {
         isRefactoring ? setIsRefactoring(false) : setIsRefactoring(true)
     }
 
+    function handleDeleteCard() {
+        props.onDelete(props.card._id);
+    }
+
     return (
         <article className="card" onClick={handleChangeWord}>
             <div className={`${isTranslation ? "card_inner" : "card_inner card_outer"}`}>
@@ -40,7 +44,8 @@ function Card(props: ICardProps) {
                                type="text" disabled={!isRefactoring}/>
                         {isRefactoring && <button className="changing-button">done</button>}
                     </form>
-                    <WordTools isLearned={props.card.isLearned} handleChangeButtonClick={handleChangeButtonClick}/>
+                    <WordTools isLearned={props.card.isLearned} handleDeleteCard={handleDeleteCard}
+                               handleChangeButtonClick={handleChangeButtonClick}/>
                 </div>
                 <div className="card_translation">
                     <form className="changing-form" onSubmit={handleSubmitTranslationChange}>
@@ -49,7 +54,8 @@ function Card(props: ICardProps) {
                                value={props.translation || ""} type="text" disabled={!isRefactoring}/>
                         {isRefactoring && <button className="changing-button">done</button>}
                     </form>
-                    <WordTools isLearned={props.card.isLearned} handleChangeButtonClick={handleChangeButtonClick}/>
+                    <WordTools isLearned={props.card.isLearned} handleDeleteCard={handleDeleteCard}
+                               handleChangeButtonClick={handleChangeButtonClick}/>
                 </div>
             </div>
         </article>
