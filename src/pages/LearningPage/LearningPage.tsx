@@ -11,8 +11,9 @@ function LearningPage(props: IPropsLearningPage) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disablePrevButton, setDisablePrevButton] = useState(true);
     const [disableNextButton, setDisableNextButton] = useState(false);
-    const [wordValue, setWordValue] = useState(props.words.length < 1 ? "" : props.words[currentIndex].word || "");
-    const [translationValue, setTranslationValue] = useState(props.words.length < 1 ? "" : props.words[currentIndex].translation || "");
+    const [wordValue, setWordValue] = useState(props.words[currentIndex] ? props.words[currentIndex].word : "");
+    const [card, setCard] = useState(props.words[currentIndex]);
+    const [translationValue, setTranslationValue] = useState(props.words[currentIndex] ? props.words[currentIndex].translation : "");
 
     function handleWordInputChange(evt: any) {
         setWordValue(evt.target.value);
@@ -21,6 +22,16 @@ function LearningPage(props: IPropsLearningPage) {
     function handleTranslationInputChange(evt: any) {
         setTranslationValue(evt.target.value);
     }
+
+    React.useEffect(() => {
+        if (props.words[currentIndex]) {
+            setCard(props.words[currentIndex])
+            setWordValue(props.words[currentIndex] ? props.words[currentIndex].word : "")
+            setTranslationValue(props.words[currentIndex] ? props.words[currentIndex].translation : "")
+        } else if (props.words.length > 0) {
+            setCurrentIndex(0)
+        }
+    },[props.words])
 
     React.useEffect(() => {
         if (currentIndex >= 1) {
@@ -33,8 +44,8 @@ function LearningPage(props: IPropsLearningPage) {
             setDisableNextButton(true)
         }
 
-        setWordValue(props.words.length < 1 ? "" : props.words[currentIndex].word)
-        setTranslationValue(props.words.length < 1 ? "" : props.words[currentIndex].translation)
+        setWordValue(props.words[currentIndex] ? props.words[currentIndex].word : "")
+        setTranslationValue(props.words[currentIndex] ? props.words[currentIndex].translation : "")
     }, [currentIndex]);
 
     function handleNextCard() {
@@ -74,7 +85,7 @@ function LearningPage(props: IPropsLearningPage) {
                                 <Card word={wordValue} onSubmitWord={props.onSubmitWord}
                                       onChangeTranslation={handleTranslationInputChange} onDelete={props.onDelete}
                                       onSubmitTranslation={props.onSubmitTranslation} translation={translationValue}
-                                      card={props.words[currentIndex]} onChangeWord={handleWordInputChange}/>
+                                      card={card} onChangeWord={handleWordInputChange}/>
                                 <button
                                     className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
                                     onClick={handleNextCard}
