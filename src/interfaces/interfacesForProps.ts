@@ -23,7 +23,7 @@ export interface ICardProps {
     onChangeWord: (evt: any) => void
     onChangeTranslation: (evt: any) => void
     onSubmitWord: (wordCard: IWord, word: string) => void
-    onSubmitTranslation: (wordCard: IWord, word: string) => void
+    onSubmitTranslation: (wordCard: IWord, translation: string) => void
 }
 
 export interface IAuthFormProps {
