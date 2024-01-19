@@ -29,8 +29,11 @@ function LearningPage(props: IPropsLearningPage) {
             setWordValue(props.words[currentIndex] ? props.words[currentIndex].word : "")
             setTranslationValue(props.words[currentIndex] ? props.words[currentIndex].translation : "")
         } else if (props.words.length > 0) {
-            setCurrentIndex(0)
+           setCurrentIndex(0)
+           setCard(props.words[0])
+            setDisablePrevButton(true)
         }
+
     },[props.words])
 
     React.useEffect(() => {
@@ -46,6 +49,7 @@ function LearningPage(props: IPropsLearningPage) {
 
         setWordValue(props.words[currentIndex] ? props.words[currentIndex].word : "")
         setTranslationValue(props.words[currentIndex] ? props.words[currentIndex].translation : "")
+        setCard(props.words[currentIndex] && props.words[currentIndex])
     }, [currentIndex]);
 
     function handleNextCard() {
