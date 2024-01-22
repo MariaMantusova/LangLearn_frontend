@@ -123,35 +123,24 @@ function App() {
     }
 
     function changeWordCard(wordCard: IWord, word: string) {
-        const allCardsWithoutChanges = allWords.filter((card) => card._id !== wordCard._id);
-        let partCardsWithoutChanges: IWord[] = []
-        wordCard.isLearned ?
-            partCardsWithoutChanges = learnedWords.filter((card) => card._id !== wordCard._id) :
-            partCardsWithoutChanges = newWords.filter((card) => card._id !== wordCard._id)
-
         wordsApi.cardWordChange(wordCard._id, word)
             .then((card) => {
-                setAllWords([card, ...allCardsWithoutChanges]);
+                setAllWords((state) => state.map((word) => card._id === word._id ? card : word))
                 card.isLearned ?
-                    setLearnedWords([card, ...partCardsWithoutChanges]) :
-                    setNewWords([card, ...partCardsWithoutChanges])
+                    setLearnedWords((state) => state.map((word) => card._id === word._id ? card : word)) :
+                    setNewWords((state) => state.map((word) => card._id === word._id ? card : word))
+
             })
             .catch((err) => console.log(err))
     }
 
     function changeTranslationCard(wordCard: IWord, translation: string) {
-        const allCardsWithoutChanges = allWords.filter((card) => card._id !== wordCard._id);
-        let partCardsWithoutChanges: IWord[] = []
-        wordCard.isLearned ?
-            partCardsWithoutChanges = learnedWords.filter((card) => card._id !== wordCard._id) :
-            partCardsWithoutChanges = newWords.filter((card) => card._id !== wordCard._id)
-
         wordsApi.cardTranslationChange(wordCard._id, translation)
             .then((card) => {
-                setAllWords([card, ...allCardsWithoutChanges]);
+                setAllWords((state) => state.map((word) => card._id === word._id ? card : word))
                 card.isLearned ?
-                    setLearnedWords([card, ...partCardsWithoutChanges]) :
-                    setNewWords([card, ...partCardsWithoutChanges])
+                    setLearnedWords((state) => state.map((word) => card._id === word._id ? card : word)) :
+                    setNewWords((state) => state.map((word) => card._id === word._id ? card : word))
             })
             .catch((err) => console.log(err))
     }
@@ -165,6 +154,11 @@ function App() {
                 setAllWords(allWords.filter((word) => word._id !== cardID))
             })
             .catch((err) => console.log(err))
+    }
+
+    function handleCardLearningStatus(cardID: string, isLearned: boolean) {
+        wordsApi.cardLearned(cardID, isLearned)
+            .then(() => {})
     }
 
     function handleAddingPopupOpened() {

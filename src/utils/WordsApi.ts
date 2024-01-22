@@ -114,6 +114,28 @@ class WordsApi {
             .catch((err) => console.log(err))
     }
 
+    cardLearned(id: string, isLearned: boolean) {
+        return fetch(`${this._url}/${id}`, {
+            credentials: 'include',
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${this._getAuthHeader()}`
+            },
+            body: JSON.stringify({
+                isLearned: isLearned,
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err))
+    }
+
     _getAuthHeader() {
         if (this._token !== '') {
             return this._token
