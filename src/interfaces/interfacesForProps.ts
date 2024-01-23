@@ -22,6 +22,7 @@ export interface ICardProps {
     translation: string
     onChangeWord: (evt: any) => void
     onChangeTranslation: (evt: any) => void
+    toggleLearningStatus: (card: IWord) => void
     onSubmitWord: (wordCard: IWord, word: string) => void
     onSubmitTranslation: (wordCard: IWord, translation: string) => void
     onDelete: (cardID: string) => void
@@ -124,6 +125,7 @@ export interface IPropsLearningPage {
     currentUser: string
     exitUser: () => void
     onDelete: (cardID: string) => void
+    toggleLearningStatus: (card: IWord) => void
     onSubmitWord: (wordCard: IWord, word: string) => void
     onSubmitTranslation: (wordCard: IWord, translation: string) => void
 }
@@ -140,6 +142,7 @@ export interface IPropsWordTools {
     isLearned: boolean
     handleChangeButtonClick: () => void
     handleDeleteCard: () => void
+    toggleLearningStatus: () => void
 }
 
 export interface IPropsProtectedRoute {

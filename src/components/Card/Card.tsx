@@ -34,6 +34,10 @@ function Card(props: ICardProps) {
         props.onDelete(props.card._id);
     }
 
+    function toggleLearningStatus() {
+        props.toggleLearningStatus(props.card)
+    }
+
     return (
         <article className="card" onClick={handleChangeWord}>
             <div className={`${isTranslation ? "card_inner" : "card_inner card_outer"}`}>
@@ -45,7 +49,8 @@ function Card(props: ICardProps) {
                         {isRefactoring && <button className="changing-button">done</button>}
                     </form>
                     <WordTools isLearned={props.card.isLearned} handleDeleteCard={handleDeleteCard}
-                               handleChangeButtonClick={handleChangeButtonClick}/>
+                               handleChangeButtonClick={handleChangeButtonClick}
+                               toggleLearningStatus={toggleLearningStatus}/>
                 </div>
                 <div className="card_translation">
                     <form className="changing-form" onSubmit={handleSubmitTranslationChange}>
@@ -55,7 +60,8 @@ function Card(props: ICardProps) {
                         {isRefactoring && <button className="changing-button">done</button>}
                     </form>
                     <WordTools isLearned={props.card.isLearned} handleDeleteCard={handleDeleteCard}
-                               handleChangeButtonClick={handleChangeButtonClick}/>
+                               handleChangeButtonClick={handleChangeButtonClick}
+                               toggleLearningStatus={toggleLearningStatus}/>
                 </div>
             </div>
         </article>

@@ -89,6 +89,7 @@ function LearningPage(props: IPropsLearningPage) {
                                 <Card word={wordValue} onSubmitWord={props.onSubmitWord}
                                       onChangeTranslation={handleTranslationInputChange} onDelete={props.onDelete}
                                       onSubmitTranslation={props.onSubmitTranslation} translation={translationValue}
+                                      toggleLearningStatus={props.toggleLearningStatus}
                                       card={card} onChangeWord={handleWordInputChange}/>
                                 <button
                                     className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}

@@ -156,9 +156,22 @@ function App() {
             .catch((err) => console.log(err))
     }
 
-    function handleCardLearningStatus(cardID: string, isLearned: boolean) {
-        wordsApi.cardLearned(cardID, isLearned)
-            .then(() => {})
+    function toggleCardLearningStatus(card: IWord) {
+        card.isLearned ?
+            wordsApi.cardLearned(card._id, false)
+                .then((newCard) => {
+                    setAllWords((state) => state.map((word) => newCard._id === word._id ? newCard : word))
+                    setLearnedWords(learnedWords.filter((word) => word._id !== card._id))
+                    setNewWords([newCard, ...newWords])
+                })
+                .catch((err) => console.log(err)) :
+            wordsApi.cardLearned(card._id, true)
+                .then((newCard) => {
+                    setAllWords((state) => state.map((word) => newCard._id === word._id ? newCard : word))
+                    setNewWords(newWords.filter((word) => word._id !== card._id))
+                    setLearnedWords([newCard, ...learnedWords])
+                })
+                .catch((err) => console.log(err))
     }
 
     function handleAddingPopupOpened() {
@@ -209,12 +222,14 @@ function App() {
                                     children={<LearningPage words={allWords} isAuthorized={isAuthorized}
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             onSubmitTranslation={changeTranslationCard}
+                                                            toggleLearningStatus={toggleCardLearningStatus}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={newWords} isAuthorized={isAuthorized}
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
+                                                            toggleLearningStatus={toggleCardLearningStatus}
                                                             onSubmitTranslation={changeTranslationCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
@@ -222,6 +237,7 @@ function App() {
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
+                                                            toggleLearningStatus={toggleCardLearningStatus}
                                                             onSubmitTranslation={changeTranslationCard}
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>

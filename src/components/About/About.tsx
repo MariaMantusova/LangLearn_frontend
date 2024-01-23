@@ -14,6 +14,7 @@ function About() {
 
     const [wordValue, setWordValue] = useState(card.word);
     const [translationValue, setTranslationValue] = useState(card.translation);
+    const [isLearned, setIsLearned] = useState(card.isLearned);
     const [cardIsDeleted, setCardIsDeleted] = useState(false);
 
     function handleChangeTranslation(evt: any) {
@@ -40,6 +41,10 @@ function About() {
         setCardIsDeleted(false)
     }
 
+    function toggleLearningStatus() {
+        setIsLearned(!isLearned)
+    }
+
 
     return(
         <section className="about-block">
@@ -56,7 +61,7 @@ function About() {
                 </div>
                 : <Card word={wordValue} translation={translationValue} onDelete={handleDelete}
                         onSubmitTranslation={handleSubmitTranslation} onSubmitWord={handleSubmitWord}
-                        onChangeTranslation={handleChangeTranslation}
+                        onChangeTranslation={handleChangeTranslation} toggleLearningStatus={toggleLearningStatus}
                         card={card} onChangeWord={handleChangeWord}/>}
         </section>
     )
