@@ -4,17 +4,18 @@ import Card from "../Card/Card";
 import {IWord} from "../../interfaces/mainInterfaces";
 
 function About() {
+    const [isLearned, setIsLearned] = useState(false);
+
     const card: IWord = {
         translation: "Как бальзам на душу",
         word: "Music to one's ears",
-        isLearned: false,
+        isLearned: isLearned,
         userId: "opened",
         _id: ""
     }
 
     const [wordValue, setWordValue] = useState(card.word);
     const [translationValue, setTranslationValue] = useState(card.translation);
-    const [isLearned, setIsLearned] = useState(card.isLearned);
     const [cardIsDeleted, setCardIsDeleted] = useState(false);
 
     function handleChangeTranslation(evt: any) {
@@ -41,7 +42,7 @@ function About() {
         setCardIsDeleted(false)
     }
 
-    function toggleLearningStatus() {
+    function toggleLearningStatus(card: IWord) {
         setIsLearned(!isLearned)
     }
 
