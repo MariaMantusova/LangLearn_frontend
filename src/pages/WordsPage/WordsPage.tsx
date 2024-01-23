@@ -37,8 +37,10 @@ function WordsPage(props: IWordsPageProps) {
                             <div className="words-page__container">
                                 <ul className="words-page__words">
                                     {currentWords.map((word: IWord) => (
-                                        <WordLine isLearned={word.isLearned} word={word.word}
-                                                  translation={word.translation}
+                                        <WordLine isLearned={word.isLearned} card={word}
+                                                  onSubmitWord={props.onSubmitWord}
+                                                  onDelete={props.onDelete}
+                                                  toggleLearningStatus={props.toggleLearningStatus}
                                                   key={word._id}/>
                                     ))}
                                 </ul>

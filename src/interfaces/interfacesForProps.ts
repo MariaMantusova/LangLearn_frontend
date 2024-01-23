@@ -93,9 +93,11 @@ export interface IProfilePageProps {
 }
 
 export interface IWordLineProps {
-    word: string
-    translation: string
     isLearned: boolean
+    card: IWord
+    onDelete: (cardID: string) => void
+    toggleLearningStatus: (card: IWord) => void
+    onSubmitWord: (wordCard: IWord, word: string) => void
 }
 
 export interface IWordsPageProps {
@@ -107,6 +109,9 @@ export interface IWordsPageProps {
     linkName: string
     currentUser: string
     exitUser: () => void
+    onDelete: (cardID: string) => void
+    toggleLearningStatus: (card: IWord) => void
+    onSubmitWord: (wordCard: IWord, word: string) => void
 }
 
 export interface IOpportunitiesProps {

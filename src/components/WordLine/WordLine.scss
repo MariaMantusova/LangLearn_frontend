@@ -22,8 +22,37 @@
   }
 }
 
-.word-line__text {
-  font-weight: 300;
-  font-size: 20px;
-  margin: 0;
+.word-line__form {
+  display: flex;
+  gap: 15px;
 }
+
+.word-line__input {
+  color: black;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+}
+
+.word-line_changing {
+  padding: 5px;
+  border: 1px solid $mainPinkColor;
+  border-radius: 10px;
+}
+
+.word-line__button {
+  background-color: $mainPinkColor;
+  color: $mainWhiteColor;
+  font-size: 14px;
+  border: none;
+  border-radius: 7px;
+  padding: 7px;
+  cursor: pointer;
+  transition: $opacityTransition;
+}
+
+.word-line__button:hover {
+  opacity: $opacityHover;
+}
+
+

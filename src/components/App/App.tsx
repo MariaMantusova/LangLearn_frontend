@@ -245,6 +245,9 @@ function App() {
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Начать" wordsType="все"
                                                          linkName="/learn-all"
+                                                         toggleLearningStatus={toggleCardLearningStatus}
+                                                         onDelete={deleteCard}
+                                                         onSubmitWord={changeWordCard}
                                                          isAuthorized={isAuthorized} words={allWords}
                                                          currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
@@ -253,6 +256,9 @@ function App() {
                                     children={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}
                                                          linkName="/learn-new" currentUser={currentUser}
                                                          exitUser={exitUser}
+                                                         toggleLearningStatus={toggleCardLearningStatus}
+                                                         onDelete={deleteCard}
+                                                         onSubmitWord={changeWordCard}
                                                          isAuthorized={isAuthorized} children={
                                         <Link className="words-page__link" to="/words-learned">
                                             Перейти к выученным словам &#8594;
@@ -262,6 +268,9 @@ function App() {
                 <Route path="/words-learned" element={
                     <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
+                                                         toggleLearningStatus={toggleCardLearningStatus}
+                                                         onDelete={deleteCard}
+                                                         onSubmitWord={changeWordCard}
                                                          exitUser={exitUser}
                                                          linkName="/repeat" currentUser={currentUser}
                                                          words={learnedWords} isAuthorized={isAuthorized}
