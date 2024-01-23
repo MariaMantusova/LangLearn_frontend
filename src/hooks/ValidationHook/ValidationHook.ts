@@ -72,9 +72,11 @@ const useInput = (initialValue: string, validations: IValidations) => {
 
     return {
         value,
+        setValue,
         onChange,
         onBlur,
         isDirty,
+        setIsDirty,
         ...valid
     }
 }
