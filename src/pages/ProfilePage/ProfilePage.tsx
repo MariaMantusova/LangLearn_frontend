@@ -20,7 +20,7 @@ function ProfilePage(props: IProfilePageProps) {
                     currentUser={props.currentUser} exitUser={props.exitUser}/>
             <section className="profile-page">
                 <h1 className="profile-page__title">Привет, {currentUserName}!</h1>
-                <WordsBlock buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
+                <WordsBlock buttonText={typeof learnedWords === "string" ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
                             openingPopupFunc={props.handlePopupOpen} linkName="/repeat"
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>

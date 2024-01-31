@@ -129,6 +129,7 @@ export interface IPropsLearningPage {
     isAuthorized: boolean
     currentUser: string
     exitUser: () => void
+    wordsAreLoaded: boolean
     onDelete: (cardID: string) => void
     toggleLearningStatus: (card: IWord) => void
     onSubmitWord: (wordCard: IWord, word: string) => void

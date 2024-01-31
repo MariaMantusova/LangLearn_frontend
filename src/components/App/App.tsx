@@ -30,6 +30,7 @@ function App() {
     const [isAddingPopupOpened, setIsAddingPopupOpened] = useState(false);
     const [allWords, setAllWords] = useState<IWord[]>([]);
     const [afterReload, setAfterReload] = useState("");
+    const [wordsAreLoaded, setWordsAreLoaded] = useState(false);
 
     useEffect(() => {
         tokenCheck();
@@ -78,6 +79,7 @@ function App() {
                 }
             })
             .catch((err) => console.log(err))
+            .finally(() => setWordsAreLoaded(true))
     }
 
     function registerUser(name: string, email: string, password: string) {
@@ -237,7 +239,8 @@ function App() {
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             onSubmitTranslation={changeTranslationCard}
                                                             toggleLearningStatus={toggleCardLearningStatus}
-                                                            currentUser={currentUser} exitUser={exitUser}/>}/>
+                                                            currentUser={currentUser} exitUser={exitUser}
+                                                            wordsAreLoaded={wordsAreLoaded}/>}/>
                 }/>
                 <Route path="/learn-new" element={
                     isPageLoading ? <Preloader/> :
@@ -246,7 +249,8 @@ function App() {
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             toggleLearningStatus={toggleCardLearningStatus}
                                                             onSubmitTranslation={changeTranslationCard}
-                                                            currentUser={currentUser} exitUser={exitUser}/>}/>
+                                                            currentUser={currentUser} exitUser={exitUser}
+                                                            wordsAreLoaded={wordsAreLoaded}/>}/>
                 }/>
                 <Route path="/repeat" element={
                     isPageLoading ? <Preloader/> :
@@ -255,7 +259,8 @@ function App() {
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             toggleLearningStatus={toggleCardLearningStatus}
                                                             onSubmitTranslation={changeTranslationCard}
-                                                            currentUser={currentUser} exitUser={exitUser}/>}/>
+                                                            currentUser={currentUser} exitUser={exitUser}
+                                                            wordsAreLoaded={wordsAreLoaded}/>}/>
                 }/>
                 <Route path="/words-all" element={
                     isPageLoading ? <Preloader/> :

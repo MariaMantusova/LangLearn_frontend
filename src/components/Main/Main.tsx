@@ -14,7 +14,6 @@ import AddingPopup from "../AddingPopup/AddingPopup";
 
 function Main(props: IPropsMain) {
     const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
-    const newWords: string[] | string = getThreeRandomWords(props.newWords)
 
     return (
         <>
@@ -36,7 +35,7 @@ function Main(props: IPropsMain) {
                         <AddingPopup isPopupOpen={props.isAddingPopupOpened} onClose={props.handlePopupClose}
                                      handleWordAdding={props.handleWordAdding}/>
                         <WordsBlock
-                            buttonText={typeof newWords === "string" ? "Добавить слово" : "Перейти к повторению"}
+                            buttonText={typeof learnedWords === "string" ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
                             openingPopupFunc={props.handlePopupOpen} linkName="/repeat"
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>

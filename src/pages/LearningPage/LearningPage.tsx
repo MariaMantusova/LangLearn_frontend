@@ -4,12 +4,14 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
 import {IPropsLearningPage} from "../../interfaces/interfacesForProps";
+import Preloader from "../../components/Preloader/Preloader";
 
 function LearningPage(props: IPropsLearningPage) {
     const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [disablePrevButton, setDisablePrevButton] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [disableNextButton, setDisableNextButton] = useState(false);
     const [wordValue, setWordValue] = useState(props.words[currentIndex] ? props.words[currentIndex].word : "");
     const [card, setCard] = useState(props.words[currentIndex]);
@@ -24,6 +26,24 @@ function LearningPage(props: IPropsLearningPage) {
     }
 
     React.useEffect(() => {
+        setIsLoading(true)
+    }, [])
+
+    React.useEffect(() => {
+        props.wordsAreLoaded && setIsLoading(false)
+
+        if (currentIndex >= 1) {
+            setDisablePrevButton(false);
+        }
+
+        if (currentIndex < props.words.length - 1) {
+            setDisableNextButton(false)
+        } else {
+            setDisableNextButton(true)
+        }
+    }, [props.words])
+
+    React.useEffect(() => {
         if (props.words[currentIndex]) {
             setCard(props.words[currentIndex])
             setWordValue(props.words[currentIndex] ? props.words[currentIndex].word : "")
@@ -33,7 +53,6 @@ function LearningPage(props: IPropsLearningPage) {
            setCard(props.words[0])
             setDisablePrevButton(true)
         }
-
     },[props.words])
 
     React.useEffect(() => {
@@ -76,27 +95,29 @@ function LearningPage(props: IPropsLearningPage) {
                     currentUser={props.currentUser}/>
             <section className="learning-page">
                 {
-                    props.words.length < 1 ?
-                        <h1 className="learning-page__title">{currentUserName}, у тебя пока нет слов.</h1>
-                        :
-                        <>
-                            <h1 className="learning-page__title">{currentUserName}, у тебя все получится!</h1>
-                            <div className="learning-page__container">
-                                <button
-                                    className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
-                                    onClick={handlePrevCard}
-                                    disabled={disablePrevButton}></button>
-                                <Card word={wordValue} onSubmitWord={props.onSubmitWord}
-                                      onChangeTranslation={handleTranslationInputChange} onDelete={props.onDelete}
-                                      onSubmitTranslation={props.onSubmitTranslation} translation={translationValue}
-                                      toggleLearningStatus={props.toggleLearningStatus}
-                                      card={card} onChangeWord={handleWordInputChange}/>
-                                <button
-                                    className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
-                                    onClick={handleNextCard}
-                                    disabled={disableNextButton}></button>
-                            </div>
-                        </>
+                    isLoading ?
+                        <Preloader/> :
+                        props.words.length < 1 ?
+                            <h1 className="learning-page__title">{currentUserName}, у тебя пока нет слов.</h1>
+                            :
+                            <>
+                                <h1 className="learning-page__title">{currentUserName}, у тебя все получится!</h1>
+                                <div className="learning-page__container">
+                                    <button
+                                        className={`learning-page__vector vector_left ${disablePrevButton && "vector_left_disabled"}`}
+                                        onClick={handlePrevCard}
+                                        disabled={disablePrevButton}></button>
+                                    <Card word={wordValue} onSubmitWord={props.onSubmitWord}
+                                          onChangeTranslation={handleTranslationInputChange} onDelete={props.onDelete}
+                                          onSubmitTranslation={props.onSubmitTranslation} translation={translationValue}
+                                          toggleLearningStatus={props.toggleLearningStatus}
+                                          card={card} onChangeWord={handleWordInputChange}/>
+                                    <button
+                                        className={`learning-page__vector vector_right ${disableNextButton && "vector_right_disabled"}`}
+                                        onClick={handleNextCard}
+                                        disabled={disableNextButton}></button>
+                                </div>
+                            </>
                 }
 
             </section>
