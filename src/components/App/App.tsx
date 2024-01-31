@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Route, Routes} from "react-router";
+import {Route, Routes, useLocation} from "react-router";
 import Main from "../Main/Main";
 import ProfilePage from "../../pages/ProfilePage/ProfilePage";
 import LearningPage from "../../pages/LearningPage/LearningPage";
@@ -13,11 +13,14 @@ import {authApi} from "../../utils/AuthApi";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import {wordsApi} from "../../utils/WordsApi";
 import {IWord} from "../../interfaces/mainInterfaces";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [isAuthorized, setIsAuthorized] = useState(false);
+    const [isPageLoading, setIsPageLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState("");
     const [authMessage, setAuthMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +29,11 @@ function App() {
     const [newWords, setNewWords] = useState<IWord[]>([]);
     const [isAddingPopupOpened, setIsAddingPopupOpened] = useState(false);
     const [allWords, setAllWords] = useState<IWord[]>([]);
+    const [afterReload, setAfterReload] = useState("");
 
     useEffect(() => {
         tokenCheck();
+        setAfterReload(location.pathname || "/profile")
     }, [])
 
     useEffect(() => {
@@ -40,6 +45,7 @@ function App() {
     }, [isAuthorized])
 
     function tokenCheck() {
+        setIsPageLoading(true);
         const jwt = localStorage.getItem("token");
         if (jwt) {
             authApi.validityCheck(jwt)
@@ -50,6 +56,9 @@ function App() {
                     }
                 })
                 .catch((err) => console.log(err))
+                .finally(() => setIsPageLoading(false))
+        } else {
+            setIsPageLoading(false)
         }
     }
 
@@ -196,7 +205,9 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
-                <Route path="/" element={<Main isAuthorized={isAuthorized} currentUser={currentUser}
+                <Route path="/" element={
+                    isPageLoading ? <Preloader/> :
+                    <Main isAuthorized={isAuthorized} currentUser={currentUser}
                                                exitUser={exitUser} registerFunction={registerUser}
                                                loginFunction={loginUser} isPopupOpened={isAuthPopupOpened}
                                                message={authMessage} learnedWords={learnedWords}
@@ -207,18 +218,21 @@ function App() {
                                                handleWordAdding={addNewWord}
                                                isAddingPopupOpened={isAddingPopupOpened}/>}/>
                 <Route path="/profile" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
                                                            exitUser={exitUser}
                                                            handlePopupClose={handleAddingPopupClosed}
                                                            handlePopupOpen={handleAddingPopupOpened}
                                                            handleWordAdding={addNewWord}
                                                            isAddingPopupOpened={isAddingPopupOpened}
-                                                           isAuthorized={isAuthorized} currentUser={currentUser}/>}
+                                                           isAuthorized={isAuthorized}
+                                                           currentUser={currentUser}/>}
                     />
                 }/>
                 <Route path="/learn-all" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={allWords} isAuthorized={isAuthorized}
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             onSubmitTranslation={changeTranslationCard}
@@ -226,7 +240,8 @@ function App() {
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/learn-new" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={newWords} isAuthorized={isAuthorized}
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             toggleLearningStatus={toggleCardLearningStatus}
@@ -234,7 +249,8 @@ function App() {
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/repeat" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<LearningPage words={learnedWords} isAuthorized={isAuthorized}
                                                             onSubmitWord={changeWordCard} onDelete={deleteCard}
                                                             toggleLearningStatus={toggleCardLearningStatus}
@@ -242,7 +258,8 @@ function App() {
                                                             currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-all" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Начать" wordsType="все"
                                                          linkName="/learn-all"
                                                          toggleLearningStatus={toggleCardLearningStatus}
@@ -252,8 +269,10 @@ function App() {
                                                          currentUser={currentUser} exitUser={exitUser}/>}/>
                 }/>
                 <Route path="/words-new" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="login"
-                                    children={<WordsPage buttonText="Изучение" wordsType="новые" words={newWords}
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                                    children={<WordsPage buttonText="Изучение" wordsType="новые"
+                                                         words={newWords}
                                                          linkName="/learn-new" currentUser={currentUser}
                                                          exitUser={exitUser}
                                                          toggleLearningStatus={toggleCardLearningStatus}
@@ -266,7 +285,8 @@ function App() {
                                     }/>}/>
                 }/>
                 <Route path="/words-learned" element={
-                    <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
                                                          toggleLearningStatus={toggleCardLearningStatus}
                                                          onDelete={deleteCard}
@@ -281,14 +301,18 @@ function App() {
                                                          }/>}/>
                 }/>
                 <Route path="/login" element={
-                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<LoginPage
+                    isPageLoading ? <Preloader/> :
+                        <ProtectedRoute isAuthorized={!isAuthorized}
+                                        navigateLink={afterReload || "/profile"}
+                                        children={<LoginPage
                         isAuthorized={isAuthorized} loginSubmit={loginUser} currentUser={currentUser}
                         exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
                         isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
                     />}/>
                 }/>
                 <Route path="/register" element={
-                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink="/profile" children={<RegisterPage
+                    isPageLoading ? <Preloader/> :
+                    <ProtectedRoute isAuthorized={!isAuthorized} navigateLink={afterReload || "/profile"} children={<RegisterPage
                         isAuthorized={isAuthorized} registerSubmit={registerUser} currentUser={currentUser}
                         exitUser={exitUser} isPopupOpened={isAuthPopupOpened} message={authMessage}
                         isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
