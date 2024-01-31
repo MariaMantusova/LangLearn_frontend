@@ -109,6 +109,7 @@ export interface IWordsPageProps {
     linkName: string
     currentUser: string
     exitUser: () => void
+    wordsAreLoaded: boolean
     onDelete: (cardID: string) => void
     toggleLearningStatus: (card: IWord) => void
     onSubmitWord: (wordCard: IWord, word: string) => void

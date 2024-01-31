@@ -269,6 +269,7 @@ function App() {
                                                          linkName="/learn-all"
                                                          toggleLearningStatus={toggleCardLearningStatus}
                                                          onDelete={deleteCard}
+                                                         wordsAreLoaded={wordsAreLoaded}
                                                          onSubmitWord={changeWordCard}
                                                          isAuthorized={isAuthorized} words={allWords}
                                                          currentUser={currentUser} exitUser={exitUser}/>}/>
@@ -280,6 +281,7 @@ function App() {
                                                          words={newWords}
                                                          linkName="/learn-new" currentUser={currentUser}
                                                          exitUser={exitUser}
+                                                         wordsAreLoaded={wordsAreLoaded}
                                                          toggleLearningStatus={toggleCardLearningStatus}
                                                          onDelete={deleteCard}
                                                          onSubmitWord={changeWordCard}
@@ -294,7 +296,7 @@ function App() {
                         <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<WordsPage buttonText="Повторение" wordsType="выученные"
                                                          toggleLearningStatus={toggleCardLearningStatus}
-                                                         onDelete={deleteCard}
+                                                         onDelete={deleteCard} wordsAreLoaded={wordsAreLoaded}
                                                          onSubmitWord={changeWordCard}
                                                          exitUser={exitUser}
                                                          linkName="/repeat" currentUser={currentUser}

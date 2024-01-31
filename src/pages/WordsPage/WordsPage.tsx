@@ -7,6 +7,7 @@ import WordLine from "../../components/WordLine/WordLine";
 import {IWord} from "../../interfaces/mainInterfaces";
 import Pagination from "../../components/Pagination/Pagination";
 import {Link} from "react-router-dom";
+import Preloader from "../../components/Preloader/Preloader";
 
 function WordsPage(props: IWordsPageProps) {
     const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
@@ -14,6 +15,7 @@ function WordsPage(props: IWordsPageProps) {
     const words = props.words;
     const [currentPage, setCurrentPage] = useState(1);
     const [wordsPerPage] = useState(7);
+    const [isLoading, setIsLoading] = useState(false);
 
     const lastWordIndex: number = currentPage * wordsPerPage;
     const firstWordIndex: number = lastWordIndex - wordsPerPage;
@@ -23,12 +25,21 @@ function WordsPage(props: IWordsPageProps) {
         setCurrentPage(pageNumber)
     }
 
+    useEffect(() => {
+        setIsLoading(true);
+    }, [])
+
+    useEffect(() => {
+        props.wordsAreLoaded && setIsLoading(false);
+    }, [props.words])
+
     return (
         <>
             <Header path="/" linkName="На главную" exitUser={props.exitUser}
                     isAuthorized={props.isAuthorized} currentUser={props.currentUser}/>
             <section className="words-page">
                 {
+                    isLoading ? <Preloader/> :
                     words.length < 1 ?
                         <h1 className="words-page__title">{currentUserName}, ваши {props.wordsType} слова не
                             найдены</h1>
