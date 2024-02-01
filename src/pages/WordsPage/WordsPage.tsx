@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import "./WordsPage.scss";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import {IWordsPageProps} from "../../interfaces/interfacesForProps";
 import WordLine from "../../components/WordLine/WordLine";
-import {IWord} from "../../interfaces/mainInterfaces";
 import Pagination from "../../components/Pagination/Pagination";
-import {Link} from "react-router-dom";
 import Preloader from "../../components/Preloader/Preloader";
+import {IWordsPageProps} from "../../interfaces/interfacesForProps";
+import {IWord} from "../../interfaces/mainInterfaces";
 
 function WordsPage(props: IWordsPageProps) {
     const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)

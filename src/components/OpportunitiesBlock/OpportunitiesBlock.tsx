@@ -1,6 +1,6 @@
 import React from "react";
-import "./OpportunitiesBlock.scss";
 import {Link} from "react-router-dom";
+import "./OpportunitiesBlock.scss";
 import {IOpportunitiesProps} from "../../interfaces/interfacesForProps";
 
 function OpportunitiesBlock(props: IOpportunitiesProps) {

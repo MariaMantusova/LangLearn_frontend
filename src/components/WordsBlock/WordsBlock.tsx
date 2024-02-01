@@ -1,21 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import "./WordsBlock.scss";
-import {IWordsBlockProps} from "../../interfaces/interfacesForProps";
 import Preloader from "../Preloader/Preloader";
+import {IWordsBlockProps} from "../../interfaces/interfacesForProps";
 
 function WordsBlock(props: IWordsBlockProps) {
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
-
-    function handleButtonClick() {
-        if (props.buttonText == "Добавить слово") {
-            props.openingPopupFunc()
-        } else {
-            navigate(props.linkName)
-        }
-    }
 
     useEffect(() => {
         !props.wordsAreLoaded && setIsLoading(true);
@@ -24,6 +16,14 @@ function WordsBlock(props: IWordsBlockProps) {
     useEffect(() => {
         props.wordsAreLoaded && setIsLoading(false);
     }, [props.words, props.wordsAreLoaded])
+
+    function handleButtonClick() {
+        if (props.buttonText == "Добавить слово") {
+            props.openingPopupFunc()
+        } else {
+            navigate(props.linkName)
+        }
+    }
 
     return(
         <div className="words-block">

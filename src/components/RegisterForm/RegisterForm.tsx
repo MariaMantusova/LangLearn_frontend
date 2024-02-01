@@ -1,7 +1,7 @@
 import React from "react";
+import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 import AuthForm from "../AuthForm/AuthForm";
 import {IRegisterFormProps} from "../../interfaces/interfacesForProps";
-import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 
 function RegisterForm(props: IRegisterFormProps) {
     const name = useInput('', {isEmpty: true, isName: true, minLength: 2});
@@ -15,7 +15,8 @@ function RegisterForm(props: IRegisterFormProps) {
 
     return (
         <AuthForm buttonText="Зарегистрироваться" name={name} handleSubmit={handleRegisterSubmit}
-                  linkText="Уже зарегистрированы? Войти" onClick={props.onClick} password={password} email={email}
+                  linkText="Уже зарегистрированы? Войти" onClick={props.onClick} password={password}
+                  email={email}
                   children={
                       <div className="input__container">
                           <input className="auth-form__input" placeholder="Имя" onChange={name.onChange}

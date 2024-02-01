@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import "./AddingPopup.scss";
-import {IAddingPopupProps} from "../../interfaces/interfacesForProps";
 import {useInput} from "../../hooks/ValidationHook/ValidationHook";
+import "./AddingPopup.scss";
 import Preloader from "../Preloader/Preloader";
+import {IAddingPopupProps} from "../../interfaces/interfacesForProps";
 
 function AddingPopup(props: IAddingPopupProps) {
     const word = useInput('', {minLength: 3, isEmpty: true, isEnglishWord: false});
@@ -33,7 +33,8 @@ function AddingPopup(props: IAddingPopupProps) {
                     <h2 className="adding-popup__title">Какое слово хочешь добавить?</h2>
                     <form className="adding-popup__form" onSubmit={handleSubmit}>
                         <div className="adding-popup__input-container">
-                            <input className="adding-popup__input" placeholder="Слово на английском" type="text"
+                            <input className="adding-popup__input" placeholder="Слово на английском"
+                                   type="text"
                                    pattern="^[A-Za-z]+$" value={word.value || ""} onBlur={word.onBlur}
                                    onChange={word.onChange}
                                    required/>
@@ -48,8 +49,8 @@ function AddingPopup(props: IAddingPopupProps) {
                                    pattern="^[А-Яа-яЁё]+$" onChange={translation.onChange}
                                    value={translation.value || ""}
                                    required/>
-                            {(translation.isDirty && translation.isEmpty) && <p className="adding-popup__input-error">
-                                Поле не может быть пустым</p>}
+                            {(translation.isDirty && translation.isEmpty) &&
+                            <p className="adding-popup__input-error">Поле не может быть пустым</p>}
                             {(translation.isDirty && translation.translationError && !translation.isEmpty) &&
                             <p className="adding-popup__input-error">Введите перевод на русском</p>}
                         </div>

@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./ProfilePage.scss";
+import {getThreeRandomWords} from "../../utils/functions";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import WordsBlock from "../../components/WordsBlock/WordsBlock";
 import OpportunitiesBlock from "../../components/OpportunitiesBlock/OpportunitiesBlock";
 import AddingPopup from "../../components/AddingPopup/AddingPopup";
 import {IProfilePageProps} from "../../interfaces/interfacesForProps";
-import {getThreeRandomWords} from "../../utils/functions";
 
 function ProfilePage(props: IProfilePageProps) {
     const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
@@ -15,7 +15,7 @@ function ProfilePage(props: IProfilePageProps) {
     const [newWords, setNewWords] = useState<string[]>([]);
     const [wordsAreLoaded, setWordsAreLoaded] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         props.wordsAreLoaded &&
         getThreeRandomWords(props.learnedWords)
             .then((words) => {
@@ -25,7 +25,7 @@ function ProfilePage(props: IProfilePageProps) {
             .finally(() => setWordsAreLoaded(true))
     }, [props.learnedWords])
 
-    React.useEffect(() => {
+    useEffect(() => {
         props.wordsAreLoaded &&
         getThreeRandomWords(props.newWords)
             .then((words) => {

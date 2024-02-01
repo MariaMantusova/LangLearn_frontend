@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import "./AuthBlock.scss";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import LoginForm from "../LoginForm/LoginForm";
-import {IPropsAuthBlock} from "../../interfaces/interfacesForProps";
 import Preloader from "../Preloader/Preloader";
+import {IPropsAuthBlock} from "../../interfaces/interfacesForProps";
 
 function AuthBlock(props: IPropsAuthBlock) {
     const [formType, setFormType] = useState("register");

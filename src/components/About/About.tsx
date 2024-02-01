@@ -46,12 +46,13 @@ function About() {
         setIsLearned(!isLearned)
     }
 
-
     return(
         <section className="about-block">
             <div className="about-block__text-container">
                 <h1 className="about-block__title">Мы поможем выучить английский</h1>
-                <p className="about-block__text">С помощью нашего приложения вы сможете учить слова и идиомы.</p>
+                <p className="about-block__text">
+                    С помощью нашего приложения вы сможете учить слова и идиомы.
+                </p>
             </div>
             {cardIsDeleted ?
                 <div className="about-block__card-place">
@@ -62,7 +63,8 @@ function About() {
                 </div>
                 : <Card word={wordValue} translation={translationValue} onDelete={handleDelete}
                         onSubmitTranslation={handleSubmitTranslation} onSubmitWord={handleSubmitWord}
-                        onChangeTranslation={handleChangeTranslation} toggleLearningStatus={toggleLearningStatus}
+                        onChangeTranslation={handleChangeTranslation}
+                        toggleLearningStatus={toggleLearningStatus}
                         card={card} onChangeWord={handleChangeWord}/>}
         </section>
     )

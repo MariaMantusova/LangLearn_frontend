@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import "./Header.scss";
 import Logo from "../../images/logo.svg";
-import {IHeaderProps} from "../../interfaces/interfacesForProps";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
+import {IHeaderProps} from "../../interfaces/interfacesForProps";
 
 function Header(props: IHeaderProps) {
     return (

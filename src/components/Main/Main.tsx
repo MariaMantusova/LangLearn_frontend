@@ -1,22 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {getThreeRandomWords} from "../../utils/functions";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import About from "../About/About";
 import WhyWe from "../WhyWe/WhyWe";
 import Start from "../Start/Start";
 import AuthBlock from "../AuthBlock/AuthBlock";
-import {IPropsMain} from "../../interfaces/interfacesForProps";
 import AuthInfoPopup from "../AuthInfoPopup/AuthInfoPopup";
 import WordsBlock from "../WordsBlock/WordsBlock";
 import OpportunitiesBlock from "../OpportunitiesBlock/OpportunitiesBlock";
-import {getThreeRandomWords} from "../../utils/functions";
 import AddingPopup from "../AddingPopup/AddingPopup";
+import {IPropsMain} from "../../interfaces/interfacesForProps";
 
 function Main(props: IPropsMain) {
     const [learnedWords, setLearnedWords] = useState<string[]>([]);
     const [wordsAreLoaded, setWordsAreLoaded] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         props.wordsAreLoaded &&
         getThreeRandomWords(props.learnedWords)
             .then((words) => {

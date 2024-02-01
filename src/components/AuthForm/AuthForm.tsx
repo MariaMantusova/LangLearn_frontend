@@ -8,9 +8,11 @@ function AuthForm(props: IAuthFormProps) {
         <form className="auth-form" onSubmit={props.handleSubmit} noValidate>
             {props.children}
             <div className="input__container">
-                <input className="auth-form__input" placeholder="E-mail" type="email" required onBlur={props.email.onBlur}
+                <input className="auth-form__input" placeholder="E-mail" type="email" required
+                       onBlur={props.email.onBlur}
                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" onChange={props.email.onChange}/>
-                {(props.email.isDirty && props.email.isEmpty) && <p className="auth__input-error">Поле не может быть пустым</p>}
+                {(props.email.isDirty && props.email.isEmpty) &&
+                <p className="auth__input-error">Поле не может быть пустым</p>}
                 {(props.email.isDirty && props.email.emailError && !props.email.isEmpty) &&
                 <p className="auth__input-error">Введен некорректный email</p>}
             </div>

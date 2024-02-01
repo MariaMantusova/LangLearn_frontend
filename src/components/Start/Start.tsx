@@ -1,6 +1,6 @@
 import React from "react";
-import "./Start.scss";
 import {Link} from "react-router-dom";
+import "./Start.scss";
 
 function Start() {
     return(

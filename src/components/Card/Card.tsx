@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./Card.scss";
-import {ICardProps} from "../../interfaces/interfacesForProps";
 import WordTools from "../WordTools/WordTools";
+import {ICardProps} from "../../interfaces/interfacesForProps";
 
 function Card(props: ICardProps) {
     const [isTranslation, setIsTranslation] = useState(false);

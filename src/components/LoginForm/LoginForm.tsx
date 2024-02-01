@@ -1,7 +1,7 @@
 import React from "react";
+import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 import AuthForm from "../AuthForm/AuthForm";
 import {ILoginFormProps} from "../../interfaces/interfacesForProps";
-import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 
 function LoginForm(props: ILoginFormProps) {
     const email = useInput('', {isEmpty: true, isEmail: true, minLength: 2});
@@ -13,7 +13,8 @@ function LoginForm(props: ILoginFormProps) {
     }
 
     return(
-       <AuthForm buttonText="Войти" linkText="Еще нет аккаунта? Зарегистрироваться" password={password} email={email}
+       <AuthForm buttonText="Войти" linkText="Еще нет аккаунта? Зарегистрироваться" password={password}
+                 email={email}
                  onClick={props.onClick} handleSubmit={handleLoginSubmit} />
     )
 }

@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./LearningPage.scss";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
-import {IPropsLearningPage} from "../../interfaces/interfacesForProps";
 import Preloader from "../../components/Preloader/Preloader";
+import {IPropsLearningPage} from "../../interfaces/interfacesForProps";
 
 function LearningPage(props: IPropsLearningPage) {
     const currentUserName: string = props.currentUser.charAt(0).toUpperCase() + props.currentUser.slice(1)
@@ -25,11 +25,11 @@ function LearningPage(props: IPropsLearningPage) {
         setTranslationValue(evt.target.value);
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsLoading(true)
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         props.wordsAreLoaded && setIsLoading(false)
 
         if (currentIndex >= 1) {
@@ -43,7 +43,7 @@ function LearningPage(props: IPropsLearningPage) {
         }
     }, [props.words])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.words[currentIndex]) {
             setCard(props.words[currentIndex])
             setWordValue(props.words[currentIndex] ? props.words[currentIndex].word : "")
@@ -55,7 +55,7 @@ function LearningPage(props: IPropsLearningPage) {
         }
     },[props.words])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (currentIndex >= 1) {
             setDisablePrevButton(false);
         }
@@ -119,7 +119,6 @@ function LearningPage(props: IPropsLearningPage) {
                                 </div>
                             </>
                 }
-
             </section>
             <Footer/>
         </>

@@ -5,8 +5,8 @@ import {IPropsPagination} from "../../interfaces/interfacesForProps";
 function Pagination(props: IPropsPagination) {
     const [isPrevVectorDisabled, setIsPrevVectorDisabled] = useState(false)
     const [isNextVectorDisabled, setIsNextVectorDisabled]  = useState(false)
-    let pageNumbers: number[] = []
     const [showedPages, setShowedPages] = useState<number[]>([])
+    let pageNumbers: number[] = []
 
     for (let i = 1; i <= Math.ceil((props.totalWords / props.wordsPerPage)); i++) {
         pageNumbers.push(i)

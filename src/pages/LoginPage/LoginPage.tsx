@@ -4,7 +4,6 @@ import AuthPage from "../AuthPage/AuthPage";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import {IPropsLoginPage} from "../../interfaces/interfacesForProps";
 
-
 function LoginPage(props: IPropsLoginPage) {
     const navigate = useNavigate();
 
