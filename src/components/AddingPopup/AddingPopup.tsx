@@ -5,8 +5,8 @@ import Preloader from "../Preloader/Preloader";
 import {IAddingPopupProps} from "../../interfaces/interfacesForProps";
 
 function AddingPopup(props: IAddingPopupProps) {
-    const word = useInput('', {minLength: 3, isEmpty: true, isEnglishWord: false});
-    const translation = useInput('', {minLength: 3, isEmpty: true, isTranslation: false});
+    const word = useInput('', {minLength: 1, isEmpty: true, isEnglishWord: false});
+    const translation = useInput('', {minLength: 1, isEmpty: true, isTranslation: false});
     const [isLoading, setIsLoading] = useState(false);
 
     const isDisabled = !translation.inputValid || !word.inputValid

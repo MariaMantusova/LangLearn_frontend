@@ -28,11 +28,11 @@ const useValidation = (value: string, validations: IValidations) => {
                     regularExpName.test(String(value.toLowerCase())) ? setNameError(false) : setNameError(true)
                     break;
                 case 'isTranslation':
-                    const regularExpTranslation = /^[А-Яа-яЁё]+$/
+                    const regularExpTranslation = /^[А-Яа-яЁё\s]+$/
                     regularExpTranslation.test(String(value.toLowerCase())) ? setTranslationError(false) : setTranslationError(true)
                     break;
                 case 'isEnglishWord':
-                    const regularExpWord = /^[A-Za-z]+$/
+                    const regularExpWord = /^[A-Za-z\s]+$/
                     regularExpWord.test(String(value.toLowerCase())) ? setEnglishWordError(false) : setEnglishWordError(true)
             }
         }
