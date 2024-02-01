@@ -72,7 +72,8 @@ export interface IAuthPageProps {
 
 export interface IWordsBlockProps {
     buttonText: string
-    words: string[] | string
+    words: string[]
+    wordsAreLoaded: boolean
     wordClass: string
     buttonClass: string
     title: string
@@ -81,6 +82,7 @@ export interface IWordsBlockProps {
 }
 
 export interface IProfilePageProps {
+    wordsAreLoaded: boolean
     newWords: IWord[]
     learnedWords: IWord[]
     isAuthorized: boolean
@@ -173,6 +175,7 @@ export interface IPropsMain {
     isAddingPopupOpened: boolean
     handlePopupOpen: () => void
     handlePopupClose: () => void
+    wordsAreLoaded: boolean
     handleWordAdding: (word: string, translation: string) => void
 }
 

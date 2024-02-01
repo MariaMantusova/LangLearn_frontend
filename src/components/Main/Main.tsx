@@ -13,7 +13,18 @@ import {getThreeRandomWords} from "../../utils/functions";
 import AddingPopup from "../AddingPopup/AddingPopup";
 
 function Main(props: IPropsMain) {
-    const learnedWords: string[] | string = getThreeRandomWords(props.learnedWords)
+    const [learnedWords, setLearnedWords] = useState<string[]>([]);
+    const [wordsAreLoaded, setWordsAreLoaded] = useState(false);
+
+    React.useEffect(() => {
+        props.wordsAreLoaded &&
+        getThreeRandomWords(props.learnedWords)
+            .then((words) => {
+                setLearnedWords(words)
+            })
+            .catch((err) => console.log(err))
+            .finally(() => setWordsAreLoaded(true))
+    }, [props.learnedWords])
 
     return (
         <>
@@ -35,7 +46,8 @@ function Main(props: IPropsMain) {
                         <AddingPopup isPopupOpen={props.isAddingPopupOpened} onClose={props.handlePopupClose}
                                      handleWordAdding={props.handleWordAdding}/>
                         <WordsBlock
-                            buttonText={typeof learnedWords === "string" ? "Добавить слово" : "Перейти к повторению"}
+                            wordsAreLoaded={wordsAreLoaded}
+                            buttonText={learnedWords.length < 1 ? "Добавить слово" : "Перейти к повторению"}
                             words={learnedWords} title="Хочешь повторить выученные слова?"
                             openingPopupFunc={props.handlePopupOpen} linkName="/repeat"
                             buttonClass="words-block__button_pink" wordClass="word-item_pink"/>

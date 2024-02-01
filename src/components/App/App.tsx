@@ -209,21 +209,22 @@ function App() {
             <Routes>
                 <Route path="/" element={
                     isPageLoading ? <Preloader/> :
-                    <Main isAuthorized={isAuthorized} currentUser={currentUser}
-                                               exitUser={exitUser} registerFunction={registerUser}
-                                               loginFunction={loginUser} isPopupOpened={isAuthPopupOpened}
-                                               message={authMessage} learnedWords={learnedWords}
-                                               newWords={newWords}
-                                               isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
-                                               handlePopupClose={handleAddingPopupClosed}
-                                               handlePopupOpen={handleAddingPopupOpened}
-                                               handleWordAdding={addNewWord}
-                                               isAddingPopupOpened={isAddingPopupOpened}/>}/>
+                        <Main isAuthorized={isAuthorized} currentUser={currentUser}
+                              exitUser={exitUser} registerFunction={registerUser}
+                              loginFunction={loginUser} isPopupOpened={isAuthPopupOpened}
+                              message={authMessage} learnedWords={learnedWords}
+                              newWords={newWords}
+                              wordsAreLoaded={wordsAreLoaded}
+                              isLoading={isLoading} setIsPopupOpened={setIsAuthPopupOpened}
+                              handlePopupClose={handleAddingPopupClosed}
+                              handlePopupOpen={handleAddingPopupOpened}
+                              handleWordAdding={addNewWord}
+                              isAddingPopupOpened={isAddingPopupOpened}/>}/>
                 <Route path="/profile" element={
                     isPageLoading ? <Preloader/> :
                         <ProtectedRoute isAuthorized={isAuthorized} navigateLink="/login"
                                     children={<ProfilePage learnedWords={learnedWords} newWords={newWords}
-                                                           exitUser={exitUser}
+                                                           exitUser={exitUser} wordsAreLoaded={wordsAreLoaded}
                                                            handlePopupClose={handleAddingPopupClosed}
                                                            handlePopupOpen={handleAddingPopupOpened}
                                                            handleWordAdding={addNewWord}

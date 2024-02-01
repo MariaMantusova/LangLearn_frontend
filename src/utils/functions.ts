@@ -1,10 +1,10 @@
 import {IWord} from "../interfaces/mainInterfaces";
 
-export function getThreeRandomWords(wordsArray: IWord[]): string[] | string {
+export async function getThreeRandomWords(wordsArray: IWord[]): Promise<string[]> {
     const randomWords: string[] = []
 
     if (wordsArray.length <= 0) {
-        return "У вас пока нет таких слов"
+        return randomWords
     }
 
     if (wordsArray.length <= 3) {
