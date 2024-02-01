@@ -25,6 +25,10 @@
 .word-line__form {
   display: flex;
   gap: 15px;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .word-line__input {
@@ -32,6 +36,7 @@
   background-color: transparent;
   border: none;
   font-size: 18px;
+  max-width: 270px;
 }
 
 .word-line_changing {
